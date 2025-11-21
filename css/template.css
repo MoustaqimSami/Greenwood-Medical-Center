@@ -10,14 +10,12 @@
   --app-sidebar-width-collapsed: 72px;
 }
 
-/* Overall shell */
 .app-shell {
   display: flex;
   min-height: 100vh;
   background: var(--bg);
 }
 
-/* Icon sizes */
 .icon-sm {
   width: 16px;
   height: 16px;
@@ -29,8 +27,10 @@
 }
 
 .nav-icon {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
+  display: block;
+  object-fit: contain;
 }
 
 /* =========================================
@@ -55,45 +55,34 @@ body.sidebar-collapsed .sidebar {
   padding: 14px;
 }
 
-/* Top (logo + collapse) */
 .sidebar-top {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 24px;
 }
 
-/* Logo square */
 .brand-button {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: var(--primary-800);
+  width: 50px;
+  height: 50px;
+  border-radius: 0;
+  background: transparent;
   border: none;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 
-.brand-button:hover {
-  background: var(--primary-900);
-}
-
-/* Collapse icon button */
 .sidebar-toggle {
   width: 36px;
   height: 36px;
-  border-radius: 999px;
-  background: var(--neutral-50);
-  border: 1px solid var(--neutral-300);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 
-/* Nav sections (top items + bottom items) */
 .sidebar-nav {
   display: flex;
   flex-direction: column;
@@ -112,7 +101,6 @@ body.sidebar-collapsed .sidebar {
    3. SIDEBAR – NAV ITEMS & STATES
    ========================================= */
 
-/* Default nav item – OPEN state */
 .nav-item {
   display: flex;
   align-items: center;
@@ -123,68 +111,73 @@ body.sidebar-collapsed .sidebar {
   text-decoration: none;
   font-size: 14px;
   font-weight: var(--weight-medium);
-  transition:
-    background-color 0.18s ease,
-    color 0.18s ease,
+  transition: background-color 0.18s ease, color 0.18s ease,
     transform 0.18s ease;
+}
+
+.nav-item .nav-icon,
+.nav-item .nav-label {
+  display: inline-flex;
+  align-items: center;
 }
 
 /* Hover */
 .nav-item:hover {
   background: var(--neutral-100);
   color: var(--neutral-800);
-  transform: translateY(-1px);
 }
 
-/* Selected (matches your Figma “Doctors” state) */
+/* Selected */
 .nav-item-active {
-  background: var(--primary-50);
-  color: var(--primary-800);
-}
-
-/* Keep active color on hover */
-.nav-item-active:hover {
-  background: var(--primary-50);
-  color: var(--primary-800);
+  background: var(--primary-100);
+  color: var(--primary-600);
 }
 
 /* =========================================
    4. SIDEBAR – COLLAPSED STATE
    ========================================= */
 
-/* Hide labels when collapsed */
 body.sidebar-collapsed .nav-label {
   opacity: 0;
   pointer-events: none;
 }
 
-/* Center everything in a narrow strip */
 body.sidebar-collapsed .sidebar-inner {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  padding-inline: 8px;
+  justify-content: flex-start;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
 }
 
-/* Hide logo square, keep only toggle icon at top */
 body.sidebar-collapsed .brand-button {
   display: none;
 }
 
-/* Move toggle to center top */
 body.sidebar-collapsed .sidebar-top {
   justify-content: center;
 }
 
-/* Icon-only pills */
 body.sidebar-collapsed .nav-item,
 body.sidebar-collapsed .sidebar-bottom .nav-item {
-  justify-content: center;
-  padding: 10px;
+  padding: 0;
   width: 44px;
   height: 44px;
   border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 6px 0;
+  background: transparent;
+  transform: none;
 }
 
-/* Active + hover still show background even without text */
+body.sidebar-collapsed .nav-icon {
+  margin: 0;
+}
+
 body.sidebar-collapsed .nav-item:hover {
   background: var(--neutral-100);
   transform: translateY(-1px);
@@ -196,9 +189,24 @@ body.sidebar-collapsed .nav-item-active:hover {
   color: var(--primary-800);
 }
 
-/* Make sure icons stay centered */
+body.sidebar-collapsed .sidebar-nav,
+body.sidebar-collapsed .sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 body.sidebar-collapsed .nav-icon {
-  margin: 0;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+body.sidebar-collapsed .nav-label {
+  display: none;
 }
 
 /* =========================================
@@ -206,25 +214,28 @@ body.sidebar-collapsed .nav-icon {
    ========================================= */
 
 .main {
-  margin-left: var(--app-sidebar-width);
   transition: margin-left 0.25s ease;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: calc(100% - var(--app-sidebar-width));
+  margin-left: 0;
 }
 
 body.sidebar-collapsed .main {
-  margin-left: var(--app-sidebar-width-collapsed);
+  width: calc(100% - var(--app-sidebar-width-collapsed));
+  margin-left: 0;
 }
 
-/* Topbar/header */
+/* Top navbar */
 .topbar {
   height: 72px;
   background: var(--white);
   border-bottom: 1px solid var(--neutral-200);
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  padding-inline: 24px;
+  padding: 0 24px;
 }
 
 .topbar-left {
@@ -237,43 +248,46 @@ body.sidebar-collapsed .main {
   gap: 16px;
 }
 
-/* Notification icon button */
+/* Notification button */
 .icon-button {
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  border: 1px solid var(--neutral-200);
-  background: var(--neutral-50);
+  border: none;
+  background: transparent;
+  padding: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
 
-/* User pill */
+.icon-button img {
+  display: block;
+}
+
 .user-chip {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 4px 12px 4px 4px;
-  border-radius: 999px;
-  background: var(--neutral-50);
-  border: 1px solid var(--neutral-200);
 }
 
 .avatar-circle {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 999px;
-  background: var(--accent-coral);
-  color: var(--white);
+  background: rgba(232, 114, 82, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
-  font-weight: var(--weight-semibold);
 }
 
+.avatar-icon {
+  color: var(--accent-coral);
+  fill: var(--accent-coral);
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+/* Text stack */
 .user-meta {
   display: flex;
   flex-direction: column;
@@ -281,12 +295,13 @@ body.sidebar-collapsed .main {
 }
 
 .user-name {
-  font-size: 14px;
-  font-weight: var(--weight-medium);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--neutral-900);
 }
 
 .user-role {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--neutral-600);
 }
 
@@ -295,12 +310,14 @@ body.sidebar-collapsed .main {
    ========================================= */
 
 .page {
-  padding: 24px;
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 24px;
   background: var(--neutral-100);
+  box-sizing: border-box;
+  min-height: calc(100vh - 72px);
 }
 
 .page-header {
@@ -317,8 +334,11 @@ body.sidebar-collapsed .main {
 
 .page-body {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   background: var(--white);
   border-radius: 12px;
   border: 1px solid var(--neutral-200);
   padding: 24px;
+  box-sizing: border-box;
 }
