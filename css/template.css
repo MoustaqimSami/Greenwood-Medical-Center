@@ -16,16 +16,6 @@
   background: var(--bg);
 }
 
-.icon-sm {
-  width: 16px;
-  height: 16px;
-}
-
-.icon-md {
-  width: 20px;
-  height: 20px;
-}
-
 .nav-icon {
   width: 26px;
   height: 26px;

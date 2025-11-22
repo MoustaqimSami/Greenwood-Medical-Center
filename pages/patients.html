@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Schedule</title>
+    <title>Patients | GMC</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="../css/style.css" />
@@ -36,12 +36,12 @@
 
           <!-- Navigation -->
           <nav class="sidebar-nav">
-            <a class="nav-item" href="./home.html">
+            <a class="nav-item" href="./dashboard.html">
               <img class="nav-icon" src="../assets/icons/home.svg" alt="" />
               <span class="nav-label">Home</span>
             </a>
 
-            <a class="nav-item nav-item-active" href="./schedule.html">
+            <a class="nav-item" href="./schedule.html">
               <img class="nav-icon" src="../assets/icons/calendar.svg" alt="" />
               <span class="nav-label">Schedule</span>
             </a>
@@ -92,11 +92,7 @@
 
           <div class="topbar-right">
             <button class="icon-button" aria-label="Notifications">
-              <img
-                src="../assets/icons/alert.svg"
-                class="icon-md"
-                alt="Notifications"
-              />
+              <img src="../assets/icons/alert.svg" alt="Notifications" />
             </button>
 
             <div class="user-chip">
@@ -116,6 +112,7 @@
         </header>
 
         <!-- PAGE -->
+        <!-- THIS IS THE ONLY PART THAT SHOULD BE CHANGING IN MOST CASES!!! -->
         <main class="page">
           <header class="page-header">
             <h1 class="page-title">Schedule</h1>
@@ -129,15 +126,6 @@
       </div>
     </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const toggle = document.querySelector(".sidebar-toggle");
-        if (!toggle) return;
-
-        toggle.addEventListener("click", () => {
-          document.body.classList.toggle("sidebar-collapsed");
-        });
-      });
-    </script>
+    <script src="layout.js"></script>
   </body>
 </html>
