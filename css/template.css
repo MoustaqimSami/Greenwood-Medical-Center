@@ -341,6 +341,11 @@ body.sidebar-collapsed .main {
   color: var(--neutral-900);
 }
 
+.page-header--twoitems {
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
 .page-body {
   flex: 1;
   display: flex;
