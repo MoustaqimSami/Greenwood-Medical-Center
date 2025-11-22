@@ -19,7 +19,7 @@
               <img
                 src="../assets/icons/logo.svg"
                 alt="Clinic logo"
-                class="icon-md"
+                class="brand-logo"
               />
             </button>
 
@@ -29,7 +29,7 @@
                 data-open-src="../assets/icons/layout-sidebar.svg"
                 data-collapsed-src="../assets/icons/layout-sidebar-closed.svg"
                 alt="Toggle sidebar"
-                class="icon-md sidebar-toggle-icon"
+                class="sidebar-toggle-icon"
               />
             </button>
           </div>
@@ -129,17 +129,15 @@
       </div>
     </div>
 
-    <script src="dashboard.js"></script>
-  </body>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggle = document.querySelector(".sidebar-toggle");
+        if (!toggle) return;
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const toggle = document.querySelector(".sidebar-toggle");
-      if (!toggle) return;
-
-      toggle.addEventListener("click", () => {
-        document.body.classList.toggle("sidebar-collapsed");
+        toggle.addEventListener("click", () => {
+          document.body.classList.toggle("sidebar-collapsed");
+        });
       });
-    });
-  </script>
+    </script>
+  </body>
 </html>
