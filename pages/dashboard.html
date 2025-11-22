@@ -9,8 +9,74 @@
   <link rel="stylesheet" href="/css/components.css">
 </head>
 <body>
+    <div class="page-container">
 
+        <!-- SIDEBAR -->
+        <!-- MAIN CONTENT --> 
+        <main>
+        
+            <!-- TOP BAR -->
 
-  <!-- JS -->
+            <!-- PAGE CONTENT -->
+            <div class="page-content">
+
+                <!-- TOP ROW (Greeting and Current Week) -->
+                <div style="width: 100%; height: 100%; display: inline-flex; justify-content: space-between; align-items: flex-end;">
+                    <p class="sub2-semibold">Good morning ☀️, Selena</p>
+                    <div class="week-of">
+                        <img src="/assets/icons/calendar-empty.svg" alt="Calendar" width="20" height="20">
+                        <p class="body-md-regular">20 Oct - 27 Oct 2025</p>
+                    </div>
+                </div>
+
+                <!-- QUICK ACTIONS ROW-->
+                <div style="display: inline-flex; align-items: center; align-self: stretch; gap: 16px;">
+                    <!-- Quick Actions: Book Appointment and Add Patient -->
+                    <div class="quick-action">
+                        <div class="quick-action-iconbox quick-action-iconbox--orange">
+                            <img src="/assets/icons/calendar-add-n50.svg">
+                        </div>
+                        <div class="quick-action-text">
+                            <p class="body-md-medium" style="color: var(--secondary-500);">Book Appointment</p>
+                            <img src="/assets/icons/chevron-right.svg" width="20" height="20">
+                        </div>
+                    </div>
+
+                    <div class="quick-action">
+                        <div class="quick-action-iconbox quick-action-iconbox--teal">
+                            <img src="/assets/icons/person-add-fill-n50.svg">
+                        </div>
+                        <div class="quick-action-text">
+                            <p class="body-md-medium" style="color: var(--secondary-500);">Add Patient</p>
+                            <img src="/assets/icons/chevron-right.svg" width="20" height="20">
+                        </div>
+                    </div>
+                    
+                    <!-- Week Calendar -->
+                </div>
+
+                <!-- MAIN ROW -->
+                <div class="main-row">
+
+                    <!-- LEFT: Appointments Section -->
+                    <section class="appointments-section">
+                        <!-- Section title -->
+                        <!-- Tabs (Upcoming/Completed) -->
+                        <!-- Appointment cards list -->
+                    </section>
+                    
+                    <!-- RIGHT: Doctor Status -->
+                    <aside class="doctor-status">
+                        <!-- Title -->
+                        <!-- Doctor items list -->
+                    </aside>
+                
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- JS -->
+     
 </body>
 </html>
