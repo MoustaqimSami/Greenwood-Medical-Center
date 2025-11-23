@@ -5,16 +5,21 @@
 .schedule-layout {
   display: flex;
   gap: 20px;
-  align-items: flex-start;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
 }
 
 .doctor-card {
-  width: 320px;
   padding: 28px;
   background: var(--white);
   border: 1px solid var(--neutral-200);
   border-radius: 10px;
-  min-height: 720px;
+  flex: 0 0 23%;
+  max-width: 23%;
+  height: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -83,9 +88,10 @@
 
 .schedule-main {
   flex: 1 1 auto;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  min-width: 0;
+  min-height: 0;
 }
 
 .week-selector {
@@ -136,7 +142,7 @@
 /* ===========================
    CALENDAR CONTAINER & GRID
    =========================== */
-   
+
 .calendar-container {
   margin-top: 8px;
   padding: 16px;
@@ -145,13 +151,22 @@
   background: var(--neutral-50);
   width: 100%;
   box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  height: 100%;
+  min-height: 0;
 }
 
 .calendar-grid {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
   border-radius: 6px;
   border: 1px solid var(--neutral-200);
   overflow: hidden;
   width: 100%;
+  height: 100%;
 }
 
 /* header row */
@@ -193,6 +208,8 @@
 .calendar-body {
   display: grid;
   grid-template-columns: 72px 1fr;
+  flex: 1;
+  min-height: 0;
 }
 
 .calendar-times {
@@ -203,7 +220,6 @@
 }
 
 .time-row {
-  height: 24px;
   padding: 0 8px;
   display: flex;
   align-items: center;
@@ -213,6 +229,8 @@
   border-left: none;
   border-right: none;
   background: var(--neutral-50);
+  flex: 1;
+  min-height: 0;
 }
 
 .time-row-hour {
@@ -236,11 +254,12 @@
 }
 
 .slot-row {
-  height: 24px;
   border: none;
   padding: 0;
   margin: 0;
   cursor: default;
+  flex: 1;
+  min-height: 0;
 }
 
 .calendar-day-column:first-child .slot-row {
