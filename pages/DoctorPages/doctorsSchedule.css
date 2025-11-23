@@ -12,24 +12,25 @@
 }
 
 .doctor-card {
-  padding: 28px;
+  padding: 24px 24px 40px;
+  gap: 22px;
   background: var(--white);
   border: 1px solid var(--neutral-200);
   border-radius: 10px;
-  flex: 0 0 23%;
-  max-width: 23%;
+  flex: 0 0 26%;
+  max-width: 26%;
   height: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 .doctor-avatar {
-  width: 200px;
-  height: 200px;
+  width: 236px;
+  height: 236px;
   background: var(--neutral-100);
-  border-radius: 100%;
+  border-radius: 40%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,14 +38,15 @@
 }
 
 .doctor-avatar-img {
-  width: 72px;
-  height: 72px;
+  width: 96px;
+  height: 96px;
   object-fit: contain;
 }
 
 .doctor-name {
-  font-size: 22px;
+  font-size: 28px;
   font-weight: var(--weight-semibold);
+  padding: 0;
   margin-top: 22px;
   color: var(--neutral-900);
   text-align: center;
@@ -52,34 +54,49 @@
 }
 
 .doctor-info-list {
-  margin-top: 24px;
-  font-size: 15px;
+  margin-top: 28px;
+  font-size: 18px;
   color: var(--neutral-800);
-  line-height: 1.7;
+  line-height: 1.8;
   width: 100%;
 }
 
+.doctor-info-list p {
+  margin: 10px 0;
+}
+
 .change-doctor-btn {
-  margin-top: 35px;
-  background: none;
+  margin-top: 32px;
+  padding: 10px 14px;
+  background: white;
   border: none;
-  padding: 0;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--neutral-800);
   display: inline-flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  font-size: 15px;
-  color: var(--neutral-900);
-  font-weight: var(--weight-medium);
+  width: 100%;
+  justify-content: center;
+  transition: all 0.15s ease;
 }
 
 .change-doctor-btn:hover {
-  text-decoration: underline;
+  background: var(--neutral-100);
+  border-color: var(--neutral-400);
 }
 
-.edit-icon {
-  width: 17px;
-  height: 17px;
+.change-doctor-btn:active {
+  background: var(--neutral-200);
+  border-color: var(--neutral-500);
+}
+
+.change-doctor-btn .edit-icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.9;
 }
 
 /* ===========================
@@ -102,7 +119,7 @@
 }
 
 .week-nav {
-  width: 38px;
+  width: 58px;
   height: 34px;
   border-radius: 4px;
   border: 1px solid var(--neutral-300);
@@ -116,25 +133,20 @@
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-.week-nav--next {
+.week-nav:hover {
+  background: var(--neutral-100);
+}
+
+.week-nav:active {
   background: var(--secondary-500);
   color: var(--white);
   border-color: var(--secondary-500);
 }
 
-.week-nav:hover {
-  background: var(--neutral-100);
-}
-
-.week-nav--next:hover {
-  background: var(--secondary-400);
-  border-color: var(--secondary-400);
-}
-
 .week-range {
   flex: 1;
   text-align: center;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: var(--weight-semibold);
   color: var(--neutral-900);
 }
@@ -169,7 +181,6 @@
   height: 100%;
 }
 
-/* header row */
 .calendar-header {
   display: grid;
   grid-template-columns: 72px repeat(7, 1fr);
@@ -193,14 +204,14 @@
 
 .calendar-header-date {
   display: block;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: var(--weight-medium);
   color: var(--neutral-800);
 }
 
 .calendar-header-label {
   display: block;
-  font-size: 13px;
+  font-size: 16px;
   color: var(--neutral-600);
   margin-top: 2px;
 }
@@ -236,10 +247,14 @@
 .time-row-hour {
   color: var(--neutral-600);
   font-weight: var(--weight-medium);
+  background-color: var(--neutral-100);
+  justify-content: end;
+  font-size: 16px;
 }
 
 .time-row-half {
   color: transparent;
+  background-color: var(--neutral-100);
 }
 
 .calendar-days {
@@ -270,6 +285,8 @@
   background: var(--primary-50);
   border-bottom: 0.5px dotted var(--neutral-300);
   border-right: 0.5px solid var(--neutral-300);
+  transition: background 0.22s ease, box-shadow 0.22s ease, transform 0.18s ease;
+  cursor: pointer;
 }
 
 .slot-row-unavailable {
@@ -281,4 +298,63 @@
 
 .slot-row-available:hover {
   background: var(--primary-100);
+}
+
+/* ===========================
+   LEGEND
+   =========================== */
+
+.schedule-legend {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  z-index: 20;
+  pointer-events: none;
+  font-size: 13px;
+}
+
+.schedule-legend .legend-pill {
+  pointer-events: auto;
+}
+
+.legend-pill {
+  padding: 2px 10px;
+  border-radius: 8px;
+  border-width: 1px;
+  border-style: solid;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.legend-assessment {
+  background: #e0f4e8;      
+  border-color: #1ea64a;
+  color: #155b2c;
+}
+
+.legend-reports {
+  background: #fff6c7;      
+  border-color: #f2c53d;
+  color: #7a5a00;
+}
+
+.legend-followup {
+  background: #e0ecff;      
+  border-color: #3c77e6;
+  color: #174078;
+}
+
+.legend-walkin {
+  background: #ece1ff;      
+  border-color: #7043c4;
+  color: #3d226f;
+}
+
+.legend-other {
+  background: #ffe2e2;      
+  border-color: #d03b3b;
+  color: #7a1616;
 }
