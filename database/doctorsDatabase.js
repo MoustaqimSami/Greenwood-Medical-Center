@@ -1,5 +1,5 @@
 (function () {
-  let ACTIVE_DOCTOR_ID = "doc-2";
+  let ACTIVE_DOCTOR_ID = "doc-1";
 
   const doctors = [
   {

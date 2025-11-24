@@ -283,7 +283,66 @@ document.addEventListener("DOMContentLoaded", function () {
     formContainer.innerHTML = "";
     const clone = tpl.content.cloneNode(true);
     formContainer.appendChild(clone);
+
+    setupFormLayout();
   }
+
+  function setupFormLayout() {
+    const form = modal.querySelector(".appointment-form");
+    if (!form) return;
+
+    const fields = Array.from(form.querySelectorAll(".appointment-field"));
+    if (!fields.length) return;
+
+    fields.forEach((field) => {
+      field.classList.remove("field-large", "field-medium", "field-small");
+    });
+
+    fields.forEach((field) => {
+      const labelEl = field.querySelector(".appointment-field-label");
+      const labelText = (labelEl?.textContent || "").toLowerCase();
+
+      const isReason =
+        labelText.includes("reason for visit") || labelText.includes("reason");
+      const isAdditional =
+        labelText.includes("additional") ||
+        labelText.includes("notes") ||
+        labelText.includes("comments");
+      const isDateField =
+        labelText.includes("symptom") ||
+        labelText.includes("last appointment") ||
+        labelText.includes("last visit") ||
+        labelText.includes("since when");
+
+      // Reason + additional notes are always large
+      if (isReason || isAdditional) {
+        field.classList.add("field-large");
+        field.dataset.sizeLocked = "true";
+      }
+      // Date-ish fields are always the smallest ones
+      else if (isDateField) {
+        field.classList.add("field-small");
+        field.dataset.dateField = "true";
+      }
+      else {
+        field.classList.add("field-small");
+      }
+    });
+
+    // If there are only a few fields, make non-date, non-large ones a bit bigger
+    if (fields.length <= 3) {
+      fields.forEach((field) => {
+        const isLarge = field.classList.contains("field-large");
+        const isDate = field.dataset.dateField === "true";
+
+        if (!isLarge && !isDate && field.classList.contains("field-small")) {
+          field.classList.remove("field-small");
+          field.classList.add("field-medium");
+        }
+      });
+    }
+  }
+
 
   /* -----------------------------------------------------------
      MODAL OPEN/CLOSE

@@ -334,14 +334,14 @@
 }
 
 .legend-assessment {
-  background: #e0f4e8;      
-  border-color: #1ea64a;
+  background: #dcfce7;
+  border: 1px solid #16a34a;
   color: #155b2c;
 }
 
 .legend-reports {
-  background: #fff6c7;      
-  border-color: #f2c53d;
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
   color: #7a5a00;
 }
 
@@ -352,13 +352,64 @@
 }
 
 .legend-walkin {
-  background: #ece1ff;      
-  border-color: #7043c4;
-  color: #3d226f;
+  background: #e5e7eb;
+  border: 1px solid #6b7280;
+  color: #2e3035;
 }
 
 .legend-other {
   background: #ffe2e2;      
   border-color: #d03b3b;
   color: #7a1616;
+}
+
+.slot-cell {
+  position: relative;
+  border: 1px solid #e5e7eb;
+  font-size: 11px;
+  padding: 2px 4px;
+  box-sizing: border-box;
+}
+
+.slot-appointment {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  padding: 4px 6px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  color: #0f172a;
+}
+
+.slot-appointment-patient {
+  font-size: 12px;
+  color: black;
+}
+
+.slot--assessment .slot-appointment {
+  background: #dbeafe;
+  border: 1px solid #1d4ed8;
+}
+
+.slot--reports .slot-appointment {
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+}
+
+.slot--followup .slot-appointment {
+  background: #dcfce7;
+  border: 1px solid #16a34a;
+}
+
+.slot--walkin .slot-appointment {
+  background: #fee2e2;
+  border: 1px solid #ef4444;
+}
+
+.slot--other .slot-appointment {
+  background: #e5e7eb;
+  border: 1px solid #6b7280;
 }

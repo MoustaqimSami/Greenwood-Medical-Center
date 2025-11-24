@@ -1,9 +1,16 @@
 // Simple availability model: day index (0 = Sun) + time range.
 // Time strings are in 24h "HH:MM" and represent the START of the slot.
-
-console.log(window.doctorsDatabase.getActiveDoctorId());
-
 const ACTIVE_DOCTOR_ID = window.doctorsDatabase.getActiveDoctorId();
+
+const WEEK_DATES = [
+  "2025-09-03",
+  "2025-09-04",
+  "2025-09-05",
+  "2025-09-06",
+  "2025-09-07",
+  "2025-09-08",
+  "2025-09-09",
+];
 
 let activeDoctor = null;
 let availabilityWindows = [];
@@ -53,10 +60,10 @@ function buildCalendarGrid() {
   const timesEl = document.getElementById("calendar-times");
   const daysEl = document.getElementById("calendar-days");
 
+  if (!timesEl || !daysEl) return;
+
   timesEl.innerHTML = "";
   daysEl.innerHTML = "";
-
-  if (!timesEl || !daysEl) return;
 
   const totalSlots = (endHour - startHour) * 2;
 
@@ -69,6 +76,15 @@ function buildCalendarGrid() {
     const [h, m] = timeStr.split(":").map(Number);
     const minutesFromStart = h * 60 + m - startHour * 60;
     return Math.floor(minutesFromStart / 30);
+  }
+
+  function slotIndexToTime(index) {
+    const totalMinutes = startHour * 60 + index * 30;
+    const h = Math.floor(totalMinutes / 60);
+    const m = totalMinutes % 60;
+    const hh = String(h).padStart(2, "0");
+    const mm = String(m).padStart(2, "0");
+    return `${hh}:${mm}`;
   }
 
   const availableSet = new Set();
@@ -113,12 +129,74 @@ function buildCalendarGrid() {
       } else {
         slot.classList.add("slot-row-unavailable");
       }
+      const date = WEEK_DATES[d];
+      const time = slotIndexToTime(i);
+
+      slot.dataset.dayIndex = String(d);
+      slot.dataset.slotIndex = String(i);
+      slot.dataset.date = date;
+      slot.dataset.time = time;
 
       col.appendChild(slot);
     }
-
     daysEl.appendChild(col);
   }
+  renderAppointmentsForActiveDoctor();
+}
+
+function renderAppointmentsForActiveDoctor() {
+  const daysEl = document.getElementById("calendar-days");
+  if (
+    !daysEl ||
+    !window.appointmentsDatabase ||
+    !window.doctorsDatabase ||
+    !window.patientsDatabase
+  )
+    return;
+
+  const doctorId = window.doctorsDatabase.getActiveDoctorId();
+  const allAppointments =
+    window.appointmentsDatabase.getAppointmentsForDoctor(doctorId) || [];
+
+  // Clear any existing appointment content
+  const allSlots = daysEl.querySelectorAll(".slot-row");
+  allSlots.forEach((slot) => {
+    slot.classList.remove(
+      "slot--occupied",
+      "slot--assessment",
+      "slot--reports",
+      "slot--followup",
+      "slot--walkin",
+      "slot--other"
+    );
+    slot.innerHTML = "";
+  });
+
+  const TYPE_LABELS = {
+    assessment: "Assessment",
+    reports: "Reports",
+    followup: "Follow-up",
+    walkin: "Walk-in",
+    other: "Other",
+  };
+
+  allAppointments.forEach((appt) => {
+    const selector = `.slot-row[data-date="${appt.date}"][data-time="${appt.start}"]`;
+    const slot = daysEl.querySelector(selector);
+    if (!slot) return;
+
+    const patient = window.patientsDatabase.getPatientById(appt.patientId);
+
+    slot.classList.add("slot--occupied", `slot--${appt.type}`);
+
+    slot.innerHTML = `
+      <div class="slot-appointment">
+        <div class="slot-appointment-patient">${
+          patient ? patient.name : appt.patientId
+        }</div>
+      </div>
+    `;
+  });
 }
 
 buildCalendarGrid();

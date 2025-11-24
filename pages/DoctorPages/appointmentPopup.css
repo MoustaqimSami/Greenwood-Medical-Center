@@ -79,13 +79,13 @@
 }
 
 .appointment-header-text-main {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--neutral-800);
 }
 
 .appointment-header-text-sub {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--neutral-700);
 }
 
@@ -365,32 +365,46 @@
 /* Center content */
 
 .appointment-main {
-  padding: 22px 26px 26px;
+  padding: 4px 16px 12px;
   display: flex;
   flex-direction: column;
   min-width: 0;
+  overflow: hidden;
 }
 
 /* Tabs */
 
 .appointment-tabs {
   display: flex;
+  width: 100%;
   border-bottom: 1px solid var(--neutral-200);
-  font-size: 16px;
+  font-size: 14px;
+  height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  margin-top: 0px;
 }
 
 .appointment-tab {
-  padding: 11px 18px;
+  flex: 1;
+  padding: 0 8px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   background: transparent;
   cursor: pointer;
-  color: var(--neutral-500);
+  color: var(--neutral-600);
   border-bottom: 2px solid transparent;
+  font-size: 15px;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .appointment-tab.is-active {
   color: var(--primary-700);
+  font-weight: 500;
   border-bottom-color: var(--primary-700);
 }
 
@@ -418,44 +432,68 @@
 .appointment-field {
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: 6px;
   font-size: 15px;
 }
 
 .appointment-field-label {
   color: var(--neutral-900);
+  flex: 0 0 auto;
+}
+
+.appointment-field-control {
+  flex: 1;
+  display: flex;
 }
 
 .appointment-field-control textarea,
 .appointment-field-control input {
   width: 100%;
-  padding: 11px 13px;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
   border-radius: 8px;
   border: 1px solid var(--neutral-300);
+  background-color: var(--neutral-50);
   font-size: 14px;
-  resize: vertical;
+  resize: none;
 }
 
 .appointment-field-control textarea:focus,
 .appointment-field-control input:focus {
-  outline: 2px solid var(--primary-200);
-  outline-offset: 1px;
-  border-color: var(--primary-400);
+  outline: none;
+  border-color: var(--primary-700);
+  box-shadow: 0 0 0 1px var(--primary-200);
+  background: #ffffff;
 }
 
-.appointment-field-control--highlight textarea {
-  border-color: var(--primary-600);
+.appointment-field-control textarea {
+  max-height: 240px;
+}
+
+.appointment-field.field-large {
+  flex: 3;
+}
+
+.appointment-field.field-medium {
+  flex: 2;
+}
+
+.appointment-field.field-small {
+  flex: 1;
 }
 
 /* Footer actions */
 
 .appointment-actions {
-  margin-top: 20px;
+  margin-top: 26px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  font-size: 15px;
+  gap: 12px;
+  font-size: 14px;
+  flex-shrink: 0;
 }
 
 .appointment-actions-left {
@@ -464,19 +502,20 @@
 }
 
 .appointment-btn {
-  padding: 11px 20px;
-  border-radius: 8px;
+  padding: 8px 20px;
+  border-radius: 6px;
   border: 1px solid transparent;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: background 0.35s ease, border-color 0.15s ease, color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .appointment-btn-edit {
   background: var(--neutral-100);
-  border-color: var(--neutral-400);
-  color: var(--neutral-800);
+  border-color: var(--neutral-700);
+  color: var(--neutral-700);
 }
 
 .appointment-btn-edit:hover {
@@ -485,8 +524,8 @@
 
 .appointment-btn-delete {
   background: #fee2e2;
-  border-color: #ef4444;
-  color: #b91c1c;
+  border-color: var(--danger-200);
+  color: var(--danger-200);
 }
 
 .appointment-btn-delete:hover {
@@ -495,13 +534,13 @@
 
 .appointment-btn-save {
   margin-left: auto;
-  background: #d1fae5;
-  border-color: var(--primary-700);
+  background: var(--primary-100);
+  border-color: var(--primary-800);
   color: var(--primary-800);
 }
 
 .appointment-btn-save:hover {
-  background: #a7f3d0;
+  background: var(--primary-200);
 }
 
 body.no-scroll {
