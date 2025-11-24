@@ -142,6 +142,10 @@ function buildCalendarGrid() {
     daysEl.appendChild(col);
   }
   renderAppointmentsForActiveDoctor();
+
+  if (window.setupAppointmentSlotHandlers) {
+    window.setupAppointmentSlotHandlers();
+  }
 }
 
 function renderAppointmentsForActiveDoctor() {
@@ -158,7 +162,6 @@ function renderAppointmentsForActiveDoctor() {
   const allAppointments =
     window.appointmentsDatabase.getAppointmentsForDoctor(doctorId) || [];
 
-  // Clear any existing appointment content
   const allSlots = daysEl.querySelectorAll(".slot-row");
   allSlots.forEach((slot) => {
     slot.classList.remove(
@@ -170,6 +173,7 @@ function renderAppointmentsForActiveDoctor() {
       "slot--other"
     );
     slot.innerHTML = "";
+    slot.removeAttribute("data-appointment-id");
   });
 
   const TYPE_LABELS = {
@@ -189,6 +193,8 @@ function renderAppointmentsForActiveDoctor() {
 
     slot.classList.add("slot--occupied", `slot--${appt.type}`);
 
+    slot.dataset.appointmentId = appt.id;
+
     slot.innerHTML = `
       <div class="slot-appointment">
         <div class="slot-appointment-patient">${
@@ -198,6 +204,7 @@ function renderAppointmentsForActiveDoctor() {
     `;
   });
 }
+
 
 buildCalendarGrid();
 

@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const modal = document.getElementById("appointment-modal");
   if (!modal) return;
 
-  // ------- header labels -------
   const closeBtn = modal.querySelector("[data-appointment-close]");
   const timeLabel = modal.querySelector("[data-appointment-time]");
   const dayLabel = modal.querySelector("[data-appointment-day]");
@@ -27,9 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
              alt="" class="appointment-avatar-icon">
       </div>
       <div class="appointment-profile-name">${doctor.name}</div>
-      <div class="appointment-profile-detail">Specialty: ${
-        doctor.specialty
-      }</div>
+      <div class="appointment-profile-detail">Specialty: ${doctor.specialty}</div>
       <div class="appointment-profile-detail">Age: ${doctor.age}</div>
       <div class="appointment-profile-detail">Gender: ${doctor.gender}</div>
       <div class="appointment-profile-detail">Phone: ${doctor.phone}</div>
@@ -121,16 +118,6 @@ document.addEventListener("DOMContentLoaded", function () {
     doctorSearchInput.addEventListener("input", (e) => {
       renderDoctorResults(e.target.value);
     });
-  }
-
-  // Pre-fill doctor panel from active doctor
-  const activeDoctorId = window.doctorsDatabase.getActiveDoctorId();
-  const activeDoctor = window.doctorsDatabase.getDoctorById(activeDoctorId);
-
-  if (activeDoctor) {
-    renderDoctorPanel(activeDoctor);
-  } else {
-    renderGenericDoctorPanel();
   }
 
   /* -----------------------------------------------------------
@@ -235,7 +222,6 @@ document.addEventListener("DOMContentLoaded", function () {
         renderPatientPanel(pat);
         clearPatientResults();
         patientSearchInput.value = "";
-
       });
 
       patientResultsBox.appendChild(row);
@@ -246,18 +232,6 @@ document.addEventListener("DOMContentLoaded", function () {
     patientSearchInput.addEventListener("input", (e) => {
       renderPatientResults(e.target.value);
     });
-  }
-
-  // Pre-fill patient panel from active patient
-  let activePatient = null;
-  if (window.patientsDatabase) {
-    const activePatId = window.patientsDatabase.getActivePatientId();
-    activePatient = window.patientsDatabase.getPatientById(activePatId);
-  }
-  if (activePatient) {
-    renderPatientPanel(activePatient);
-  } else {
-    renderGenericPatientPanel();
   }
 
   /* -----------------------------------------------------------
@@ -323,8 +297,7 @@ document.addEventListener("DOMContentLoaded", function () {
       else if (isDateField) {
         field.classList.add("field-small");
         field.dataset.dateField = "true";
-      }
-      else {
+      } else {
         field.classList.add("field-small");
       }
     });
@@ -343,12 +316,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-
   /* -----------------------------------------------------------
      MODAL OPEN/CLOSE
      ----------------------------------------------------------- */
 
   function openModal(slotInfo) {
+    const appt = slotInfo && slotInfo.appointment ? slotInfo.appointment : null;
+
     if (slotInfo && timeLabel && dayLabel && dateLabel) {
       if (slotInfo.time) timeLabel.textContent = slotInfo.time;
       if (slotInfo.day) dayLabel.textContent = slotInfo.day;
@@ -358,27 +332,142 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.classList.add("is-open");
     document.body.classList.add("no-scroll");
 
-    renderForm("assessment");
+    let baseType = appt && appt.type ? appt.type : "assessment";
+    let formType = baseType === "walkin" ? "assessment" : baseType;
+
+    renderForm(formType);
+
     tabButtons.forEach((b) => b.classList.remove("is-active"));
-    const defaultTab = modal.querySelector(
-      '[data-appointment-tab="assessment"]'
-    );
-    if (defaultTab) defaultTab.classList.add("is-active");
+    const activeTab =
+      modal.querySelector(`[data-appointment-tab="${baseType}"]`) ||
+      modal.querySelector('[data-appointment-tab="assessment"]');
+    if (activeTab) activeTab.classList.add("is-active");
+
+    // If there's an existing appointment, prefill key fields
+    if (appt) {
+      setActiveDoctor(appt.doctorId);
+      setActivePatient(appt.patientId);
+
+      console.log();
+      const formEl = modal.querySelector(".appointment-form");
+      if (!formEl) return;
+
+      const fields = formEl.querySelectorAll(".appointment-field");
+      fields.forEach((field) => {
+        const label = field.querySelector(".appointment-field-label");
+        const textarea = field.querySelector("textarea");
+        const input = field.querySelector("input");
+        const control = textarea || input;
+        if (!label || !control) return;
+
+        const labelText = (label.textContent || "").toLowerCase();
+
+        // Reason fields
+        if (
+          labelText.includes("reason for visit") ||
+          labelText.includes("reason for follow-up") ||
+          labelText.includes("details")
+        ) {
+          control.value = appt.reason || "";
+        } else if (
+          labelText.includes("additional") ||
+          labelText.includes("comments") ||
+          labelText.includes("notes")
+        ) {
+          control.value = appt.notes || "";
+        }
+      });
+    }
+
+    // Pre-fill doctor panel from active doctor
+    const activeDoctorId = window.doctorsDatabase.getActiveDoctorId();
+    const activeDoctor = window.doctorsDatabase.getDoctorById(activeDoctorId);
+
+    if (activeDoctor) {
+      renderDoctorPanel(activeDoctor);
+    } else {
+      renderGenericDoctorPanel();
+    }
+
+    // Pre-fill patient panel from active patient
+    let activePatient = null;
+    if (window.patientsDatabase) {
+      const activePatId = window.patientsDatabase.getActivePatientId();
+      activePatient = window.patientsDatabase.getPatientById(activePatId);
+    }
+    if (activePatient) {
+      console.log(activePatient);
+      renderPatientPanel(activePatient);
+    } else {
+      renderGenericPatientPanel();
+    }
   }
 
   function closeModal() {
+    // Need to add logic here for if a patient has already been selected
+    if (window.patientsDatabase) {
+      window.patientsDatabase.setActivePatientId(null);
+    }
     modal.classList.remove("is-open");
     document.body.classList.remove("no-scroll");
     clearDoctorResults();
     clearPatientResults();
   }
 
-  const availableSlots = document.querySelectorAll(".slot-row-available");
-  availableSlots.forEach(function (slot) {
-    slot.addEventListener("click", function () {
-      openModal();
+  function formatTimeTo12h(timeStr) {
+    if (!timeStr) return "";
+    const [hStr, mStr] = timeStr.split(":");
+    let h = parseInt(hStr, 10);
+    const m = parseInt(mStr, 10);
+    if (Number.isNaN(h) || Number.isNaN(m)) return timeStr;
+    const suffix = h >= 12 ? "PM" : "AM";
+    h = ((h + 11) % 12) + 1;
+    const mm = String(m).padStart(2, "0");
+    return `${h}:${mm} ${suffix}`;
+  }
+
+  function getDateLabels(dateStr) {
+    if (!dateStr) return { day: "", date: "" };
+    const d = new Date(dateStr + "T00:00:00");
+    const day = d.toLocaleDateString(undefined, { weekday: "long" });
+    const date = d.toLocaleDateString(undefined, {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
     });
-  });
+    return { day, date };
+  }
+
+  function setupAppointmentSlotHandlers() {
+    const slots = document.querySelectorAll(".slot-row");
+
+    slots.forEach((slot) => {
+      slot.addEventListener("click", () => {
+        const dateRaw = slot.dataset.date || "";
+        const timeRaw = slot.dataset.time || "";
+        const labels = dateRaw ? getDateLabels(dateRaw) : { day: "", date: "" };
+
+        const slotInfo = {
+          time: timeRaw ? formatTimeTo12h(timeRaw) : "",
+          day: labels.day,
+          date: labels.date,
+        };
+
+        const apptId = slot.dataset.appointmentId;
+        if (apptId && window.appointmentsDatabase) {
+          const appt = window.appointmentsDatabase.getAppointmentById(apptId);
+          if (appt) {
+            slotInfo.appointment = appt;
+          }
+        }
+
+        openModal(slotInfo);
+      });
+    });
+  }
+
+  window.setupAppointmentSlotHandlers = setupAppointmentSlotHandlers;
+  setupAppointmentSlotHandlers();
 
   if (closeBtn) {
     closeBtn.addEventListener("click", function (e) {
@@ -420,14 +509,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.addEventListener("click", (e) => {
     const inDoctorSearch =
-      doctorSearchInput &&
-      doctorSearchInput.contains(e.target);
+      doctorSearchInput && doctorSearchInput.contains(e.target);
     const inDoctorResults =
       doctorResultsBox && doctorResultsBox.contains(e.target);
 
     const inPatientSearch =
-      patientSearchInput &&
-      patientSearchInput.contains(e.target);
+      patientSearchInput && patientSearchInput.contains(e.target);
     const inPatientResults =
       patientResultsBox && patientResultsBox.contains(e.target);
 
