@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
       row.innerHTML = `
         <div class="appointment-search-result-name">${doc.name}</div>
         <div class="appointment-search-result-meta">
-          ${doc.specialty} • ${doc.phone}
+          ${doc.specialty}
         </div>
       `;
 
@@ -106,6 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setActiveDoctor(doc.id);
         renderDoctorPanel(doc);
         clearDoctorResults();
+        doctorSearchInput.value = "";
 
         if (window.refreshDoctorSchedule) {
           window.refreshDoctorSchedule();
@@ -225,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
       row.innerHTML = `
         <div class="appointment-search-result-name">${pat.name}</div>
         <div class="appointment-search-result-meta">
-          Age ${pat.age} • ${pat.phone} • Last: ${pat.lastAppointment || "—"}
+         ${pat.phone}
         </div>
       `;
 
@@ -233,6 +234,8 @@ document.addEventListener("DOMContentLoaded", function () {
         setActivePatient(pat.id);
         renderPatientPanel(pat);
         clearPatientResults();
+        patientSearchInput.value = "";
+
       });
 
       patientResultsBox.appendChild(row);
