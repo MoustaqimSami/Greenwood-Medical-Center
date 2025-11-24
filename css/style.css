@@ -128,12 +128,17 @@ select {
 }
 
 /* 4) Base document styles */
+
+main {
+  background-color: var(--neutral-50);
+}
+
 html {
   font-size: 100%;
 }
 body {
   background: var(--bg);
-  color: var(--text);
+  color: var(--neutral-900);
   font-family: var(--font-family);
   font-size: var(--body-md-size);
   font-weight: var(--weight-regular);
@@ -285,4 +290,13 @@ body {
   font-size: var(--body-xs-size);
   font-weight: var(--weight-semibold);
   line-height: 1.55;
+}
+
+/* General Layout*/
+.page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 16px;
 }
