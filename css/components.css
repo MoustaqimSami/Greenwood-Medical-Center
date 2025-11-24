@@ -191,10 +191,6 @@
   color: var(--primary-700);
 }
 
-.tab-content {
-
-}
-
 .tab-panel {
     display: none;
     flex-direction: column;

@@ -395,6 +395,16 @@ body.sidebar-collapsed .main {
   background: var(--primary-50);
 }
 
+.btn--sec-txt {
+  background: transparent;
+  color: var(--secondary-400);
+}
+
+.btn--sec-txt:hover {
+  background: var(--secondary-100);
+  color: var(--secondary-400);
+}
+
 .btn--danger-txt {
   background: transparent;
   color: var(--secondary-400);
@@ -422,8 +432,8 @@ body.sidebar-collapsed .main {
 
 .avatar {
   display: flex;
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   padding: 12px;
   border-radius: 50px;
   flex-direction: column;
