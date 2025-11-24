@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>Doctor's Schedule | GMC</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,322 +9,591 @@
     <link rel="stylesheet" href="../../css/template.css" />
     <link rel="stylesheet" href="doctorsSchedule.css" />
     <link rel="stylesheet" href="appointmentPopup.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="app-shell">
-        <!-- SIDEBAR -->
-        <aside class="sidebar">
-            <div class="sidebar-inner">
-                <div class="sidebar-top">
-                    <button class="brand-button" aria-label="Clinic home">
-                        <img src="../../assets/icons/logo.svg" alt="Clinic logo" class="brand-logo" />
-                    </button>
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-inner">
+          <div class="sidebar-top">
+            <button class="brand-button" aria-label="Clinic home">
+              <img
+                src="../../assets/icons/logo.svg"
+                alt="Clinic logo"
+                class="brand-logo"
+              />
+            </button>
 
-                    <button class="sidebar-toggle" aria-label="Toggle sidebar">
-                        <img src="../../assets/icons/layout-sidebar.svg"
-                            data-open-src="../../assets/icons/layout-sidebar.svg"
-                            data-collapsed-src="../../assets/icons/layout-sidebar-closed.svg" alt="Toggle sidebar"
-                            class="sidebar-toggle-icon" />
-                    </button>
-                </div>
+            <button class="sidebar-toggle" aria-label="Toggle sidebar">
+              <img
+                src="../../assets/icons/layout-sidebar.svg"
+                data-open-src="../../assets/icons/layout-sidebar.svg"
+                data-collapsed-src="../../assets/icons/layout-sidebar-closed.svg"
+                alt="Toggle sidebar"
+                class="sidebar-toggle-icon"
+              />
+            </button>
+          </div>
 
-                <!-- Navigation -->
-                <nav class="sidebar-nav">
-                    <a class="nav-item" href="../HomePage/dashboard.html">
-                        <img class="nav-icon" src="../../assets/icons/home.svg" alt="" />
-                        <span class="nav-label">Home</span>
-                    </a>
+          <!-- Navigation -->
+          <nav class="sidebar-nav">
+            <a class="nav-item" href="../HomePage/dashboard.html">
+              <img class="nav-icon" src="../../assets/icons/home.svg" alt="" />
+              <span class="nav-label">Home</span>
+            </a>
 
-                    <a class="nav-item nav-item-active" href="../SchedulePage/schedule.html">
-                        <img class="nav-icon" src="../../assets/icons/calendar.svg" alt="" />
-                        <span class="nav-label">Schedule</span>
-                    </a>
+            <a
+              class="nav-item nav-item-active"
+              href="../SchedulePage/schedule.html"
+            >
+              <img
+                class="nav-icon"
+                src="../../assets/icons/calendar.svg"
+                alt=""
+              />
+              <span class="nav-label">Schedule</span>
+            </a>
 
-                    <a class="nav-item" href="../PatientPages/patients.html">
-                        <img class="nav-icon" src="../../assets/icons/people.svg" alt="" />
-                        <span class="nav-label">Patients</span>
-                    </a>
+            <a class="nav-item" href="../PatientPages/patients.html">
+              <img
+                class="nav-icon"
+                src="../../assets/icons/people.svg"
+                alt=""
+              />
+              <span class="nav-label">Patients</span>
+            </a>
 
-                    <a class="nav-item" href="./doctors.html">
-                        <img class="nav-icon" src="../../assets/icons/stethoscope.svg" alt="" />
-                        <span class="nav-label">Doctors</span>
-                    </a>
-                </nav>
+            <a class="nav-item" href="./doctors.html">
+              <img
+                class="nav-icon"
+                src="../../assets/icons/stethoscope.svg"
+                alt=""
+              />
+              <span class="nav-label">Doctors</span>
+            </a>
+          </nav>
 
-                <!-- Bottom Links -->
-                <div class="sidebar-bottom">
-                    <a class="nav-item" href="#">
-                        <img class="nav-icon" src="../../assets/icons/question-circle.svg" alt="" />
-                        <span class="nav-label">Help center</span>
-                    </a>
+          <!-- Bottom Links -->
+          <div class="sidebar-bottom">
+            <a class="nav-item" href="#">
+              <img
+                class="nav-icon"
+                src="../../assets/icons/question-circle.svg"
+                alt=""
+              />
+              <span class="nav-label">Help center</span>
+            </a>
 
-                    <a class="nav-item" href="#">
-                        <img class="nav-icon" src="../../assets/icons/tabler_logout.svg" alt="" />
-                        <span class="nav-label">Log out</span>
-                    </a>
-                </div>
+            <a class="nav-item" href="#">
+              <img
+                class="nav-icon"
+                src="../../assets/icons/tabler_logout.svg"
+                alt=""
+              />
+              <span class="nav-label">Log out</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <div class="main">
+        <!-- HEADER -->
+        <header class="topbar">
+          <div class="topbar-left"></div>
+
+          <div class="topbar-right">
+            <button class="icon-button" aria-label="Notifications">
+              <img src="../../assets/icons/alert.svg" alt="Notifications" />
+            </button>
+
+            <div class="user-chip">
+              <div class="avatar-circle">
+                <img
+                  src="../../assets/icons/person.svg"
+                  alt="User profile"
+                  class="avatar-icon"
+                />
+              </div>
+              <div class="user-meta">
+                <span class="user-name">Selena Doe</span>
+                <span class="user-role">Front Desk Staff</span>
+              </div>
             </div>
-        </aside>
+          </div>
+        </header>
 
-        <!-- MAIN CONTENT -->
-        <div class="main">
-            <!-- HEADER -->
-            <header class="topbar">
-                <div class="topbar-left"></div>
+        <!-- PAGE -->
+        <main class="page">
+          <header class="page-header">
+            <h1 class="page-title">Doctor's Schedule</h1>
+          </header>
 
-                <div class="topbar-right">
-                    <button class="icon-button" aria-label="Notifications">
-                        <img src="../../assets/icons/alert.svg" alt="Notifications" />
-                    </button>
-
-                    <div class="user-chip">
-                        <div class="avatar-circle">
-                            <img src="../../assets/icons/person.svg" alt="User profile" class="avatar-icon" />
-                        </div>
-                        <div class="user-meta">
-                            <span class="user-name">Selena Doe</span>
-                            <span class="user-role">Front Desk Staff</span>
-                        </div>
-                    </div>
+          <section class="page-body">
+            <div class="schedule-layout">
+              <!-- LEFT: Doctor info -->
+              <aside class="doctor-card">
+                <div class="doctor-avatar">
+                  <img
+                    src="../../assets/icons/person-black.svg"
+                    alt="Doctor avatar"
+                    class="doctor-avatar-img"
+                  />
                 </div>
-            </header>
 
-            <!-- PAGE -->
-            <main class="page">
-                <header class="page-header">
-                    <h1 class="page-title">Doctor's Schedule</h1>
+                <h2 id="doctor-name" class="doctor-name">
+                  Dr. Pamela Anderson
+                </h2>
+
+                <div class="doctor-info-list">
+                  <p>
+                    <strong>Specialty:</strong>
+                    <span id="doctor-specialty">Orthopedics</span>
+                  </p>
+                  <p><strong>Age:</strong> <span id="doctor-age">99</span></p>
+                  <p>
+                    <strong>Gender:</strong>
+                    <span id="doctor-gender">Female</span>
+                  </p>
+                  <p>
+                    <strong>Phone:</strong>
+                    <span id="doctor-phone">825 288 8888</span>
+                  </p>
+                </div>
+
+                <button class="change-doctor-btn">
+                  <img
+                    src="../../assets/icons/edit.svg"
+                    alt=""
+                    class="edit-icon"
+                  />
+                  <span class="change-doctor-label">Change Doctor</span>
+                </button>
+              </aside>
+
+              <!-- RIGHT: Week selector + calendar -->
+              <section class="schedule-main">
+                <header class="week-selector">
+                  <button
+                    class="week-nav week-nav--prev"
+                    type="button"
+                    aria-label="Previous week"
+                  >
+                    ‹
+                  </button>
+
+                  <h2 class="week-range">
+                    September 3rd – September 9th, 2025
+                  </h2>
+
+                  <button
+                    class="week-nav week-nav--next"
+                    type="button"
+                    aria-label="Next week"
+                  >
+                    ›
+                  </button>
                 </header>
 
-                <section class="page-body">
-                    <div class="schedule-layout">
-                        <!-- LEFT: Doctor info -->
-                        <aside class="doctor-card">
-                            <div class="doctor-avatar">
-                                <img src="../../assets/icons/person-black.svg" alt="Doctor avatar"
-                                    class="doctor-avatar-img" />
-                            </div>
+                <!-- outer container for the calendar -->
+                <div class="calendar-container">
+                  <div class="calendar-grid">
+                    <!-- header row -->
+                    <div class="calendar-header">
+                      <div class="calendar-header-time"></div>
 
-                            <h2 class="doctor-name">Dr. Pamela Anderson</h2>
-
-                            <div class="doctor-info-list">
-                                <p><strong>Specialty:</strong> Orthopedics</p>
-                                <p><strong>Age:</strong> 99</p>
-                                <p><strong>Gender:</strong> Female</p>
-                                <p><strong>Phone:</strong> 825 288 8888</p>
-                            </div>
-
-                            <button class="change-doctor-btn">
-                                <img src="../../assets/icons/edit.svg" alt="" class="edit-icon" />
-                                Change Doctor
-                            </button>
-                        </aside>
-
-                        <!-- RIGHT: Week selector + calendar -->
-                        <section class="schedule-main">
-                            <header class="week-selector">
-                                <button class="week-nav week-nav--prev" type="button" aria-label="Previous week">
-                                    ‹
-                                </button>
-
-                                <h2 class="week-range">
-                                    September 3rd – September 9th, 2025
-                                </h2>
-
-                                <button class="week-nav week-nav--next" type="button" aria-label="Next week">
-                                    ›
-                                </button>
-                            </header>
-
-                            <!-- outer container for the calendar -->
-                            <div class="calendar-container">
-                                <div class="calendar-grid">
-                                    <!-- header row -->
-                                    <div class="calendar-header">
-                                        <div class="calendar-header-time"></div>
-
-                                        <div class="calendar-header-day">
-                                            <span class="calendar-header-date">Sep 3</span>
-                                            <span class="calendar-header-label">Sun</span>
-                                        </div>
-                                        <div class="calendar-header-day">
-                                            <span class="calendar-header-date">Sep 4</span>
-                                            <span class="calendar-header-label">Mon</span>
-                                        </div>
-                                        <div class="calendar-header-day">
-                                            <span class="calendar-header-date">Sep 5</span>
-                                            <span class="calendar-header-label">Tue</span>
-                                        </div>
-                                        <div class="calendar-header-day">
-                                            <span class="calendar-header-date">Sep 6</span>
-                                            <span class="calendar-header-label">Wed</span>
-                                        </div>
-                                        <div class="calendar-header-day">
-                                            <span class="calendar-header-date">Sep 7</span>
-                                            <span class="calendar-header-label">Thu</span>
-                                        </div>
-                                        <div class="calendar-header-day">
-                                            <span class="calendar-header-date">Sep 8</span>
-                                            <span class="calendar-header-label">Fri</span>
-                                        </div>
-                                        <div class="calendar-header-day">
-                                            <span class="calendar-header-date">Sep 9</span>
-                                            <span class="calendar-header-label">Sat</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="calendar-body">
-                                        <div id="calendar-times" class="calendar-times"></div>
-                                        <div id="calendar-days" class="calendar-days"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="schedule-legend">
-                                <span class="legend-pill legend-assessment">Assessment</span>
-                                <span class="legend-pill legend-reports">Reports</span>
-                                <span class="legend-pill legend-followup">Follow-up</span>
-                                <span class="legend-pill legend-walkin">Walk-In</span>
-                                <span class="legend-pill legend-other">Other</span>
-                            </div>
-                        </section>
+                      <div class="calendar-header-day">
+                        <span class="calendar-header-date">Sep 3</span>
+                        <span class="calendar-header-label">Sun</span>
+                      </div>
+                      <div class="calendar-header-day">
+                        <span class="calendar-header-date">Sep 4</span>
+                        <span class="calendar-header-label">Mon</span>
+                      </div>
+                      <div class="calendar-header-day">
+                        <span class="calendar-header-date">Sep 5</span>
+                        <span class="calendar-header-label">Tue</span>
+                      </div>
+                      <div class="calendar-header-day">
+                        <span class="calendar-header-date">Sep 6</span>
+                        <span class="calendar-header-label">Wed</span>
+                      </div>
+                      <div class="calendar-header-day">
+                        <span class="calendar-header-date">Sep 7</span>
+                        <span class="calendar-header-label">Thu</span>
+                      </div>
+                      <div class="calendar-header-day">
+                        <span class="calendar-header-date">Sep 8</span>
+                        <span class="calendar-header-label">Fri</span>
+                      </div>
+                      <div class="calendar-header-day">
+                        <span class="calendar-header-date">Sep 9</span>
+                        <span class="calendar-header-label">Sat</span>
+                      </div>
                     </div>
-                </section>
 
-        </div>
-        </section>
-        </main>
-        <!-- END OF PAGE -->
-    </div>
-    </div>
-
-    <!-- Appointment popup modal -->
-    <div id="appointment-modal" class="appointment-modal" aria-hidden="true">
-        <div class="appointment-modal-dialog" role="dialog" aria-modal="true" aria-label="Appointment details">
-            <header class="appointment-modal-header">
-                <div class="appointment-header-main">
-                    <div class="appointment-header-block">
-                        <img src="../../assets/icons/clock.svg" alt="" class="appointment-header-icon" />
-                        <span class="appointment-header-text-main" data-appointment-time>2:30 PM</span>
+                    <div class="calendar-body">
+                      <div id="calendar-times" class="calendar-times"></div>
+                      <div id="calendar-days" class="calendar-days"></div>
                     </div>
-                    <div class="appointment-header-block">
-                        <img src="../../assets/icons/calendar.svg" alt="" class="appointment-header-icon" />
-                        <div>
-                            <div class="appointment-header-text-main" data-appointment-day>Monday</div>
-                            <div class="appointment-header-text-sub" data-appointment-date>3 Sep 2025</div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-                <button class="appointment-close-btn" type="button" data-appointment-close>
-                    <img src="../../assets/icons/dismiss.svg" alt="Close" class="appointment-close-icon" />
-                </button>
-            </header>
 
-            <div class="appointment-modal-body">
+                <div class="schedule-legend">
+                  <span class="legend-pill legend-assessment">Assessment</span>
+                  <span class="legend-pill legend-reports">Reports</span>
+                  <span class="legend-pill legend-followup">Follow-up</span>
+                  <span class="legend-pill legend-walkin">Walk-In</span>
+                  <span class="legend-pill legend-other">Other</span>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <div
+            id="appointment-modal"
+            class="appointment-modal"
+            aria-hidden="true"
+          >
+            <div
+              class="appointment-modal-dialog"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Appointment details"
+            >
+              <header class="appointment-modal-header">
+                <div class="appointment-header-main">
+                  <div class="appointment-header-block">
+                    <img
+                      src="../../assets/icons/clock.svg"
+                      alt=""
+                      class="appointment-header-icon"
+                    />
+                    <span
+                      class="appointment-header-text-main"
+                      data-appointment-time
+                      >2:30 PM</span
+                    >
+                  </div>
+                  <div class="appointment-header-block">
+                    <img
+                      src="../../assets/icons/calendar.svg"
+                      alt=""
+                      class="appointment-header-icon"
+                    />
+                    <div>
+                      <div
+                        class="appointment-header-text-main"
+                        data-appointment-day
+                      >
+                        Monday
+                      </div>
+                      <div
+                        class="appointment-header-text-sub"
+                        data-appointment-date
+                      >
+                        3 Sep 2025
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  class="appointment-close-btn"
+                  type="button"
+                  data-appointment-close
+                >
+                  <img
+                    src="../../assets/icons/dismiss.svg"
+                    alt="Close"
+                    class="appointment-close-icon"
+                  />
+                </button>
+              </header>
+
+              <div class="appointment-modal-body">
                 <!-- Doctor side -->
                 <aside class="appointment-side appointment-side--left">
-                    <div class="appointment-search">
-                        <div class="appointment-search-input">
-                            <img src="../../assets/icons/search.svg" alt="" class="appointment-search-icon" />
-                            <span>Search</span>
-                        </div>
+                  <div class="appointment-search">
+                    <div class="appointment-search-input">
+                      <img
+                        src="../../assets/icons/search.svg"
+                        alt=""
+                        class="appointment-search-icon"
+                      />
+                      <input
+                        type="text"
+                        id="popup-doctor-search"
+                        class="appointment-search-input-field"
+                        placeholder="Search by name"
+                      />
                     </div>
-                    <div class="appointment-profile">
-                        <div class="appointment-avatar">
-                            <img src="../../assets/icons/person-black.svg" alt="" class="appointment-avatar-icon" />
-                        </div>
-                        <div class="appointment-profile-name">Dr. Pamela Anderson</div>
-                        <div class="appointment-profile-detail">Specialty: Orthopedics</div>
-                        <div class="appointment-profile-detail">Age: 99</div>
-                        <div class="appointment-profile-detail">Gender: Female</div>
-                        <div class="appointment-profile-detail">Phone: 825 288 8888</div>
-                        <div class="appointment-profile-action">
-                            <button class="appointment-profile-button" type="button">
-                                <img src="../../assets/icons/edit.svg" alt="" class="appointment-profile-edit-icon" />
-                                <span>Change Doctor</span>
-                            </button>
-                        </div>
-                    </div>
+                  </div>
+
+                  <div
+                    id="popup-doctor-results"
+                    class="appointment-search-results"
+                  ></div>
+
+                  <div
+                    class="appointment-profile appointment-profile--generic"
+                    id="popup-doctor-panel"
+                  ></div>
                 </aside>
 
                 <!-- Main content -->
                 <main class="appointment-main">
-                    <nav class="appointment-tabs">
-                        <button class="appointment-tab is-active" type="button"
-                            data-appointment-tab="assessment">Assessment</button>
-                        <button class="appointment-tab" type="button" data-appointment-tab="reports">Reports</button>
-                        <button class="appointment-tab" type="button" data-appointment-tab="followup">Follow-up</button>
-                        <button class="appointment-tab" type="button" data-appointment-tab="walkin">Walk-in</button>
-                        <button class="appointment-tab" type="button" data-appointment-tab="other">Other</button>
-                    </nav>
+                  <nav class="appointment-tabs">
+                    <button
+                      class="appointment-tab is-active"
+                      type="button"
+                      data-appointment-tab="assessment"
+                    >
+                      Assessment
+                    </button>
+                    <button
+                      class="appointment-tab"
+                      type="button"
+                      data-appointment-tab="reports"
+                    >
+                      Reports
+                    </button>
+                    <button
+                      class="appointment-tab"
+                      type="button"
+                      data-appointment-tab="followup"
+                    >
+                      Follow-up
+                    </button>
+                    <button
+                      class="appointment-tab"
+                      type="button"
+                      data-appointment-tab="walkin"
+                    >
+                      Walk-in
+                    </button>
+                    <button
+                      class="appointment-tab"
+                      type="button"
+                      data-appointment-tab="other"
+                    >
+                      Other
+                    </button>
+                  </nav>
 
-                    <section class="appointment-form">
-                        <h2 class="appointment-form-title">Initial Assessment Details</h2>
+                  <!-- Single live form container -->
+                  <section
+                    class="appointment-form"
+                    id="appointment-form-container"
+                  ></section>
 
-                        <div class="appointment-field">
-                            <label class="appointment-field-label">Reason for visit</label>
-                            <div class="appointment-field-control appointment-field-control--highlight">
-                                <textarea
-                                    rows="4">Broke the whole ribcage six months ago, got operated on, and I feel like I am missing a couple of ribs still.</textarea>
-                            </div>
-                        </div>
+                  <!-- Common buttons shown under every form -->
+                  <div class="appointment-actions">
+                    <div class="appointment-actions-left">
+                      <button
+                        class="appointment-btn appointment-btn-edit"
+                        type="button"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        class="appointment-btn appointment-btn-delete"
+                        type="button"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                    <button
+                      class="appointment-btn appointment-btn-save"
+                      type="button"
+                    >
+                      Save
+                    </button>
+                  </div>
 
-                        <div class="appointment-field">
-                            <label class="appointment-field-label">Symptoms duration</label>
-                            <div class="appointment-field-control">
-                                <input type="text" value="6 months" />
-                            </div>
-                        </div>
+                  <!-- Assessment / Walk-in -->
+                  <template id="tpl-form-assessment">
+                    <h2 class="appointment-form-title">
+                      Initial Assessment Details
+                    </h2>
 
-                        <div class="appointment-field">
-                            <label class="appointment-field-label">Additional comments</label>
-                            <div class="appointment-field-control">
-                                <textarea rows="3">On continued medication for asthma</textarea>
-                            </div>
-                        </div>
+                    <div class="appointment-field">
+                      <label class="appointment-field-label"
+                        >Reason for visit</label
+                      >
+                      <div
+                        class="appointment-field-control appointment-field-control--highlight"
+                      >
+                        <textarea rows="4"> </textarea>
+                      </div>
+                    </div>
 
-                        <div class="appointment-actions">
-                            <div class="appointment-actions-left">
-                                <button class="appointment-btn appointment-btn-edit" type="button">Edit</button>
-                                <button class="appointment-btn appointment-btn-delete" type="button">Delete</button>
-                            </div>
-                            <button class="appointment-btn appointment-btn-save" type="button">Save</button>
-                        </div>
-                    </section>
+                    <div class="appointment-field">
+                      <label class="appointment-field-label"
+                        >Symptoms duration</label
+                      >
+                      <div class="appointment-field-control">
+                        <input type="text" value="6 months" />
+                      </div>
+                    </div>
+
+                    <div class="appointment-field">
+                      <label class="appointment-field-label"
+                        >Additional comments</label
+                      >
+                      <div class="appointment-field-control">
+                        <textarea rows="3">
+On continued medication for asthma</textarea
+                        >
+                      </div>
+                    </div>
+                  </template>
+
+                  <!-- Reports -->
+                  <template id="tpl-form-reports">
+                    <h2 class="appointment-form-title">Reports</h2>
+
+                    <div class="appointment-field">
+                      <label class="appointment-field-label"
+                        >Date of last visit</label
+                      >
+                      <div class="appointment-field-control">
+                        <input type="text" value="20 Feb" readonly />
+                      </div>
+                    </div>
+
+                    <div class="appointment-field">
+                      <label class="appointment-field-label"
+                        >Reports added</label
+                      >
+                      <div class="appointment-field-control">
+                        <textarea rows="3">CT Scan, Blood Test</textarea>
+                      </div>
+                    </div>
+
+                    <div class="appointment-field">
+                      <label class="appointment-field-label"
+                        >Additional comments</label
+                      >
+                      <div class="appointment-field-control">
+                        <textarea rows="3"></textarea>
+                      </div>
+                    </div>
+                  </template>
+
+                  <!-- Follow-up -->
+                  <template id="tpl-form-followup">
+                    <h2 class="appointment-form-title">Follow-up Details</h2>
+
+                    <div class="appointment-field">
+                      <label class="appointment-field-label"
+                        >Date of last visit</label
+                      >
+                      <div class="appointment-field-control">
+                        <input type="text" value="20 Feb" readonly />
+                      </div>
+                    </div>
+
+                    <div class="appointment-field">
+                      <label class="appointment-field-label"
+                        >Reason for follow-up</label
+                      >
+                      <div class="appointment-field-control">
+                        <textarea rows="3"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="appointment-field">
+                      <label class="appointment-field-label"
+                        >Progress since last visit</label
+                      >
+                      <div class="appointment-field-control">
+                        <textarea rows="3"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="appointment-field">
+                      <label class="appointment-field-label"
+                        >Additional comments</label
+                      >
+                      <div class="appointment-field-control">
+                        <textarea rows="2"></textarea>
+                      </div>
+                    </div>
+                  </template>
+
+                  <!-- Other -->
+                  <template id="tpl-form-other">
+                    <h2 class="appointment-form-title">
+                      Other Appointment Details
+                    </h2>
+
+                    <div class="appointment-field">
+                      <label class="appointment-field-label"
+                        >Appointment type</label
+                      >
+                      <div class="appointment-field-control">
+                        <input type="text" placeholder="Specify type…" />
+                      </div>
+                    </div>
+
+                    <div class="appointment-field">
+                      <label class="appointment-field-label">Details</label>
+                      <div class="appointment-field-control">
+                        <textarea rows="3"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="appointment-field">
+                      <label class="appointment-field-label">Comments</label>
+                      <div class="appointment-field-control">
+                        <textarea rows="2"></textarea>
+                      </div>
+                    </div>
+                  </template>
                 </main>
 
                 <!-- Patient side -->
                 <aside class="appointment-side appointment-side--right">
-                    <div class="appointment-search">
-                        <div class="appointment-search-input">
-                            <img src="../../assets/icons/search.svg" alt="" class="appointment-search-icon" />
-                            <span>Search</span>
-                        </div>
+                  <div class="appointment-search">
+                    <div class="appointment-search-input">
+                      <img
+                        src="../../assets/icons/search.svg"
+                        alt=""
+                        class="appointment-search-icon"
+                      />
+                      <input
+                        type="text"
+                        id="popup-patient-search"
+                        class="appointment-search-input-field"
+                        placeholder="Search by name or phone"
+                      />
                     </div>
-                    <div class="appointment-profile">
-                        <div class="appointment-avatar">
-                            <img src="../../assets/icons/person-black.svg" alt="" class="appointment-avatar-icon" />
-                        </div>
-                        <div class="appointment-profile-name">Janet Dean</div>
-                        <div class="appointment-profile-detail">Age: 99</div>
-                        <div class="appointment-profile-detail">Gender: Female</div>
-                        <div class="appointment-profile-detail">Last Appointment: 20 Feb</div>
-                        <div class="appointment-profile-detail">Phone: 825 288 8888</div>
-                        <div class="appointment-profile-action">
-                            <button class="appointment-profile-button" type="button">
-                                <img src="../../assets/icons/edit.svg" alt="" class="appointment-profile-edit-icon" />
-                                <span>Change Patient</span>
-                            </button>
-                        </div>
-                    </div>
+                  </div>
+
+                  <div
+                    id="popup-patient-results"
+                    class="appointment-search-results"
+                  ></div>
+
+                  <div
+                    class="appointment-profile"
+                    id="popup-patient-panel"
+                  ></div>
                 </aside>
+              </div>
             </div>
-        </div>
+          </div>
+        </main>
+        <!-- END OF PAGE -->
+      </div>
     </div>
+
+    <script src="../../database/patientsDatabase.js"></script>
+    <script src="../../database/doctorsDatabase.js"></script>
 
     <script src="doctorsSchedule.js"></script>
     <script src="appointmentPopup.js"></script>
     <script src="../layout.js"></script>
-</body>
-
+  </body>
 </html>

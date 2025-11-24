@@ -2,6 +2,10 @@
    DOCTOR SCHEDULE LAYOUT
    =========================== */
 
+.page {
+  position: relative;
+}
+
 .schedule-layout {
   display: flex;
   gap: 20px;

@@ -1,18 +1,60 @@
 // Simple availability model: day index (0 = Sun) + time range.
 // Time strings are in 24h "HH:MM" and represent the START of the slot.
-const availabilityWindows = [
-  { day: 0, start: "10:00", end: "18:00" },
-  { day: 1, start: "13:00", end: "17:30" },
-  { day: 3, start: "09:30", end: "19:00" },
-  { day: 5, start: "14:00", end: "20:00" },
-  { day: 6, start: "09:30", end: "19:00" },
-];
 
-(function () {
+console.log(window.doctorsDatabase.getActiveDoctorId());
+
+const ACTIVE_DOCTOR_ID = window.doctorsDatabase.getActiveDoctorId();
+
+let activeDoctor = null;
+let availabilityWindows = [];
+
+if (window.doctorsDatabase) {
+  activeDoctor = window.doctorsDatabase.getDoctorById(ACTIVE_DOCTOR_ID);
+  availabilityWindows =
+    window.doctorsDatabase.getDoctorAvailability(ACTIVE_DOCTOR_ID) || [];
+}
+
+function populateDoctorCard(doc) {
+  const doctor = doc;
+  const current = doctor || activeDoctor;
+
+  const nameEl = document.getElementById("doctor-name");
+  const specEl = document.getElementById("doctor-specialty");
+  const ageEl = document.getElementById("doctor-age");
+  const genderEl = document.getElementById("doctor-gender");
+  const phoneEl = document.getElementById("doctor-phone");
+  const changeLabelEl = document.querySelector(".change-doctor-label");
+
+  if (!current) {
+    if (nameEl) nameEl.textContent = "No doctor selected";
+    if (specEl) specEl.textContent = "-";
+    if (ageEl) ageEl.textContent = "-";
+    if (genderEl) genderEl.textContent = "-";
+    if (phoneEl) phoneEl.textContent = "-";
+
+    if (changeLabelEl) changeLabelEl.textContent = "Select Doctor";
+    return;
+  }
+
+  if (nameEl) nameEl.textContent = current.name;
+  if (specEl) specEl.textContent = current.specialty;
+  if (ageEl) ageEl.textContent = current.age;
+  if (genderEl) genderEl.textContent = current.gender;
+  if (phoneEl) phoneEl.textContent = current.phone;
+
+  if (changeLabelEl) changeLabelEl.textContent = "Change Doctor";
+}
+
+populateDoctorCard(activeDoctor);
+
+function buildCalendarGrid() {
   const startHour = 8;
   const endHour = 21;
   const timesEl = document.getElementById("calendar-times");
   const daysEl = document.getElementById("calendar-days");
+
+  timesEl.innerHTML = "";
+  daysEl.innerHTML = "";
 
   if (!timesEl || !daysEl) return;
 
@@ -77,4 +119,23 @@ const availabilityWindows = [
 
     daysEl.appendChild(col);
   }
-})();
+}
+
+buildCalendarGrid();
+
+window.refreshDoctorSchedule = function () {
+  const newId = window.doctorsDatabase.getActiveDoctorId();
+  const newDoc = window.doctorsDatabase.getDoctorById(newId);
+
+  if (!newDoc) {
+    populateDoctorCard(null);
+    availabilityWindows = [];
+    buildCalendarGrid();
+    return;
+  }
+
+  populateDoctorCard(newDoc);
+  availabilityWindows =
+    window.doctorsDatabase.getDoctorAvailability(newId) || [];
+  buildCalendarGrid();
+};
