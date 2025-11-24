@@ -1,4 +1,5 @@
 @import url("style.css");
+@import url("template.css");
 /* =========================================
    1. HOME
    ========================================= */
@@ -23,10 +24,30 @@
     gap: 16px;
 }
 
+.flexrow-gap4 {
+    display: flex;
+    gap: 8px;
+}
+
 .flexrow-gap8 {
     display: flex;
-    align-items: center;
     gap: 8px;
+}
+
+.flexrow-gap12 {
+    display: flex;
+    gap: 12px;
+}
+
+.flexrow-gap16 {
+    display: flex;
+    gap: 16px;
+}
+
+.flexcol-gap12 {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 /* Quick Action */
@@ -138,4 +159,85 @@
 .day-number--today {
     color: var(--neutral-50);
     background-color: var(--accent-coral);
+}
+
+/* Apointments Tab */
+.tabs {
+    display: flex;
+    align-items: flex-end;
+    align-self: stretch;
+    flex-direction: row;
+    border-bottom: 1px solid var(--neutral-200);
+}
+
+.tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: transparent;
+    border: 0px;
+    font-weight: var(--weight-medium);
+    font-size: var(--body-md-size);
+    color: var(--neutral-700);
+}
+
+.tab--active {
+    border-bottom: 2px solid var(--primary-600);
+    color: var(--primary-600);
+}
+
+.tab:hover {
+  color: var(--primary-700);
+}
+
+.tab-content {
+
+}
+
+.tab-panel {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    flex: 1 0 0;
+}
+
+.tab-panel--active {
+    display: flex;
+}
+
+.appointment-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    align-self: stretch;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--neutral-200);
+}
+
+.appointment-card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.appointment-card-patient {
+    font-weight: var(--weight-medium);
+    font-size: var(--body-md-size);
+    color: var(--neutral-900);
+}
+
+.appointment-card-doctor {
+    font-weight: var(--weight-regular);
+    font-size: var(--body-sm-size);
+    color: var(--neutral-700);
+}
+
+.appointment-card-time {
+    font-weight: var(--weight-regular);
+    font-size: var(--body-sm-size);
+    color: var(--neutral-600);
 }
