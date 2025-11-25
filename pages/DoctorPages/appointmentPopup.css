@@ -65,7 +65,6 @@
   gap: 10px;
   padding: 14px 18px;
   border-left: 1px solid var(--neutral-200);
-  border-right: 1px solid var(--neutral-200);
 }
 
 .appointment-header-block:first-child {
@@ -433,12 +432,13 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 6px;
+  gap: 5px;
   font-size: 15px;
 }
 
 .appointment-field-label {
-  color: var(--neutral-900);
+  color: var(--neutral-800);
+  font-weight: 500;
   flex: 0 0 auto;
 }
 
@@ -452,11 +452,11 @@
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  padding: 10px 12px;
-  border-radius: 8px;
+  padding: 5px 6px;
+  border-radius: 4px;
   border: 1px solid var(--neutral-300);
   background-color: var(--neutral-50);
-  font-size: 14px;
+  font-size: 16px;
   resize: none;
 }
 
@@ -560,7 +560,7 @@ body.no-scroll {
   max-width: 70%;
   padding: 6px 12px;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.4;
   background: rgba(15, 23, 42, 0.04);
   color: #111827;
@@ -597,8 +597,6 @@ body.no-scroll {
   color: #b91c1c;
 }
 
-
-/* Full-screen overlay INSIDE the modal */
 .appointment-dialog {
   position: absolute;
   inset: 0;
@@ -609,15 +607,13 @@ body.no-scroll {
   z-index: 30;
 }
 
-/* Shown state */
 .appointment-dialog.is-open {
   display: flex;
 }
 
-/* Dialog card */
 .appointment-dialog-card {
   width: 100%;
-  max-width: 360px;
+  max-width: 430px;
   background: #ffffff;
   border-radius: 12px;
   padding: 18px 20px;
@@ -625,14 +621,14 @@ body.no-scroll {
 }
 
 .appointment-dialog-title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: #111827;
   margin: 0 0 6px;
 }
 
 .appointment-dialog-text {
-  font-size: 13px;
+  font-size: 15px;
   color: #4b5563;
   margin: 0 0 14px;
 }
@@ -646,21 +642,27 @@ body.no-scroll {
 .appointment-dialog-btn {
   padding: 7px 14px;
   border-radius: 8px;
-  border: 1px solid #d1d5db;
-  background: #ffffff;
-  font-size: 13px;
-  font-weight: 500;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.35s ease, border-color 0.15s ease, color 0.15s ease,
+    box-shadow 0.15s ease;
+
+  background: var(--neutral-100);
+  border-color: var(--neutral-700);
+  color: var(--neutral-700);
 }
 
 .appointment-dialog-btn:hover {
-  background: #f9fafb;
+  background: var(--neutral-200);
 }
 
 .appointment-dialog-btn-danger {
   background: #fee2e2;
-  border-color: #fca5a5;
-  color: #b91c1c;
+  border-color: var(--danger-200);
+  color: var(--danger-200);
 }
 
 .appointment-dialog-btn-danger:hover {

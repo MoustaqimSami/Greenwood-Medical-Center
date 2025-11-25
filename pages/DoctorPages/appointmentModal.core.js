@@ -42,6 +42,29 @@ document.addEventListener("DOMContentLoaded", function () {
   let editMode = false;
   let statusHideTimer = null;
 
+  /* -----------------------------------------------------------
+     STATUS / FEEDBACK
+     ----------------------------------------------------------- */
+
+  function clearStatus() {
+    if (!modal) return;
+    const statusEl = modal.querySelector(".appointment-status");
+    if (!statusEl) return;
+
+    statusEl.classList.remove(
+      "appointment-status--info",
+      "appointment-status--success",
+      "appointment-status--danger",
+      "is-visible"
+    );
+    statusEl.textContent = "";
+
+    if (statusHideTimer) {
+      clearTimeout(statusHideTimer);
+      statusHideTimer = null;
+    }
+  }
+
   function showStatus(message, type = "info", autoHide = true) {
     if (!modal) return;
 
@@ -75,12 +98,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     statusEl.classList.add(cls, "is-visible");
 
-    if (autoHide && type !== "danger") {
+    // Now: anything with autoHide === true clears after 2.5s
+    if (autoHide) {
       statusHideTimer = setTimeout(() => {
         statusEl.classList.remove("is-visible");
-      }, 2400);
+      }, 2500);
     }
   }
+
+  /* -----------------------------------------------------------
+     FORM LAYOUT + EDIT STATE
+     ----------------------------------------------------------- */
 
   function applyFormEditState() {
     const formEl = modal.querySelector(".appointment-form");
@@ -172,6 +200,10 @@ document.addEventListener("DOMContentLoaded", function () {
     applyFormEditState();
   }
 
+  /* -----------------------------------------------------------
+     TIME / DATE HELPERS
+     ----------------------------------------------------------- */
+
   function formatTimeTo12h(timeStr) {
     if (!timeStr) return "";
     const [hStr, mStr] = timeStr.split(":");
@@ -196,6 +228,19 @@ document.addEventListener("DOMContentLoaded", function () {
     return { day, date };
   }
 
+  function getEndTime(startStr) {
+    if (!startStr) return null;
+    const [h, m] = startStr.split(":").map(Number);
+    const total = h * 60 + m + 30;
+    const nh = Math.floor(total / 60);
+    const nm = total % 60;
+    return `${String(nh).padStart(2, "0")}:${String(nm).padStart(2, "0")}`;
+  }
+
+  /* -----------------------------------------------------------
+     MODAL OPEN / CLOSE
+     ----------------------------------------------------------- */
+
   function openModal(slotInfo) {
     const doctorModule = window.appointmentDoctorSearch;
     const patientModule = window.appointmentPatientSearch;
@@ -205,6 +250,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     currentAppointment = appt || null;
     currentSlotInfo = slotInfo || null;
+
+    // Clear any stale feedback when opening
+    clearStatus();
 
     if (slotInfo && timeLabel && dayLabel && dateLabel) {
       if (slotInfo.time) timeLabel.textContent = slotInfo.time;
@@ -261,7 +309,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Doctor panel: use current active doctor
+    // Doctor panel
     if (doctorModule && doctorModule.renderDoctorPanel) {
       const activeDoctor = doctorModule.getActiveDoctor();
       if (activeDoctor) {
@@ -271,7 +319,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Patient panel: from appointment if present, otherwise active patient
+    // Patient panel
     let activePatient = null;
     if (appt && window.patientsDatabase) {
       activePatient = window.patientsDatabase.getPatientById(appt.patientId);
@@ -306,16 +354,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function getEndTime(startStr) {
-    if (!startStr) return null;
-    const [h, m] = startStr.split(":").map(Number);
-    const total = h * 60 + m + 30;
-    const nh = Math.floor(total / 60);
-    const nm = total % 60;
-    return `${String(nh).padStart(2, "0")}:${String(nm).padStart(2, "0")}`;
-  }
+  /* -----------------------------------------------------------
+     SLOT CLICK HANDLERS
+     ----------------------------------------------------------- */
 
-  // Attach click handlers to available slots to open the modal
   function setupAppointmentSlotHandlers() {
     const slots = document.querySelectorAll(".slot-row-available");
 
@@ -324,6 +366,80 @@ document.addEventListener("DOMContentLoaded", function () {
         const dateRaw = slot.dataset.date || "";
         const timeRaw = slot.dataset.time || "";
         const labels = dateRaw ? getDateLabels(dateRaw) : { day: "", date: "" };
+
+        const isRescheduleMode = !!window.currentRescheduleAppointmentId;
+
+        if (isRescheduleMode) {
+          const targetApptId = window.currentRescheduleAppointmentId;
+
+          if (!targetApptId) {
+            window.currentRescheduleAppointmentId = null;
+            if (rescheduleBanner) rescheduleBanner.classList.remove("is-visible");
+            showStatus(
+              "Unable to reschedule right now. Please try again.",
+              "danger",
+              false
+            );
+            return;
+          }
+
+          if (slot.dataset.appointmentId) {
+            showStatus(
+              "Please select an empty time slot to reschedule.",
+              "danger",
+              false
+            );
+            return;
+          }
+
+          if (!window.appointmentsDatabase?.updateAppointmentById) {
+            showStatus(
+              "Unable to update appointment time. Please try again.",
+              "danger",
+              false
+            );
+            return;
+          }
+
+          const newEnd = getEndTime(timeRaw);
+          const updated =
+            window.appointmentsDatabase.updateAppointmentById(targetApptId, {
+              date: dateRaw,
+              start: timeRaw,
+              end: newEnd,
+            });
+
+          if (!updated) {
+            showStatus(
+              "Could not move appointment. Please try again.",
+              "danger",
+              false
+            );
+            return;
+          }
+
+          window.currentRescheduleAppointmentId = null;
+          if (rescheduleBanner) {
+            rescheduleBanner.classList.remove("is-visible");
+          }
+
+          if (window.refreshDoctorSchedule) {
+            window.refreshDoctorSchedule();
+          }
+
+          const slotInfo = {
+            dateRaw,
+            timeRaw,
+            time: timeRaw ? formatTimeTo12h(timeRaw) : "",
+            day: labels.day,
+            date: labels.date,
+            appointment: updated,
+          };
+
+          openModal(slotInfo);
+          showStatus("Appointment rescheduled.", "success");
+          return;
+        }
 
         const slotInfo = {
           dateRaw,

@@ -37,9 +37,9 @@
       doctorId: "doc-1",
       patientId: "pat-3",
       type: APPOINTMENT_TYPES.ASSESSMENT,
-      date: "2025-09-04",
-      start: "13:00",
-      end: "13:30",
+      date: "2025-09-05",
+      start: "16:00",
+      end: "16:30",
       reason: "Shoulder discomfort after minor fall.",
       notes: "No prior imaging; consider X-ray if needed.",
       status: "scheduled",
@@ -49,7 +49,7 @@
       doctorId: "doc-1",
       patientId: "pat-4",
       type: APPOINTMENT_TYPES.REPORTS,
-      date: "2025-09-04",
+      date: "2025-09-05",
       start: "15:00",
       end: "15:30",
       reason: "Review MRI report.",
@@ -97,7 +97,7 @@
       doctorId: "doc-1",
       patientId: "pat-8",
       type: APPOINTMENT_TYPES.OTHER,
-      date: "2025-09-09",
+      date: "2025-09-10",
       start: "10:30",
       end: "11:00",
       reason: "Insurance / documentation request.",
@@ -109,7 +109,7 @@
       doctorId: "doc-1",
       patientId: "pat-9",
       type: APPOINTMENT_TYPES.REPORTS,
-      date: "2025-09-09",
+      date: "2025-09-10",
       start: "12:00",
       end: "12:30",
       reason: "Review blood test results.",
@@ -121,7 +121,7 @@
       doctorId: "doc-1",
       patientId: "pat-10",
       type: APPOINTMENT_TYPES.ASSESSMENT,
-      date: "2025-09-09",
+      date: "2025-09-13",
       start: "09:30",
       end: "10:00",
       reason: "Initial consult for hip pain.",
@@ -139,7 +139,6 @@
   }
 
   function getAppointmentsForDoctorOnDate(doctorId, date) {
-    // date should be "YYYY-MM-DD"
     return appointments.filter(
       (appt) => appt.doctorId === doctorId && appt.date === date
     );
