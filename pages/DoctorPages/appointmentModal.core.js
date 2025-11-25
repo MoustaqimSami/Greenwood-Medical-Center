@@ -1,4 +1,3 @@
-// appointmentModal.core.js
 document.addEventListener("DOMContentLoaded", function () {
   const modal = document.getElementById("appointment-modal");
   if (!modal) return;
@@ -24,8 +23,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const saveBtn = modal.querySelector(".appointment-btn-save");
 
   const deleteDialog = modal.querySelector("#appointment-delete-dialog");
-  const deleteCancelBtn = modal.querySelector("[data-appointment-delete-cancel]");
-  const deleteConfirmBtn = modal.querySelector("[data-appointment-delete-confirm]");
+  const deleteCancelBtn = modal.querySelector(
+    "[data-appointment-delete-cancel]"
+  );
+  const deleteConfirmBtn = modal.querySelector(
+    "[data-appointment-delete-confirm]"
+  );
 
   const rescheduleBanner = document.getElementById("reschedule-banner");
   const rescheduleCancel = document.getElementById("reschedule-cancel");
@@ -216,7 +219,8 @@ document.addEventListener("DOMContentLoaded", function () {
     currentAppointmentType = baseType;
     let formType = baseType === "walkin" ? "assessment" : baseType;
 
-    editMode = !appt; // new slot => edit mode, existing => view
+    // new slot => edit mode, existing => view mode
+    editMode = !appt;
 
     renderForm(formType);
 
@@ -226,6 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
       modal.querySelector('[data-appointment-tab="assessment"]');
     if (activeTab) activeTab.classList.add("is-active");
 
+    // Populate form from existing appointment
     if (appt) {
       const formEl = modal.querySelector(".appointment-form");
       if (formEl) {
@@ -341,7 +346,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Expose for the schedule to re-bind after calendar rebuilds
   window.setupAppointmentSlotHandlers = setupAppointmentSlotHandlers;
 
   // Initial form
@@ -367,7 +371,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Tabs – only switch when in edit mode
+  // Tabs
   tabButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const targetId = btn.dataset.appointmentTab;
@@ -383,68 +387,57 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Edit
-  if (editBtn) {
-    editBtn.addEventListener("click", () => {
-      if (!currentAppointment) return;
-      editMode = true;
+  window.appointmentModalCore = {
+    get modal() {
+      return modal;
+    },
+    get editBtn() {
+      return editBtn;
+    },
+    get deleteBtn() {
+      return deleteBtn;
+    },
+    get saveBtn() {
+      return saveBtn;
+    },
+    get deleteDialog() {
+      return deleteDialog;
+    },
+    get deleteCancelBtn() {
+      return deleteCancelBtn;
+    },
+    get deleteConfirmBtn() {
+      return deleteConfirmBtn;
+    },
+    getCurrentAppointment: () => currentAppointment,
+    setCurrentAppointment: (appt) => {
+      currentAppointment = appt;
+    },
+    getCurrentSlotInfo: () => currentSlotInfo,
+    setCurrentSlotInfo: (info) => {
+      currentSlotInfo = info;
+    },
+    getEditMode: () => editMode,
+    setEditMode: (val) => {
+      editMode = !!val;
       applyFormEditState();
-      showStatus("Editing appointment. Make changes then click Save.", "info");
-    });
-  }
-
-  // Delete / Cancel
-  if (deleteBtn) {
-    deleteBtn.addEventListener("click", () => {
-      if (!currentAppointment) {
-        closeModal();
-        showStatus("Appointment creation cancelled.", "info");
-        return;
-      }
-
-      if (!deleteDialog) return;
-      deleteDialog.classList.add("is-open");
-    });
-  }
-
-  if (deleteCancelBtn) {
-    deleteCancelBtn.addEventListener("click", () => {
-      if (!deleteDialog) return;
-      deleteDialog.classList.remove("is-open");
-      showStatus("Deletion cancelled.", "info");
-    });
-  }
-
-  if (deleteConfirmBtn) {
-    deleteConfirmBtn.addEventListener("click", () => {
-      if (!currentAppointment || !deleteDialog) return;
-
-      if (window.appointmentsDatabase?.deleteAppointment) {
-        window.appointmentsDatabase.deleteAppointment(currentAppointment.id);
-      }
-
-      deleteDialog.classList.remove("is-open");
-      showStatus("Appointment deleted.", "success", false);
-
-      currentAppointment = null;
-      closeModal();
-
-      if (window.refreshDoctorSchedule) {
-        window.refreshDoctorSchedule();
-      }
-    });
-  }
-
-  // Save / Add
-  if (saveBtn) {
-    saveBtn.addEventListener("click", () => {
-      if (!editMode) return;
-
+    },
+    getCurrentAppointmentType: () => currentAppointmentType,
+    setCurrentAppointmentType: (type) => {
+      currentAppointmentType = type;
+    },
+    showStatus,
+    applyFormEditState,
+    closeModal,
+    getEndTime,
+    getFormValues: () => {
       const formEl = modal.querySelector(".appointment-form");
-      if (!formEl) return;
-
       let reasonVal = "";
       let notesVal = "";
+
+      if (!formEl) {
+        return { reason: reasonVal, notes: notesVal };
+      }
 
       const fields = formEl.querySelectorAll(".appointment-field");
       fields.forEach((field) => {
@@ -471,65 +464,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
 
-      const doctorId = window.doctorsDatabase.getActiveDoctorId();
-      const date = currentSlotInfo?.dateRaw;
-      const start = currentSlotInfo?.timeRaw;
+      return { reason: reasonVal, notes: notesVal };
+    },
+  };
 
-      if (!currentAppointment) {
-        // New appointment
-        const activePatientId =
-          window.patientsDatabase?.getActivePatientId?.() || "pat-1";
-
-        const newAppt = window.appointmentsDatabase.createAppointment({
-          doctorId,
-          patientId: activePatientId,
-          type: currentAppointmentType,
-          date,
-          start,
-          end: getEndTime(start),
-          reason: reasonVal,
-          notes: notesVal,
-        });
-
-        currentAppointment = newAppt;
-        editMode = false;
-        applyFormEditState();
-        showStatus("Appointment added.", "success");
-
-        if (window.refreshDoctorSchedule) {
-          window.refreshDoctorSchedule();
-        }
-
-        closeModal();
-      } else {
-        // Update existing
-        const changes = {
-          type: currentAppointmentType,
-          reason: reasonVal,
-          notes: notesVal,
-        };
-
-        const updated =
-          window.appointmentsDatabase.updateAppointmentById(
-            currentAppointment.id,
-            changes
-          );
-        if (updated) {
-          currentAppointment = updated;
-        }
-
-        editMode = false;
-        applyFormEditState();
-        showStatus("Appointment updated.", "success");
-
-        if (window.refreshDoctorSchedule) {
-          window.refreshDoctorSchedule();
-        }
-      }
-    });
-  }
-
-  // Reschedule banner behaviour (if present)
+  // Reschedule banner behaviour
   if (calendarHeaderBlock) {
     calendarHeaderBlock.style.cursor = "pointer";
     calendarHeaderBlock.addEventListener("click", () => {
