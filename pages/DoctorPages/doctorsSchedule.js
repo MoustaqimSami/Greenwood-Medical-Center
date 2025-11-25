@@ -1,8 +1,7 @@
 // Simple availability model: day index (0 = Sun) + time range.
 // Time strings are in 24h "HH:MM" and represent the START of the slot.
 const ACTIVE_DOCTOR_ID = window.doctorsDatabase.getActiveDoctorId();
-
-const WEEK_DATES = [
+let WEEK_DATES = [
   "2025-09-03",
   "2025-09-04",
   "2025-09-05",
@@ -61,6 +60,31 @@ function buildCalendarGrid() {
   const daysEl = document.getElementById("calendar-days");
 
   if (!timesEl || !daysEl) return;
+
+  // --- NEW: update calendar header labels from WEEK_DATES ---
+  const headerDayEls = document.querySelectorAll(".calendar-header-day");
+  headerDayEls.forEach((headerEl, index) => {
+    if (!WEEK_DATES[index]) return;
+    const dateObj = new Date(WEEK_DATES[index] + "T00:00:00");
+
+    const dateSpan = headerEl.querySelector(".calendar-header-date");
+    const labelSpan = headerEl.querySelector(".calendar-header-label");
+
+    if (dateSpan) {
+      const monthShort = dateObj.toLocaleDateString(undefined, {
+        month: "short",
+      });
+      const dayNum = dateObj.getDate();
+      dateSpan.textContent = `${monthShort} ${dayNum}`;
+    }
+
+    if (labelSpan) {
+      labelSpan.textContent = dateObj.toLocaleDateString(undefined, {
+        weekday: "short",
+      });
+    }
+  });
+  // --- END header update ---
 
   timesEl.innerHTML = "";
   daysEl.innerHTML = "";
@@ -217,3 +241,5 @@ window.refreshDoctorSchedule = function () {
     window.setupAppointmentSlotHandlers();
   }
 };
+
+window.WEEK_DATES = WEEK_DATES;
