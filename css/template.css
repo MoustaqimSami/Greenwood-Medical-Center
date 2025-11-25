@@ -224,9 +224,10 @@ body.sidebar-collapsed .nav-label {
   transition: margin-left 0.25s ease;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
   width: calc(100% - var(--app-sidebar-width));
   margin-left: 0;
+  overflow: hidden;
 }
 
 body.sidebar-collapsed .main {
@@ -327,6 +328,12 @@ body.sidebar-collapsed .main {
   background: var(--neutral-50);
   box-sizing: border-box;
   min-height: calc(100vh - 72px);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.page::-webkit-scrollbar {
+  display: none;
 }
 
 .page-header {
@@ -443,4 +450,22 @@ body.sidebar-collapsed .main {
   background-color: var(--secondary-100);
   font-weight: var(--weight-medium);
   font-size: var(--body-lg-size);
+}
+
+/* Custom scrollbar */
+.custom-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: var(--neutral-300);
+  border-radius: 4px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+  background: var(--neutral-100);
+  border-radius: 4px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral-400);
+  border-radius: 4px;
 }
