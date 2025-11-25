@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const timeLabel = modal.querySelector("[data-appointment-time]");
   const dayLabel = modal.querySelector("[data-appointment-day]");
   const dateLabel = modal.querySelector("[data-appointment-date]");
-  let currentAppointment = null; // currently open appointment (or null)
-  let currentSlotInfo = null; // last slotInfo used to open the modal
-  let currentAppointmentType = "assessment"; // base type: assessment/reports/...
-  let editMode = false; // false = view-only, true = editing
+  let currentAppointment = null;
+  let currentSlotInfo = null;
+  let currentAppointmentType = "assessment";
+  let editMode = false;
 
   /* -----------------------------------------------------------
      DOCTOR SEARCH / PANEL

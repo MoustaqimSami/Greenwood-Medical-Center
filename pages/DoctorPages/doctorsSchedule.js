@@ -172,14 +172,6 @@ function renderAppointmentsForActiveDoctor() {
     slot.removeAttribute("data-appointment-id");
   });
 
-  const TYPE_LABELS = {
-    assessment: "Assessment",
-    reports: "Reports",
-    followup: "Follow-up",
-    walkin: "Walk-in",
-    other: "Other",
-  };
-
   allAppointments.forEach((appt) => {
     const selector = `.slot-row[data-date="${appt.date}"][data-time="${appt.start}"]`;
     const slot = daysEl.querySelector(selector);
@@ -202,6 +194,9 @@ function renderAppointmentsForActiveDoctor() {
 }
 
 buildCalendarGrid();
+if (window.setupAppointmentSlotHandlers) {
+  window.setupAppointmentSlotHandlers();
+}
 
 window.refreshDoctorSchedule = function () {
   const newId = window.doctorsDatabase.getActiveDoctorId();
@@ -218,4 +213,7 @@ window.refreshDoctorSchedule = function () {
   availabilityWindows =
     window.doctorsDatabase.getDoctorAvailability(newId) || [];
   buildCalendarGrid();
+  if (window.setupAppointmentSlotHandlers) {
+    window.setupAppointmentSlotHandlers();
+  }
 };
