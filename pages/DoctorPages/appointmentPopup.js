@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const timeLabel = modal.querySelector("[data-appointment-time]");
   const dayLabel = modal.querySelector("[data-appointment-day]");
   const dateLabel = modal.querySelector("[data-appointment-date]");
+  let currentAppointment = null; // currently open appointment (or null)
+  let currentSlotInfo = null; // last slotInfo used to open the modal
+  let currentAppointmentType = "assessment"; // base type: assessment/reports/...
+  let editMode = false; // false = view-only, true = editing
 
   /* -----------------------------------------------------------
      DOCTOR SEARCH / PANEL
@@ -249,6 +253,103 @@ document.addEventListener("DOMContentLoaded", function () {
     other: document.getElementById("tpl-form-other"),
   };
 
+  const editBtn = modal.querySelector(".appointment-btn-edit");
+  const deleteBtn = modal.querySelector(".appointment-btn-delete");
+  const saveBtn = modal.querySelector(".appointment-btn-save");
+
+    const deleteDialog = modal.querySelector("#appointment-delete-dialog");
+  const deleteCancelBtn = modal.querySelector(
+    "[data-appointment-delete-cancel]"
+  );
+  const deleteConfirmBtn = modal.querySelector(
+    "[data-appointment-delete-confirm]"
+  );
+
+    let statusHideTimer = null;
+
+  function showStatus(message, type = "info", autoHide = true) {
+    if (!modal) return;
+
+    let statusEl = modal.querySelector(".appointment-status");
+
+    // Create once if it doesn't exist
+    if (!statusEl) {
+      statusEl = document.createElement("div");
+      statusEl.className = "appointment-status";
+      modal.appendChild(statusEl);
+    }
+
+    // Clear previous timer
+    if (statusHideTimer) {
+      clearTimeout(statusHideTimer);
+      statusHideTimer = null;
+    }
+
+    statusEl.textContent = message;
+    statusEl.classList.remove(
+      "appointment-status--info",
+      "appointment-status--success",
+      "appointment-status--danger",
+      "is-visible"
+    );
+
+    const cls =
+      type === "success"
+        ? "appointment-status--success"
+        : type === "danger"
+        ? "appointment-status--danger"
+        : "appointment-status--info";
+
+    statusEl.classList.add(cls, "is-visible");
+
+    if (autoHide && type !== "danger") {
+      statusHideTimer = setTimeout(() => {
+        statusEl.classList.remove("is-visible");
+      }, 2400);
+    }
+  }
+
+    function applyFormEditState() {
+    const formEl = modal.querySelector(".appointment-form");
+    if (!formEl) return;
+
+    const controls = formEl.querySelectorAll("input, textarea, select");
+    controls.forEach((ctrl) => {
+      ctrl.disabled = !editMode;
+    });
+
+    // Button labels / visibility depend on whether we have an appointment
+    if (currentAppointment) {
+      // Existing appointment
+      if (editBtn) {
+        editBtn.style.display = "";
+      }
+      if (deleteBtn) {
+        deleteBtn.textContent = "Delete";
+      }
+      if (saveBtn) {
+        saveBtn.textContent = "Save";
+      }
+    } else {
+      // New appointment
+      if (editBtn) {
+        editBtn.style.display = "none";
+      }
+      if (deleteBtn) {
+        deleteBtn.textContent = "Cancel";
+      }
+      if (saveBtn) {
+        saveBtn.textContent = "Add";
+      }
+    }
+
+    if (saveBtn) {
+      saveBtn.disabled = !editMode;
+    }
+  }
+
+
+
   function renderForm(type) {
     if (!formContainer) return;
     const tpl = templates[type];
@@ -259,6 +360,7 @@ document.addEventListener("DOMContentLoaded", function () {
     formContainer.appendChild(clone);
 
     setupFormLayout();
+    applyFormEditState();
   }
 
   function setupFormLayout() {
@@ -322,7 +424,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function openModal(slotInfo) {
     const appt = slotInfo && slotInfo.appointment ? slotInfo.appointment : null;
+    currentAppointment = appt || null;
+    currentSlotInfo = slotInfo || null;
 
+    // Header labels: time + day + date
     if (slotInfo && timeLabel && dayLabel && dateLabel) {
       if (slotInfo.time) timeLabel.textContent = slotInfo.time;
       if (slotInfo.day) dayLabel.textContent = slotInfo.day;
@@ -332,75 +437,79 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.classList.add("is-open");
     document.body.classList.add("no-scroll");
 
+    // Determine type
     let baseType = appt && appt.type ? appt.type : "assessment";
+    currentAppointmentType = baseType;
     let formType = baseType === "walkin" ? "assessment" : baseType;
+
+    // Existing appointment opens in view mode, new slot opens in edit mode
+    editMode = !appt; // existing => false (view), new => true (edit)
 
     renderForm(formType);
 
+    // Highlight correct tab
     tabButtons.forEach((b) => b.classList.remove("is-active"));
     const activeTab =
       modal.querySelector(`[data-appointment-tab="${baseType}"]`) ||
       modal.querySelector('[data-appointment-tab="assessment"]');
     if (activeTab) activeTab.classList.add("is-active");
 
-    // If there's an existing appointment, prefill key fields
+    // Prefill form fields for existing appointment
     if (appt) {
-      setActiveDoctor(appt.doctorId);
-      setActivePatient(appt.patientId);
-
-      console.log();
       const formEl = modal.querySelector(".appointment-form");
-      if (!formEl) return;
+      if (formEl) {
+        const fields = formEl.querySelectorAll(".appointment-field");
+        fields.forEach((field) => {
+          const label = field.querySelector(".appointment-field-label");
+          const textarea = field.querySelector("textarea");
+          const input = field.querySelector("input");
+          const control = textarea || input;
+          if (!label || !control) return;
 
-      const fields = formEl.querySelectorAll(".appointment-field");
-      fields.forEach((field) => {
-        const label = field.querySelector(".appointment-field-label");
-        const textarea = field.querySelector("textarea");
-        const input = field.querySelector("input");
-        const control = textarea || input;
-        if (!label || !control) return;
+          const labelText = (label.textContent || "").toLowerCase();
 
-        const labelText = (label.textContent || "").toLowerCase();
-
-        // Reason fields
-        if (
-          labelText.includes("reason for visit") ||
-          labelText.includes("reason for follow-up") ||
-          labelText.includes("details")
-        ) {
-          control.value = appt.reason || "";
-        } else if (
-          labelText.includes("additional") ||
-          labelText.includes("comments") ||
-          labelText.includes("notes")
-        ) {
-          control.value = appt.notes || "";
-        }
-      });
+          if (
+            labelText.includes("reason for visit") ||
+            labelText.includes("reason for follow-up") ||
+            labelText.includes("details")
+          ) {
+            control.value = appt.reason || "";
+          } else if (
+            labelText.includes("additional") ||
+            labelText.includes("comments") ||
+            labelText.includes("notes")
+          ) {
+            control.value = appt.notes || "";
+          }
+        });
+      }
     }
 
-    // Pre-fill doctor panel from active doctor
+    // Pre-fill doctor panel
     const activeDoctorId = window.doctorsDatabase.getActiveDoctorId();
     const activeDoctor = window.doctorsDatabase.getDoctorById(activeDoctorId);
-
     if (activeDoctor) {
       renderDoctorPanel(activeDoctor);
     } else {
       renderGenericDoctorPanel();
     }
 
-    // Pre-fill patient panel from active patient
+    // Pre-fill patient panel from appointment (if any) or active patient
     let activePatient = null;
-    if (window.patientsDatabase) {
+    if (appt && window.patientsDatabase) {
+      activePatient = window.patientsDatabase.getPatientById(appt.patientId);
+    } else if (window.patientsDatabase) {
       const activePatId = window.patientsDatabase.getActivePatientId();
       activePatient = window.patientsDatabase.getPatientById(activePatId);
     }
+
     if (activePatient) {
-      console.log(activePatient);
       renderPatientPanel(activePatient);
     } else {
       renderGenericPatientPanel();
     }
+
+    applyFormEditState();
   }
 
   function closeModal() {
@@ -439,7 +548,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function setupAppointmentSlotHandlers() {
-    const slots = document.querySelectorAll(".slot-row");
+    const slots = document.querySelectorAll(".slot-row-available");
 
     slots.forEach((slot) => {
       slot.addEventListener("click", () => {
@@ -448,6 +557,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const labels = dateRaw ? getDateLabels(dateRaw) : { day: "", date: "" };
 
         const slotInfo = {
+          dateRaw,
+          timeRaw,
           time: timeRaw ? formatTimeTo12h(timeRaw) : "",
           day: labels.day,
           date: labels.date,
@@ -492,16 +603,219 @@ document.addEventListener("DOMContentLoaded", function () {
     btn.addEventListener("click", () => {
       const targetId = btn.dataset.appointmentTab;
       if (!targetId) return;
+      if (!editMode) return;
 
       tabButtons.forEach((b) => b.classList.remove("is-active"));
       btn.classList.add("is-active");
 
+      currentAppointmentType = targetId;
       const typeToRender = targetId === "walkin" ? "assessment" : targetId;
       renderForm(typeToRender);
     });
   });
 
   renderForm("assessment");
+
+  if (editBtn) {
+    editBtn.addEventListener("click", () => {
+      if (!currentAppointment) return;
+      editMode = true;
+      applyFormEditState();
+      showStatus("Editing appointment. Make changes then click Save.", "info");
+    });
+  }
+
+  if (deleteBtn) {
+    deleteBtn.addEventListener("click", () => {
+      if (!currentAppointment) {
+        closeModal();
+        showStatus("Appointment creation cancelled.", "info");
+        return;
+      }
+
+      if (!deleteDialog) return;
+      deleteDialog.classList.add("is-open");
+    });
+  }
+
+
+  if (deleteCancelBtn) {
+    deleteCancelBtn.addEventListener("click", () => {
+      if (!deleteDialog) return;
+      deleteDialog.classList.remove("is-open");
+      showStatus("Deletion cancelled.", "info");
+    });
+  }
+
+  if (deleteConfirmBtn) {
+    deleteConfirmBtn.addEventListener("click", () => {
+      if (!currentAppointment || !deleteDialog) return;
+
+      if (window.appointmentsDatabase?.deleteAppointment) {
+        window.appointmentsDatabase.deleteAppointment(currentAppointment.id);
+      }
+
+      deleteDialog.classList.remove("is-open");
+      showStatus("Appointment deleted.", "success", false);
+
+      currentAppointment = null;
+      closeModal();
+
+      if (window.refreshDoctorSchedule) {
+        window.refreshDoctorSchedule();
+      }
+    });
+  }
+
+  if (saveBtn) {
+    saveBtn.addEventListener("click", () => {
+      if (!editMode) return;
+
+      const formEl = modal.querySelector(".appointment-form");
+      if (!formEl) return;
+
+      let reasonVal = "";
+      let notesVal = "";
+
+      const fields = formEl.querySelectorAll(".appointment-field");
+      fields.forEach((field) => {
+        const label = field.querySelector(".appointment-field-label");
+        const textarea = field.querySelector("textarea");
+        const input = field.querySelector("input");
+        const control = textarea || input;
+        if (!label || !control) return;
+
+        const labelText = (label.textContent || "").toLowerCase();
+
+        if (
+          labelText.includes("reason for visit") ||
+          labelText.includes("reason for follow-up") ||
+          labelText.includes("details")
+        ) {
+          reasonVal = control.value;
+        } else if (
+          labelText.includes("additional") ||
+          labelText.includes("comments") ||
+          labelText.includes("notes")
+        ) {
+          notesVal = control.value;
+        }
+      });
+
+      const doctorId = window.doctorsDatabase.getActiveDoctorId();
+      const date = currentSlotInfo?.dateRaw;
+      const start = currentSlotInfo?.timeRaw;
+
+      // Simple 30-min slot
+      function getEndTime(startStr) {
+        if (!startStr) return null;
+        const [h, m] = startStr.split(":").map(Number);
+        const total = h * 60 + m + 30;
+        const nh = Math.floor(total / 60);
+        const nm = total % 60;
+        return `${String(nh).padStart(2, "0")}:${String(nm).padStart(2, "0")}`;
+      }
+
+      if (!currentAppointment) {
+        // ---- NEW APPOINTMENT ----
+        const activePatientId =
+          window.patientsDatabase?.getActivePatientId?.() || "pat-1";
+
+        const newAppt = window.appointmentsDatabase.createAppointment({
+          doctorId,
+          patientId: activePatientId,
+          type: currentAppointmentType,
+          date,
+          start,
+          end: getEndTime(start),
+          reason: reasonVal,
+          notes: notesVal,
+        });
+
+        currentAppointment = newAppt;
+        editMode = false;
+        applyFormEditState();
+        showStatus("Appointment added.", "success");
+
+        if (window.refreshDoctorSchedule) {
+          window.refreshDoctorSchedule();
+        }
+
+        // Optional: close after add
+        closeModal();
+      } else {
+        // ---- UPDATE EXISTING ----
+        const changes = {
+          type: currentAppointmentType,
+          reason: reasonVal,
+          notes: notesVal,
+        };
+
+        const updated =
+          window.appointmentsDatabase.updateAppointmentById(
+            currentAppointment.id,
+            changes
+          );
+        if (updated) {
+          currentAppointment = updated;
+        }
+
+        editMode = false;
+        applyFormEditState();
+        showStatus("Appointment updated.", "success");
+
+        if (window.refreshDoctorSchedule) {
+          window.refreshDoctorSchedule();
+        }
+      }
+    });
+  }
+
+
+    // Optional reschedule banner (if present in HTML)
+  const rescheduleBanner = document.getElementById("reschedule-banner");
+  const rescheduleCancel = document.getElementById("reschedule-cancel");
+
+  const calendarHeaderBlock = modal.querySelector(
+    ".appointment-header-main .appointment-header-block:nth-child(2)"
+  );
+
+  if (calendarHeaderBlock) {
+    calendarHeaderBlock.style.cursor = "pointer";
+    calendarHeaderBlock.addEventListener("click", () => {
+      if (!currentAppointment) {
+        closeModal();
+        return;
+      }
+
+      // Mark globally that we are rescheduling this appointment
+      window.currentRescheduleAppointmentId = currentAppointment.id;
+
+      if (rescheduleBanner) {
+        rescheduleBanner.textContent =
+          `Rescheduling appointment on ${dateLabel.textContent} at ${timeLabel.textContent}. ` +
+          `Click a new time slot or Cancel.`;
+        rescheduleBanner.classList.add("is-visible");
+      } else {
+        // Fallback UX if you don't have a banner element yet
+        console.log(
+          "Rescheduling mode ON for appointment",
+          currentAppointment.id
+        );
+      }
+
+      closeModal();
+    });
+  }
+
+  if (rescheduleCancel) {
+    rescheduleCancel.addEventListener("click", () => {
+      window.currentRescheduleAppointmentId = null;
+      if (rescheduleBanner) {
+        rescheduleBanner.classList.remove("is-visible");
+      }
+    });
+  }
 
   /* -----------------------------------------------------------
      CLICK OUTSIDE SEARCH: HIDE OVERLAY LISTS

@@ -142,10 +142,6 @@ function buildCalendarGrid() {
     daysEl.appendChild(col);
   }
   renderAppointmentsForActiveDoctor();
-
-  if (window.setupAppointmentSlotHandlers) {
-    window.setupAppointmentSlotHandlers();
-  }
 }
 
 function renderAppointmentsForActiveDoctor() {
@@ -204,7 +200,6 @@ function renderAppointmentsForActiveDoctor() {
     `;
   });
 }
-
 
 buildCalendarGrid();
 

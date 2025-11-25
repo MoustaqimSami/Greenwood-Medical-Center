@@ -130,7 +130,6 @@
     },
   ];
 
-
   function getAppointmentById(id) {
     return appointments.find((appt) => appt.id === id) || null;
   }
@@ -150,6 +149,31 @@
     return appointments.filter((appt) => appt.patientId === patientId);
   }
 
+  function createAppointment(data) {
+    const newId = `appt-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+    const newAppt = {
+      id: newId,
+      status: "scheduled",
+      ...data,
+    };
+    appointments.push(newAppt);
+    return newAppt;
+  }
+
+  function updateAppointmentById(id, changes) {
+    const idx = appointments.findIndex((a) => a.id === id);
+    if (idx === -1) return null;
+    appointments[idx] = { ...appointments[idx], ...changes };
+    return appointments[idx];
+  }
+
+  function deleteAppointment(id) {
+    const idx = appointments.findIndex((a) => a.id === id);
+    if (idx === -1) return false;
+    appointments.splice(idx, 1);
+    return true;
+  }
+
   window.appointmentsDatabase = {
     APPOINTMENT_TYPES,
     appointments,
@@ -157,5 +181,8 @@
     getAppointmentsForDoctor,
     getAppointmentsForDoctorOnDate,
     getAppointmentsForPatient,
+    createAppointment,
+    deleteAppointment,
+    updateAppointmentById,
   };
 })();
