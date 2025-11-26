@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      const { reason, notes } = core.getFormValues();
+      const { reason, notes, symptoms } = core.getFormValues();
       const currentSlotInfo = core.getCurrentSlotInfo();
       const currentAppointment = core.getCurrentAppointment();
       const appointmentType = core.getCurrentAppointmentType();
@@ -185,6 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
           end: core.getEndTime(start),
           reason,
           notes,
+          symptoms,
         });
 
         if (!newAppt) {
@@ -222,6 +223,7 @@ document.addEventListener("DOMContentLoaded", function () {
         type: appointmentType,
         reason,
         notes,
+        symptoms,
       };
 
       const updated =

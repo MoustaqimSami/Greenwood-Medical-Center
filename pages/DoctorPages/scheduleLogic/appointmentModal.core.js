@@ -244,8 +244,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const doctorModule = window.appointmentDoctorSearch;
     const patientModule = window.appointmentPatientSearch;
 
-    const appt =
-      slotInfo && slotInfo.appointment ? slotInfo.appointment : null;
+    const appt = slotInfo && slotInfo.appointment ? slotInfo.appointment : null;
 
     currentAppointment = appt || null;
     currentSlotInfo = slotInfo || null;
@@ -301,6 +300,11 @@ document.addEventListener("DOMContentLoaded", function () {
             labelText.includes("notes")
           ) {
             control.value = appt.notes || "";
+          } else if (
+            labelText.includes("symptom") ||
+            labelText.includes("symptoms")
+          ) {
+            control.value = appt.symptoms || appt.symptom || "";
           }
         });
       }
@@ -371,7 +375,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
           if (!targetApptId) {
             window.currentRescheduleAppointmentId = null;
-            if (rescheduleBanner) rescheduleBanner.classList.remove("is-visible");
+            if (rescheduleBanner)
+              rescheduleBanner.classList.remove("is-visible");
             showStatus(
               "Unable to reschedule right now. Please try again.",
               "danger",
@@ -399,12 +404,14 @@ document.addEventListener("DOMContentLoaded", function () {
           }
 
           const newEnd = getEndTime(timeRaw);
-          const updated =
-            window.appointmentsDatabase.updateAppointmentById(targetApptId, {
+          const updated = window.appointmentsDatabase.updateAppointmentById(
+            targetApptId,
+            {
               date: dateRaw,
               start: timeRaw,
               end: newEnd,
-            });
+            }
+          );
 
           if (!updated) {
             showStatus(
@@ -547,9 +554,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const formEl = modal.querySelector(".appointment-form");
       let reasonVal = "";
       let notesVal = "";
+      let symptomsVal = "";
 
       if (!formEl) {
-        return { reason: reasonVal, notes: notesVal };
+        return { reason: reasonVal, notes: notesVal, symptoms: symptomsVal };
       }
 
       const fields = formEl.querySelectorAll(".appointment-field");
@@ -574,10 +582,15 @@ document.addEventListener("DOMContentLoaded", function () {
           labelText.includes("notes")
         ) {
           notesVal = control.value;
+        } else if (
+          labelText.includes("symptom") ||
+          labelText.includes("symptoms")
+        ) {
+          symptomsVal = control.value;
         }
       });
 
-      return { reason: reasonVal, notes: notesVal };
+      return { reason: reasonVal, notes: notesVal, symptoms: symptomsVal };
     },
   };
 
