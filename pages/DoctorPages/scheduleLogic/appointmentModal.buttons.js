@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      // New appointment: enforce patient selection
+      // New appointment
       if (!currentAppointment) {
         const activePatientId =
           window.patientsDatabase?.getActivePatientId?.() || null;

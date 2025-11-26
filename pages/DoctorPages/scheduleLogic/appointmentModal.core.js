@@ -98,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     statusEl.classList.add(cls, "is-visible");
 
-    // Now: anything with autoHide === true clears after 2.5s
     if (autoHide) {
       statusHideTimer = setTimeout(() => {
         statusEl.classList.remove("is-visible");
@@ -250,8 +249,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     currentAppointment = appt || null;
     currentSlotInfo = slotInfo || null;
-
-    // Clear any stale feedback when opening
     clearStatus();
 
     if (slotInfo && timeLabel && dayLabel && dateLabel) {

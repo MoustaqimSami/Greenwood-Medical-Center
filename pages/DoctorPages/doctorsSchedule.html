@@ -7,8 +7,8 @@
 
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/template.css" />
-    <link rel="stylesheet" href="doctorsSchedule.css" />
-    <link rel="stylesheet" href="appointmentPopup.css" />
+    <link rel="stylesheet" href="../../css/appointmentStyles/doctorsSchedule.css" />
+    <link rel="stylesheet" href="../../css/appointmentStyles/appointmentPopup.css" />
   </head>
 
   <body>
@@ -278,7 +278,7 @@
                   </div>
                   <div class="appointment-header-block">
                     <img
-                      src="../../assets/icons/calendar.svg"
+                      src="../../assets/icons/calendar-edit.svg"
                       alt=""
                       class="appointment-header-icon"
                     />
@@ -387,7 +387,7 @@
                     id="appointment-form-container"
                   ></section>
 
-                  <!-- Common buttons shown under every form -->
+                  <!-- Common buttons -->
                   <div class="appointment-actions">
                     <div class="appointment-actions-left">
                       <button
@@ -625,12 +625,12 @@
     <script src="../../database/patientsDatabase.js"></script>
     <script src="../../database/doctorsDatabase.js"></script>
 
-    <script src="doctorsSchedule.js"></script>
-    <script src="weekSelector.js"></script>
-    <script src="appointmentModal.doctorSearch.js"></script>
-    <script src="appointmentModal.patientSearch.js"></script>
-    <script src="appointmentModal.core.js"></script>
-    <script src="appointmentModal.buttons.js"></script>
+    <script src="./scheduleLogic/doctorsSchedule.js"></script>
+    <script src="./scheduleLogic/weekSelector.js"></script>
+    <script src="./scheduleLogic/appointmentModal.doctorSearch.js"></script>
+    <script src="./scheduleLogic/appointmentModal.patientSearch.js"></script>
+    <script src="./scheduleLogic/appointmentModal.core.js"></script>
+    <script src="./scheduleLogic/appointmentModal.buttons.js"></script>
 
     <script src="../layout.js"></script>
   </body>

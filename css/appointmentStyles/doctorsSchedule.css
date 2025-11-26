@@ -386,31 +386,35 @@
 
 .slot-appointment-patient {
   font-size: 13px;
-  font-weight: 500;
-  color: var(--neutral-800);
+  font-weight: 600;
 }
 
 .slot--assessment .slot-appointment {
-  background: #dbeafe;
-  border: 1px solid #1d4ed8;
+  background: #dcfce7;
+  border: 1px solid #16a34a;
+  color: #155b2c;
 }
 
 .slot--reports .slot-appointment {
   background: #fef3c7;
   border: 1px solid #f59e0b;
+  color: #7a5a00;
 }
 
 .slot--followup .slot-appointment {
-  background: #dcfce7;
-  border: 1px solid #16a34a;
+  background: #e0ecff;      
+  border: 1px solid #3c77e6;
+  color: #174078;
 }
 
 .slot--walkin .slot-appointment {
-  background: #fee2e2;
-  border: 1px solid #ef4444;
+  background: #e5e7eb;
+  border: 1px solid #6b7280;
+  color: #2e3035;
 }
 
 .slot--other .slot-appointment {
-  background: #e5e7eb;
-  border: 1px solid #6b7280;
+  background: #ffe2e2;      
+  border: 1px solid #d03b3b;
+  color: #7a1616;
 }
