@@ -385,6 +385,15 @@
     align-self: stretch;
 }
 
+.doctor-profile-card-details {
+    display: flex;
+    gap: 8px;
+    height: 49px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
 .doctor-profile-card-name {
     font-weight: var(--weight-semibold);
     font-size: var(--body-md-size);
