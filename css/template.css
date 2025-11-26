@@ -369,6 +369,12 @@ body.sidebar-collapsed .main {
   padding: 16px;
 }
 
+.page-body--item {
+  gap: 16px;
+  padding: 0px;
+  border: none;
+  background: transparent;
+}
 
 /* =========================================
    7. BUTTONS (#TODO)
@@ -391,6 +397,16 @@ body.sidebar-collapsed .main {
   padding: 8px 12px;
   gap: 4px;
   font-size: var(--body-sm-size);
+}
+
+.btn--sec {
+  background: var(--secondary-500);
+  color: var(--neutral-50);
+}
+
+.btn--sec:hover {
+  background: var(--secondary-400);
+  color: var(--neutral-50);
 }
 
 .btn--txt {
@@ -452,6 +468,12 @@ body.sidebar-collapsed .main {
   font-size: var(--body-lg-size);
 }
 
+.avatar--medium {
+  width: 64px;
+  height: 64px;
+  font-size: var(--body-xl-size);
+}
+
 /* Custom scrollbar */
 .custom-scroll::-webkit-scrollbar {
   width: 8px;
@@ -468,4 +490,45 @@ body.sidebar-collapsed .main {
 .custom-scroll::-webkit-scrollbar-thumb:hover {
   background: var(--neutral-400);
   border-radius: 4px;
+}
+
+/* Search Bar */
+.search-box {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    gap: 16px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 25%;
+  left: 12px;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+  fill: var(--neutral-700);
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 12px 12px 40px;
+  border-radius: 4px;
+  border: 1px solid var(--neutral-200);
+  background: var(--white);
+  font-size: var(--body-md-size);
+}
+
+.search-input::placeholder {
+  color: var(--neutral-600);
+}
+
+.search-input:focus {
+  outline: none;
+  border: 1.5px solid var(--primary-700);
+}
+
+.search-input:active {
+  outline: none;
+  border: 1.5px solid var(--primary-700);
 }
