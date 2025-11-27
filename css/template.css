@@ -369,13 +369,6 @@ body.sidebar-collapsed .main {
   padding: 16px;
 }
 
-.page-body--item {
-  gap: 16px;
-  padding: 0px;
-  border: none;
-  background: transparent;
-}
-
 /* =========================================
    7. BUTTONS (#TODO)
    ========================================= */
@@ -498,37 +491,47 @@ body.sidebar-collapsed .main {
     align-items: center;
     align-self: stretch;
     gap: 16px;
+    border-radius: 6px;
+    border: 1px solid var(--neutral-200);
+    box-sizing: border-box;
+    padding: 0px;
+    border: none;
+    background: transparent;
 }
 
-.search-icon {
-  position: absolute;
-  top: 25%;
-  left: 12px;
-  z-index: 1;
-  width: 24px;
-  height: 24px;
-  fill: var(--neutral-700);
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid var(--neutral-200);
+    border-radius: 8px;
+    padding: 8px 12px;
+    background-color: var(--white);
+    transition: all 0.3s ease;
 }
 
 .search-input {
-  flex: 1;
-  padding: 12px 12px 12px 40px;
-  border-radius: 4px;
-  border: 1px solid var(--neutral-200);
-  background: var(--white);
-  font-size: var(--body-md-size);
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: var(--neutral-900);
+    background: transparent;
+    margin-left: 10px;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--neutral-600);
+}
+
+.search-wrapper:focus-within {
+    border-color: var(--primary-600);
+    box-shadow: 0 0 0 3px rgba(53, 162, 152, 0.20);
+    color: var(--neutral-900);
 }
 
 .search-input::placeholder {
   color: var(--neutral-600);
-}
-
-.search-input:focus {
-  outline: none;
-  border: 1.5px solid var(--primary-700);
-}
-
-.search-input:active {
-  outline: none;
-  border: 1.5px solid var(--primary-700);
 }
