@@ -297,7 +297,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 4px 8px;
+    padding: 4px 10px;
     gap: 4px;
     border-radius: 50px;
     font-weight: var(--weight-medium);
@@ -317,12 +317,12 @@
 
 .availability-card-tag--busy {
     background-color: var(--warning-100);
-    color: var(--warning-300);
+    color: var(--warning-200);
 }
 
 .availability-card-tag--booked {
     background-color: var(--danger-100);
-    color: var(--danger-300);
+    color: var(--danger-200);
 }
 
 .availability-card-tag--out {
