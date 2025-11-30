@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Patients | GMC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/template.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+  </head>
+
+  <body>
+    <div class="app-shell">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-inner">
+          <div class="sidebar-top">
+            <button class="brand-button" aria-label="Clinic home">
+              <img
+                src="../../assets/icons/logo.svg"
+                alt="Clinic logo"
+                class="brand-logo"
+              />
+            </button>
+
+            <button class="sidebar-toggle" aria-label="Toggle sidebar">
+              <img
+                src="../../assets/icons/layout-sidebar.svg"
+                data-open-src="../../assets/icons/layout-sidebar.svg"
+                data-collapsed-src="../../assets/icons/layout-sidebar-closed.svg"
+                alt="Toggle sidebar"
+                class="sidebar-toggle-icon"
+              />
+            </button>
+          </div>
+
+          <!-- Navigation -->
+          <nav class="sidebar-nav">
+            <a class="nav-item" href="../HomePage/dashboard.html">
+              <img class="nav-icon" src="../../assets/icons/home.svg" alt="" />
+              <span class="nav-label">Home</span>
+            </a>
+
+            <a class="nav-item" href="../SchedulePage/schedule.html">
+              <img class="nav-icon" src="../../assets/icons/calendar.svg" alt="" />
+              <span class="nav-label">Schedule</span>
+            </a>
+
+            <a class="nav-item" href="../PatientPages/patients.html">
+              <img class="nav-icon" src="../../assets/icons/people.svg" alt="" />
+              <span class="nav-label">Patients</span>
+            </a>
+
+            <a class="nav-item" href="../DoctorPages/doctors.html">
+              <img
+                class="nav-icon"
+                src="../../assets/icons/stethoscope.svg"
+                alt=""
+              />
+              <span class="nav-label">Doctors</span>
+            </a>
+          </nav>
+
+          <!-- Bottom Links -->
+          <div class="sidebar-bottom">
+            <a class="nav-item" href="#">
+              <img
+                class="nav-icon"
+                src="../../assets/icons/question-circle.svg"
+                alt=""
+              />
+              <span class="nav-label">Help center</span>
+            </a>
+
+            <a class="nav-item" href="#">
+              <img
+                class="nav-icon"
+                src="../../assets/icons/tabler_logout.svg"
+                alt=""
+              />
+              <span class="nav-label">Log out</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <div class="main">
+        <!-- HEADER -->
+        <header class="topbar">
+          <div class="topbar-left"></div>
+
+          <div class="topbar-right">
+            <button class="icon-button" aria-label="Notifications">
+              <img src="../../assets/icons/alert.svg" alt="Notifications" />
+            </button>
+
+            <div class="user-chip">
+              <div class="avatar-circle">
+                <img
+                  src="../../assets/icons/person.svg"
+                  alt="User profile"
+                  class="avatar-icon"
+                />
+              </div>
+              <div class="user-meta">
+                <span class="user-name">Selena Doe</span>
+                <span class="user-role">Front Desk Staff</span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- PAGE -->
+        <main class="page">
+          <header class="page-header page-header--column">
+            <div class="page-nav">
+              <a class="page-title page-title--outer" href="/pages/PatientPages/patients.html">Patients /</a>
+              <p class="page-title page-title--inner">Janet Dean</p>
+            </div>
+            <h1 class="page-title">Janet Dean</h1>
+          </header>
+        
+          <section class="page-body page-body--innerpage auto-height">
+            <aside class="inner-sidebar">
+              <!-- Navigation -->
+              <nav class="inner-sidebar-nav">
+                <a class="inner-nav-item" href="../PatientPages/patients-profile.html">
+                  <span>Profile</span>
+                </a>
+        
+                <a class="inner-nav-item inner-nav-item-active" href="../PatientPages/patients-appointments.html">
+                  <span>Appointments</span>
+                </a>
+        
+                <a class="inner-nav-item" href="../PatientPages/patients-billing.html">
+                  <span>Billing</span>
+                </a>
+
+                <div class="inner-sidebar-bottom">
+                  <button class="btn btn--small btn--danger-txt-red">
+                    Delete Account
+                  </button>
+                </div>
+              </nav>
+            </aside>
+
+            <div class="main main--innerpage">
+              <!-- THIS IS THE ONLY PART THAT SHOULD BE CHANGING IN MOST CASES!!! -->
+              <div>
+                <h class="body-xl-semibold"> Appointments </h>
+              </div>
+            </div>          
+          </section>
+        
+        </main>
+        <!-- END OF PAGE -->
+      </div>
+    </div>
+
+    <script src="../layout.js"></script>
+  </body>
+</html>
