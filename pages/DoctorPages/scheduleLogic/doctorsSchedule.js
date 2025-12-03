@@ -1,4 +1,3 @@
-// Simple availability model: day index (0 = Sun) + time range.
 // Time strings are in 24h "HH:MM" and represent the START of the slot.
 const ACTIVE_DOCTOR_ID = window.doctorsDatabase.getActiveDoctorId();
 let WEEK_DATES = [
