@@ -18,7 +18,7 @@
       end: "10:30",
       reason: "Initial assessment for knee pain.",
       notes: "Complains of pain when climbing stairs.",
-      status: "scheduled",
+      status: "completed",
     },
     {
       id: "appt-2",
@@ -30,7 +30,7 @@
       end: "11:30",
       reason: "Follow-up after physiotherapy.",
       notes: "Check range of motion and pain level.",
-      status: "scheduled",
+      status: "completed",
     },
     {
       id: "appt-3",
@@ -42,7 +42,7 @@
       end: "16:30",
       reason: "Shoulder discomfort after minor fall.",
       notes: "No prior imaging; consider X-ray if needed.",
-      status: "scheduled",
+      status: "upcoming",
     },
     {
       id: "appt-4",
@@ -54,7 +54,7 @@
       end: "15:30",
       reason: "Review MRI report.",
       notes: "Discuss results and next treatment steps.",
-      status: "scheduled",
+      status: "completed",
     },
     {
       id: "appt-5",
@@ -66,7 +66,7 @@
       end: "10:00",
       reason: "Walk-in for acute ankle sprain.",
       notes: "Swelling present; evaluate need for bandage/support.",
-      status: "scheduled",
+      status: "upcoming",
     },
     {
       id: "appt-6",
@@ -78,7 +78,7 @@
       end: "14:30",
       reason: "Chronic lower back pain.",
       notes: "Assess pain history and lifestyle factors.",
-      status: "scheduled",
+      status: "upcoming",
     },
     {
       id: "appt-7",
@@ -90,7 +90,7 @@
       end: "16:30",
       reason: "Post-surgery follow-up.",
       notes: "Check wound healing and mobility.",
-      status: "scheduled",
+      status: "upcoming",
     },
     {
       id: "appt-8",
@@ -102,7 +102,7 @@
       end: "11:00",
       reason: "Insurance / documentation request.",
       notes: "Prepare letter outlining treatment to date.",
-      status: "scheduled",
+      status: "upcoming",
     },
     {
       id: "appt-9",
@@ -114,7 +114,7 @@
       end: "12:30",
       reason: "Review blood test results.",
       notes: "Discuss inflammation markers and next steps.",
-      status: "scheduled",
+      status: "upcoming",
     },
     {
       id: "appt-10",
@@ -126,7 +126,7 @@
       end: "10:00",
       reason: "Initial consult for hip pain.",
       notes: "Pain on standing from seated position.",
-      status: "scheduled",
+      status: "upcoming",
     },
   ];
 
