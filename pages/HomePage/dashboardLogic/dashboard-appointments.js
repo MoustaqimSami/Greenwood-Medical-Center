@@ -17,28 +17,6 @@
     return appointments.filter((a) => a.date === iso);
   }
 
-  function buildAppointmentContextLines(appt) {
-    const patient = patients.find((p) => p.id === appt.patientId);
-    const doctor = doctors.find((d) => d.id === appt.doctorId);
-
-    const patientName = patient ? patient.name : "Unknown patient";
-    const doctorName = doctor ? doctor.name : "Unknown doctor";
-
-    const typeLabel =
-      appt.type && typeof appt.type === "string"
-        ? appt.type.charAt(0).toUpperCase() + appt.type.slice(1)
-        : "General";
-
-    const timeLabel = `${appt.date} • ${appt.start} – ${appt.end}`;
-
-    return [
-      `Patient: ${patientName}`,
-      `Doctor: ${doctorName}`,
-      `When: ${timeLabel}`,
-      `Visit type: ${typeLabel}`,
-    ];
-  }
-
   function renderAppointmentCard(appt, statusView) {
     const patient = patients.find((p) => p.id === appt.patientId);
     const doctor = doctors.find((d) => d.id === appt.doctorId);
@@ -223,17 +201,21 @@
         const patientName = patient ? patient.name : "Unknown patient";
         const doctorName = doctor ? doctor.name : "Unknown doctor";
         const initials = getPatientInitials(patientName);
-        const timeLabel = appt.start || "";
+        const timeLabel = helpers.formatAppointmentDateTime(
+          appt.date,
+          appt.start
+        );
 
         const context = { initials, patientName, doctorName, timeLabel };
 
         if (completeBtn) {
           const confirmed = await openConfirmModal({
-            title: "Mark as completed?",
+            title: "Mark as Completed",
             message: "This will move the appointment to the Completed tab.",
             confirmLabel: "Mark completed",
             cancelLabel: "Go back",
             context,
+            confirmVariant: "teal",
           });
           if (!confirmed) return;
 
@@ -244,10 +226,10 @@
 
         if (cancelBtn) {
           const confirmed = await openConfirmModal({
-            title: "Cancel appointment",
+            title: "Cancel Appointment",
             message: "Are you sure you want to cancel this appointment?",
-            confirmLabel: "Cancel appointment",
-            cancelLabel: "Go back",
+            confirmLabel: "Cancel Appointment",
+            cancelLabel: "Go Back",
             context,
           });
           if (!confirmed) return;
@@ -279,17 +261,21 @@
         const patientName = patient ? patient.name : "Unknown patient";
         const doctorName = doctor ? doctor.name : "Unknown doctor";
         const initials = getPatientInitials(patientName);
-        const timeLabel = appt.start || "";
+        const timeLabel = helpers.formatAppointmentDateTime(
+          appt.date,
+          appt.start
+        );
 
         const context = { initials, patientName, doctorName, timeLabel };
 
         if (followUpBtn) {
           const confirmed = await openConfirmModal({
-            title: "Start follow-up?",
+            title: "Start Follow-up",
             message: "This will start a follow-up flow for this appointment.",
-            confirmLabel: "Start follow-up",
-            cancelLabel: "Go back",
+            confirmLabel: "Start Follow-up",
+            cancelLabel: "Go Back",
             context,
+            confirmVariant: "teal",
           });
           if (!confirmed) return;
 
@@ -298,10 +284,10 @@
 
         if (removeBtn) {
           const confirmed = await openConfirmModal({
-            title: "Remove from completed?",
+            title: "Remove from Completed",
             message: "This will permanently remove this appointment.",
-            confirmLabel: "Remove",
-            cancelLabel: "Go back",
+            confirmLabel: "Remove Appointment",
+            cancelLabel: "Go Back",
             context,
           });
           if (!confirmed) return;
@@ -314,23 +300,9 @@
     }
   }
 
-  function attachQuickActions() {
-    if (!quickActions) return;
-    quickActions.forEach((qa) => {
-      qa.addEventListener("click", () => {
-        const labelElement = qa.querySelector(".quick-action-text p");
-        const label = labelElement
-          ? labelElement.textContent.trim()
-          : "Quick action";
-        console.log(`[Quick Action] ${label} clicked`);
-      });
-    });
-  }
-
   Dashboard.appointments = {
     renderAppointments,
     attachAppointmentListeners,
     attachTabsListeners,
-    attachQuickActions,
   };
 })(window.Dashboard);

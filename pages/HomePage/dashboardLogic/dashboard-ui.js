@@ -23,13 +23,20 @@
     }, 2500);
   };
 
-UI.openConfirmModal = function openConfirmModal({
+  UI.openConfirmModal = function openConfirmModal({
     title = "Are you sure?",
     message = "",
     confirmLabel = "Confirm",
     cancelLabel = "Cancel",
     context = null,
+    confirmVariant = "primary",
   } = {}) {
+    
+    let confirmVariantClass = "confirm-modal-btn--primary";
+
+    if (confirmVariant === "teal") {
+      confirmVariantClass = "confirm-modal-btn--teal";
+    }
     return new Promise((resolve) => {
       const backdrop = document.createElement("div");
       backdrop.className = "confirm-modal-backdrop";
@@ -100,14 +107,12 @@ UI.openConfirmModal = function openConfirmModal({
 
       const cancelBtn = document.createElement("button");
       cancelBtn.type = "button";
-      cancelBtn.className =
-        "confirm-modal-btn confirm-modal-btn--secondary";
+      cancelBtn.className = "confirm-modal-btn confirm-modal-btn--secondary";
       cancelBtn.textContent = cancelLabel;
 
       const confirmBtn = document.createElement("button");
       confirmBtn.type = "button";
-      confirmBtn.className =
-        "confirm-modal-btn confirm-modal-btn--primary";
+      confirmBtn.className = `confirm-modal-btn ${confirmVariantClass}`;
       confirmBtn.textContent = confirmLabel;
 
       actions.appendChild(cancelBtn);

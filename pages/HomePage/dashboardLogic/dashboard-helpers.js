@@ -25,7 +25,6 @@
     return d;
   };
 
-
   Helpers.formatDayRangeLabel = function formatDayRangeLabel(weekStart) {
     const end = new Date(weekStart);
     end.setDate(weekStart.getDate() + 6);
@@ -70,7 +69,9 @@
       "November",
       "December",
     ];
-    return `${fullMonthNames[weekStart.getMonth()]}, ${weekStart.getFullYear()}`;
+    return `${
+      fullMonthNames[weekStart.getMonth()]
+    }, ${weekStart.getFullYear()}`;
   };
 
   Helpers.getPatientInitials = function getPatientInitials(name) {
@@ -81,6 +82,18 @@
       parts[0].charAt(0).toUpperCase() +
       parts[parts.length - 1].charAt(0).toUpperCase()
     );
+  };
+
+  Helpers.formatAppointmentDateTime = function (dateStr, timeStr) {
+    const d = new Date(`${dateStr}T${timeStr}`);
+
+    const optionsDate = { weekday: "long", day: "numeric", month: "long" };
+    const optionsTime = { hour: "numeric", minute: "2-digit", hour12: true };
+
+    const timeFormatted = d.toLocaleTimeString("en-US", optionsTime);
+    const dateFormatted = d.toLocaleDateString("en-US", optionsDate);
+
+    return `${timeFormatted} - ${dateFormatted}`;
   };
 
   Dashboard.helpers = Helpers;

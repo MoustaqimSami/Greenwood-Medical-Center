@@ -8,7 +8,6 @@
     Dashboard.calendar.attachCalendarListeners();
     Dashboard.appointments.attachTabsListeners();
     Dashboard.appointments.attachAppointmentListeners();
-    Dashboard.appointments.attachQuickActions();
 
     Dashboard.calendar.renderWeek();
     Dashboard.appointments.renderAppointments();

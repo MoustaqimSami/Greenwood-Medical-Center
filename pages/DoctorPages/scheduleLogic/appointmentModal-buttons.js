@@ -167,6 +167,24 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
         }
 
+        const daysEl = document.getElementById("calendar-days");
+        if (daysEl) {
+          const slotSelector = `.slot-row[data-date="${date}"][data-time="${start}"]`;
+          const slotEl = daysEl.querySelector(slotSelector);
+
+          if (
+            !slotEl ||
+            !slotEl.classList.contains("slot-row-available")
+          ) {
+            core.showStatus(
+              "Selected time is outside this doctor's availability. Please choose an available slot.",
+              "danger",
+              false
+            );
+            return;
+          }
+        }
+
         if (!window.appointmentsDatabase?.createAppointment) {
           core.showStatus(
             "Unable to add appointment. Please try again.",
@@ -187,6 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
           notes,
           symptoms,
         });
+
 
         if (!newAppt) {
           core.showStatus(

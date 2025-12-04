@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../../css/style.css" />
   <link rel="stylesheet" href="../../css/template.css" />
   <link rel="stylesheet" href="../../css/components.css" />
+
+  <link rel="stylesheet" href="../../css/appointmentStyles/appointmentPopup.css" />
 </head>
 
 <body>
@@ -103,15 +105,15 @@
         <!-- Page Content (Shortcuts & Calendar) -->
         <div class="home-shortcuts-box">
           <!-- Quick Actions: Book Appointment and Add Patient -->
-          <div class="quick-action">
-            <div class="quick-action-iconbox quick-action-iconbox--orange">
-              <img src="/assets/icons/calendar-add-n50.svg">
-            </div>
-            <div class="quick-action-text">
-              <p class="body-md-medium" style="color: var(--secondary-500);">Book Appointment</p>
-              <img src="/assets/icons/chevron-right.svg" width="20" height="20">
-            </div>
-          </div>
+<div class="quick-action" id="dashboard-book-appointment">
+  <div class="quick-action-iconbox quick-action-iconbox--orange">
+    <img src="/assets/icons/calendar-add-n50.svg">
+  </div>
+  <div class="quick-action-text">
+    <p class="body-md-medium" style="color: var(--secondary-500);">Book Appointment</p>
+    <img src="/assets/icons/chevron-right.svg" width="20" height="20">
+  </div>
+</div>
           <div class="quick-action">
             <div class="quick-action-iconbox quick-action-iconbox--teal">
               <img src="/assets/icons/person-add-fill-n50.svg">
@@ -176,9 +178,9 @@
       </main>
     </div>
 
-    <script src="../../database/appointmentsDatabase.js"></script>
-    <script src="../../database/doctorsDatabase.js"></script>
-    <script src="../../database/patientsDatabase.js"></script>
+    <script src="../../database/appointments-database.js"></script>
+    <script src="../../database/doctors-database.js"></script>
+    <script src="../../database/patients-database.js"></script>
 
     <script src="./dashboardLogic/dashboard-namespace.js"></script>
     <script src="./dashboardLogic/dashboard-helpers.js"></script>
@@ -189,8 +191,26 @@
     <script src="./dashboardLogic/dashboard-doctors.js"></script>
     <script src="./dashboardLogic/dashboard-init.js"></script>
 
+    <script src="../DoctorPages/scheduleLogic/doctors-schedule.js"></script>
+    <script src="../DoctorPages/scheduleLogic/week-selector.js"></script>
+    <script src="../DoctorPages/scheduleLogic/appointmentModal-doctorSearch.js"></script>
+    <script src="../DoctorPages/scheduleLogic/appointmentModal-patientSearch.js"></script>
+    <script src="../DoctorPages/scheduleLogic/appointmentModal-core.js"></script>
+    <script src="../DoctorPages/scheduleLogic/appointmentModal-buttons.js"></script>
 
     <script src="../layout.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const bookShortcut = document.getElementById("dashboard-book-appointment");
+    if (!bookShortcut) return;
+
+    bookShortcut.addEventListener("click", function () {
+      // Adjust the path if your doctorsSchedule.html lives somewhere else
+      window.location.href = "../DoctorPages/doctorsSchedule.html?open=book";
+    });
+  });
+</script>
 </body>
 
 </html>

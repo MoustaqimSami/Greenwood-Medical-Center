@@ -324,6 +324,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let activePatient = null;
     if (appt && window.patientsDatabase) {
       activePatient = window.patientsDatabase.getPatientById(appt.patientId);
+
+      if (activePatient && window.patientsDatabase.setActivePatientId) {
+        window.patientsDatabase.setActivePatientId(appt.patientId);
+      }
     } else if (window.patientsDatabase) {
       const activePatId = window.patientsDatabase.getActivePatientId();
       activePatient = window.patientsDatabase.getPatientById(activePatId);
@@ -341,9 +345,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function closeModal() {
-    if (window.patientsDatabase) {
+    const inRescheduleMode = !!window.currentRescheduleAppointmentId;
+
+    if (!inRescheduleMode && window.patientsDatabase?.setActivePatientId) {
       window.patientsDatabase.setActivePatientId(null);
     }
+
     modal.classList.remove("is-open");
     document.body.classList.remove("no-scroll");
 
@@ -354,6 +361,47 @@ document.addEventListener("DOMContentLoaded", function () {
       window.appointmentPatientSearch.clearPatientResults();
     }
   }
+
+  /* -----------------------------------------------------------
+     DASHBOARD SHORTCUT: OPEN BLANK APPOINTMENT
+     ----------------------------------------------------------- */
+
+  function openBlankAppointmentModalFromShortcut() {
+    if (!modal) return;
+
+    if (window.doctorsDatabase?.setActiveDoctorId) {
+      window.doctorsDatabase.setActiveDoctorId(null);
+    }
+    if (window.patientsDatabase?.setActivePatientId) {
+      window.patientsDatabase.setActivePatientId(null);
+    }
+
+    const now = new Date();
+    const dateRaw = now.toISOString().slice(0, 10);
+
+    const minutes = now.getMinutes();
+    const roundedMinutes = minutes < 30 ? "00" : "30";
+    const hour = String(now.getHours()).padStart(2, "0");
+    const timeRaw = `${hour}:${roundedMinutes}`;
+
+    const labels = dateRaw ? getDateLabels(dateRaw) : { day: "", date: "" };
+
+    const slotInfo = {
+      dateRaw,
+      timeRaw,
+      time: timeRaw ? formatTimeTo12h(timeRaw) : "",
+      day: labels.day,
+      date: labels.date,
+      appointment: null,
+    };
+
+    openModal(slotInfo);
+  }
+
+  window.openBlankAppointmentModalFromShortcut =
+    openBlankAppointmentModalFromShortcut;
+
+  window.setupAppointmentSlotHandlers = setupAppointmentSlotHandlers;
 
   /* -----------------------------------------------------------
      SLOT CLICK HANDLERS
@@ -628,6 +676,11 @@ document.addEventListener("DOMContentLoaded", function () {
         rescheduleBanner.classList.remove("is-visible");
       }
     });
+  }
+  // If arriving from dashboard shortcut (?open=book), open a blank modal
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("open") === "book") {
+    openBlankAppointmentModalFromShortcut();
   }
 
   setupAppointmentSlotHandlers();

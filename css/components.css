@@ -763,6 +763,14 @@
   background: var(--secondary-400);
 }
 
+.confirm-modal-btn--teal {
+  background-color: var(--primary-600);
+  color: var(--neutral-50);
+}
+.confirm-modal-btn--teal:hover {
+  background-color: var(--primary-700);
+}
+
 .confirm-modal-btn--primary {
   background-color: var(--danger-200);
   color: var(--neutral-50);
