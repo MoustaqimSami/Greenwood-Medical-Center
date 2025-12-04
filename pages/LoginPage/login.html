@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | GMC</title>
+  <link rel="stylesheet" href="./loginstyle.css">
+</head>
+<body>
+
+  <div class="login-container">
+
+    <div class="login-box">
+
+      <!-- LOGO + TITLE -->
+      <div class="login-header">
+        <img src="../../assets/icons/logo.svg" alt="Greenwood Medical Center Logo" class="logo-img">
+
+        <div class="title-text">
+          <h1 class="brand-name">GREENWOOD</h1>
+          <h4 class="brand-sub">MEDICAL CENTER</h4>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <form>
+
+        <div class="email-field">
+            <label>Email</label>
+            <input type="email" id="email-input" placeholder="Enter your email">
+        </div>
+        
+
+        <label>Password</label>
+        <div class="password-field">
+          <input type="password" id="password-input" placeholder="Enter your password">
+          <img src="../../assets/icons/eye-off.svg" id = eye-icon class="eye-icon">
+        </div>
+        <p id="login-message" class="login-message"></p>
+
+
+        <button type="submit" id="login-btn" class="login-btn">Login</button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</body>
+
+<script>
+const passwordInput = document.getElementById('password-input');
+const eyeIcon = document.getElementById('eye-icon');
+
+const eyeOpenSrc = '../../assets/icons/eye.svg';
+const eyeClosedSrc = '../../assets/icons/eye-off.svg';
+
+// Show eye icon by default
+eyeIcon.style.display = 'block';
+
+// Toggle password visibility when eye icon is clicked
+eyeIcon.addEventListener('click', () => {
+  if(passwordInput.type === 'password') {
+    passwordInput.type = 'text';
+    eyeIcon.src = eyeOpenSrc;
+  } else {
+    passwordInput.type = 'password';
+    eyeIcon.src = eyeClosedSrc;
+  }
+});
+</script>
+
+<script src="./loginStub.js"></script>
+<script>
+  const emailInput = document.getElementById("email-input");
+  const loginButton = document.getElementById("login-btn");
+  const messageBox = document.getElementById("login-message");
+
+
+  loginButton.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    // DRIVER calling the STUB
+    const result = LoginStub.authenticate(email, password);
+
+    if (result.success) {
+        messageBox.textContent = "Login successful!";
+        messageBox.className = "login-message success";
+    } else {
+        messageBox.textContent = result.message;
+        messageBox.className = "login-message error";
+    }
+  });
+</script>
+
+
+
+</html>
