@@ -7,7 +7,8 @@
   const doctorsDB = window.doctorsDatabase || { doctors: [] };
   const patientsDB = window.patientsDatabase || { patients: [] };
 
-  const { appointments, updateAppointmentById, deleteAppointment } = appointmentsDB;
+  const { appointments, updateAppointmentById, deleteAppointment } =
+    appointmentsDB;
   const { doctors } = doctorsDB;
   const { patients } = patientsDB;
 
@@ -16,14 +17,17 @@
     Dashboard.helpers = {};
   }
 
-  const { parseISODateToLocal, getMonday } = Dashboard.helpers;
+  const { parseISODateToLocal, getMonday } =
+    Dashboard.helpers || window.Dashboard.helpers;
 
   const firstApptDate = appointments[0]
     ? parseISODateToLocal(appointments[0].date)
     : new Date();
-  const selectedDate = new Date(firstApptDate);
+
+  let selectedDate = new Date(firstApptDate);
   selectedDate.setHours(0, 0, 0, 0);
-  const currentWeekStart = getMonday ? getMonday(selectedDate) : selectedDate;
+
+  let currentWeekStart = getMonday(selectedDate);
 
   const dom = {
     weekDaysContainer: document.getElementById("week-days-container"),

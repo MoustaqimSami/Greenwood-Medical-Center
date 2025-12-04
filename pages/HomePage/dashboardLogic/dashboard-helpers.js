@@ -1,6 +1,11 @@
 (function (Dashboard) {
   const Helpers = {};
 
+  Helpers.parseISODateToLocal = function parseISODateToLocal(iso) {
+    if (!iso) return new Date();
+    return new Date(iso + "T00:00:00");
+  };
+
   Helpers.toISODate = function toISODate(d) {
     const yyyy = d.getFullYear();
     const mm = String(d.getMonth() + 1).padStart(2, "0");
@@ -8,15 +13,18 @@
     return `${yyyy}-${mm}-${dd}`;
   };
 
-  Helpers.parseISODateToLocal = function parseISODateToLocal(iso) {
-    if (!iso) return new Date();
-    const [year, month, day] = iso.split("-").map(Number);
-    return new Date(year, month - 1, day);
-  };
-
   Helpers.sameDay = function sameDay(d1, d2) {
     return Helpers.toISODate(d1) === Helpers.toISODate(d2);
   };
+
+  Helpers.getMonday = function getMonday(date) {
+    const d = new Date(date);
+    const day = d.getDay();
+    d.setDate(d.getDate() - day);
+    d.setHours(0, 0, 0, 0);
+    return d;
+  };
+
 
   Helpers.formatDayRangeLabel = function formatDayRangeLabel(weekStart) {
     const end = new Date(weekStart);
@@ -62,10 +70,10 @@
       "November",
       "December",
     ];
-    return `${
-      fullMonthNames[weekStart.getMonth()]
-    }, ${weekStart.getFullYear()}`;
+    return `${fullMonthNames[weekStart.getMonth()]}, ${weekStart.getFullYear()}`;
   };
+
+  // --- Misc (names / avatars) ---
 
   Helpers.getPatientInitials = function getPatientInitials(name) {
     if (!name) return "?";
