@@ -17,7 +17,7 @@
     Dashboard.helpers = {};
   }
 
-  const { parseISODateToLocal, getMonday } =
+  const { parseISODateToLocal, getSunday } =
     Dashboard.helpers || window.Dashboard.helpers;
 
   const firstApptDate = appointments[0]
@@ -27,7 +27,7 @@
   let selectedDate = new Date(firstApptDate);
   selectedDate.setHours(0, 0, 0, 0);
 
-  let currentWeekStart = getMonday(selectedDate);
+  let currentWeekStart = getSunday(selectedDate);
 
   const dom = {
     weekDaysContainer: document.getElementById("week-days-container"),

@@ -1,7 +1,12 @@
 (function (Dashboard) {
   const { state, dom, helpers, ui } = Dashboard;
-  const { appointments, updateAppointmentById, deleteAppointment, patients, doctors } =
-    state;
+  const {
+    appointments,
+    updateAppointmentById,
+    deleteAppointment,
+    patients,
+    doctors,
+  } = state;
   const { toISODate, getPatientInitials } = helpers;
   const { showPopup, openConfirmModal } = ui;
 
@@ -10,6 +15,28 @@
   function getAppointmentsForDate(date) {
     const iso = toISODate(date);
     return appointments.filter((a) => a.date === iso);
+  }
+
+  function buildAppointmentContextLines(appt) {
+    const patient = patients.find((p) => p.id === appt.patientId);
+    const doctor = doctors.find((d) => d.id === appt.doctorId);
+
+    const patientName = patient ? patient.name : "Unknown patient";
+    const doctorName = doctor ? doctor.name : "Unknown doctor";
+
+    const typeLabel =
+      appt.type && typeof appt.type === "string"
+        ? appt.type.charAt(0).toUpperCase() + appt.type.slice(1)
+        : "General";
+
+    const timeLabel = `${appt.date} • ${appt.start} – ${appt.end}`;
+
+    return [
+      `Patient: ${patientName}`,
+      `Doctor: ${doctorName}`,
+      `When: ${timeLabel}`,
+      `Visit type: ${typeLabel}`,
+    ];
   }
 
   function renderAppointmentCard(appt, statusView) {
@@ -146,9 +173,7 @@
       completed
         .sort((a, b) => (a.start > b.start ? 1 : -1))
         .forEach((appt) => {
-          completedPanel.appendChild(
-            renderAppointmentCard(appt, "completed")
-          );
+          completedPanel.appendChild(renderAppointmentCard(appt, "completed"));
         });
     }
   }
@@ -189,30 +214,48 @@
         const apptId = card?.dataset.apptId;
         if (!apptId) return;
 
+        const appt = appointments.find((a) => a.id === apptId);
+        if (!appt) return;
+
+        const patient = patients.find((p) => p.id === appt.patientId);
+        const doctor = doctors.find((d) => d.id === appt.doctorId);
+
+        const patientName = patient ? patient.name : "Unknown patient";
+        const doctorName = doctor ? doctor.name : "Unknown doctor";
+        const initials = getPatientInitials(patientName);
+        const timeLabel = appt.start || "";
+
+        const context = { initials, patientName, doctorName, timeLabel };
+
         if (completeBtn) {
           const confirmed = await openConfirmModal({
             title: "Mark as completed?",
             message: "This will move the appointment to the Completed tab.",
             confirmLabel: "Mark completed",
+            cancelLabel: "Go back",
+            context,
           });
           if (!confirmed) return;
 
           updateAppointmentById(apptId, { status: "completed" });
+          renderAppointments();
           showPopup("Appointment marked as completed.", "success");
-        } else if (cancelBtn) {
+        }
+
+        if (cancelBtn) {
           const confirmed = await openConfirmModal({
-            title: "Cancel appointment?",
-            message:
-              "This will cancel the appointment and remove it from Upcoming.",
+            title: "Cancel appointment",
+            message: "Are you sure you want to cancel this appointment?",
             confirmLabel: "Cancel appointment",
+            cancelLabel: "Go back",
+            context,
           });
           if (!confirmed) return;
 
           updateAppointmentById(apptId, { status: "cancelled" });
+          renderAppointments();
           showPopup("Appointment cancelled.", "danger");
         }
-
-        renderAppointments();
       });
     }
 
@@ -227,30 +270,45 @@
         const apptId = card?.dataset.apptId;
         if (!apptId) return;
 
+        const appt = appointments.find((a) => a.id === apptId);
+        if (!appt) return;
+
+        const patient = patients.find((p) => p.id === appt.patientId);
+        const doctor = doctors.find((d) => d.id === appt.doctorId);
+
+        const patientName = patient ? patient.name : "Unknown patient";
+        const doctorName = doctor ? doctor.name : "Unknown doctor";
+        const initials = getPatientInitials(patientName);
+        const timeLabel = appt.start || "";
+
+        const context = { initials, patientName, doctorName, timeLabel };
+
         if (followUpBtn) {
           const confirmed = await openConfirmModal({
             title: "Start follow-up?",
             message: "This will start a follow-up flow for this appointment.",
             confirmLabel: "Start follow-up",
+            cancelLabel: "Go back",
+            context,
           });
           if (!confirmed) return;
 
-          console.log(`[Appointments] Follow-up clicked for ${apptId}`);
-          showPopup("Follow-up action triggered.", "info");
+          console.log("[Appointments] Follow-up started:", apptId);
         }
 
         if (removeBtn) {
           const confirmed = await openConfirmModal({
             title: "Remove from completed?",
-            message:
-              "This will permanently remove the appointment from the Completed list.",
+            message: "This will permanently remove this appointment.",
             confirmLabel: "Remove",
+            cancelLabel: "Go back",
+            context,
           });
           if (!confirmed) return;
 
           deleteAppointment(apptId);
-          showPopup("Appointment removed from completed.", "success");
           renderAppointments();
+          showPopup("Appointment removed from completed.", "success");
         }
       });
     }

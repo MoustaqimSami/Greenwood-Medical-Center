@@ -17,7 +17,7 @@
     return Helpers.toISODate(d1) === Helpers.toISODate(d2);
   };
 
-  Helpers.getMonday = function getMonday(date) {
+  Helpers.getSunday = function getSunday(date) {
     const d = new Date(date);
     const day = d.getDay();
     d.setDate(d.getDate() - day);
@@ -72,8 +72,6 @@
     ];
     return `${fullMonthNames[weekStart.getMonth()]}, ${weekStart.getFullYear()}`;
   };
-
-  // --- Misc (names / avatars) ---
 
   Helpers.getPatientInitials = function getPatientInitials(name) {
     if (!name) return "?";

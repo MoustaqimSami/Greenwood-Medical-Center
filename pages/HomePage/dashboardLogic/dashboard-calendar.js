@@ -6,7 +6,7 @@
     formatDayRangeLabel,
     formatMonthLabel,
     parseISODateToLocal,
-    getMonday,
+    getSunday,
   } = helpers;
   const { weekDaysContainer, weekPrevBtn, weekNextBtn, weekRangeLabel, weekMonthLabel } =
     dom;
@@ -92,7 +92,7 @@
 
         state.selectedDate = parseISODateToLocal(iso);
         state.selectedDate.setHours(0, 0, 0, 0);
-        state.currentWeekStart = getMonday(state.selectedDate);
+        state.currentWeekStart = getSunday(state.selectedDate);
 
         renderWeek();
         Dashboard.appointments.renderAppointments();
