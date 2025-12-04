@@ -60,3 +60,47 @@
             opacity: 0.5;
             cursor: default;
         }
+
+        .grid-container {
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns: 1fr;
+            grid-template-areas: 
+              "item1" 
+              "item2"
+              "item3"
+              "item4"; 
+            gap: 5px;
+        }
+
+        .item {
+            background-color: #ffffff;
+            padding: 2em;
+            border: 1px solid var(--primary-100);
+            border-radius: 8px;
+        }
+
+        /* .item :hover {       /* not working - fix later
+            background-color: var(--primary-300);
+            box-shadow: 0 4px 8px rgba(150, 20, 20, 0.1);
+            transform: translateY(-2px);
+            transition: background 0.22s ease, box-shadow 0.22s ease, transform 0.18s ease;
+        } */
+
+/* Patient Avatar Styles - borrowed from Sami's Doctor avatar styles (doctorSchedule.css) */
+.patient-avatar {
+  width: 100px;
+  height: 100px;
+  background: var(--neutral-100);
+  border-radius: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: start;
+}
+
+.patient-avatar-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}       
