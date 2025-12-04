@@ -180,8 +180,19 @@
     <script src="../../database/doctorsDatabase.js"></script>
     <script src="../../database/patientsDatabase.js"></script>
 
-    <script src="./dashboard.js"></script>
-    
+    <!-- Dashboard modules (order matters) -->
+
+    <!-- <script src="./dashboard.js"></script> -->
+    <script src="./dashboardLogic/dashboard-namespace.js"></script>
+    <script src="./dashboardLogic/dashboard-helpers.js"></script>
+    <script src="./dashboardLogic/dashboard-ui.js"></script>
+    <script src="./dashboardLogic/dashboard-state.js"></script>
+    <script src="./dashboardLogic/dashboard-calendar.js"></script>
+    <script src="./dashboardLogic/dashboard-appointments.js"></script>
+    <script src="./dashboardLogic/dashboard-doctors.js"></script>
+    <script src="./dashboardLogic/dashboard-init.js"></script>
+
+
     <script src="../layout.js"></script>
 </body>
 
