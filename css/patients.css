@@ -1,5 +1,4 @@
-
-          * {
+* {
               box-sizing: border-box;
           }
         
@@ -113,6 +112,9 @@
     border: 1px solid var(--primary-100); /* Optional: To match your image's border */
     border-radius: 8px;
     margin-bottom: 20px; /* Space below the header box */
+    grid-template-areas:
+    "item-header""item-header""item-header""item-header"
+    "content-1""content-2""content-3""content-4" ;
 }
 
 .profile-name-area {
@@ -143,13 +145,43 @@
 }
 
 .item--personal {
-  display: flex;
-  grid-template-areas: 
-  "item-header"
-  "content-1""content-2""content-3""content-";
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;  /* 4 columns for content items */
+  grid-template-rows: auto auto;  /* 2 rows: header row, content row */
+  grid-template-areas:
+    "item-header item-header item-header item-header"
+    "content-1 content-2 content-3 content-4";
   gap: 12px;
   padding: 20px;
-  min-height: 50px; /* give the item an explicit min-height so 1fr has space; adjust as needed */
+  border: 1px solid var(--primary-100);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.item--personal .item-header {
+  grid-area: item-header;
+  margin-bottom: 8px;
+}
+
+.item--personal .item-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.item--personal .content-1 {
+  grid-area: content-1;
+}
+
+.item--personal .content-2 {
+  grid-area: content-2;
+}
+
+.item--personal .content-3 {
+  grid-area: content-3;
+}
+
+.item--personal .content-4 {
+  grid-area: content-4;
 }
 
 .content-1, .content-2, .content-3, .content-4 {
@@ -158,6 +190,27 @@
   border: 1px solid var(--primary-100);
   background: #fff;
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.item-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.book-appointment-btn {
+  padding: 16px 30px;
+  background-color: var(--primary-700);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.book-appointment-btn:hover {
+  opacity: 0.8;
+  transition: 0.22s ease, box-shadow 0.22s ease, transform 0.18s ease
 }
