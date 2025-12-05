@@ -1,5 +1,4 @@
 // Time strings are in 24h "HH:MM" and represent the START of the slot.
-const ACTIVE_DOCTOR_ID = window.doctorsDatabase.getActiveDoctorId();
 let WEEK_DATES = [
   "2025-09-03",
   "2025-09-04",
@@ -10,15 +9,31 @@ let WEEK_DATES = [
   "2025-09-09",
 ];
 
+let activeDoctorId = null;
 let activeDoctor = null;
 let availabilityWindows = [];
 
 if (window.doctorsDatabase) {
-  activeDoctor = window.doctorsDatabase.getDoctorById(ACTIVE_DOCTOR_ID);
-  availabilityWindows =
-    window.doctorsDatabase.getDoctorAvailability(ACTIVE_DOCTOR_ID) || [];
-}
+  const params = new URLSearchParams(window.location.search);
+  const fromUrlDoctorId = params.get("doctorId");
 
+  if (
+    fromUrlDoctorId &&
+    window.doctorsDatabase.getDoctorById(fromUrlDoctorId)
+  ) {
+    if (typeof window.doctorsDatabase.setActiveDoctorId === "function") {
+      window.doctorsDatabase.setActiveDoctorId(fromUrlDoctorId);
+    }
+    activeDoctorId = fromUrlDoctorId;
+  } else {
+    // Fallback
+    activeDoctorId = window.doctorsDatabase.getActiveDoctorId();
+  }
+
+  activeDoctor = window.doctorsDatabase.getDoctorById(activeDoctorId);
+  availabilityWindows =
+    window.doctorsDatabase.getDoctorAvailability(activeDoctorId) || [];
+}
 function populateDoctorCard(doc) {
   const doctor = doc;
   const current = doctor || activeDoctor;
@@ -60,7 +75,7 @@ function buildCalendarGrid() {
 
   if (!timesEl || !daysEl) return;
 
-  // --- NEW: update calendar header labels from WEEK_DATES ---
+  // --- update calendar header labels ---
   const headerDayEls = document.querySelectorAll(".calendar-header-day");
   headerDayEls.forEach((headerEl, index) => {
     if (!WEEK_DATES[index]) return;

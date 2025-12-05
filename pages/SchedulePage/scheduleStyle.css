@@ -300,21 +300,22 @@ body {
   padding-top: 0;
   gap: 16px;
 }
-.page-body{
+.page-body {
   padding-top: 0 !important;
-  margin-top: -10px;  
+  margin-top: -10px;
 }
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
-  height: 100vh;     
-  overflow: hidden;  
+  height: 100vh;
+  overflow: hidden;
 }
 
 .schedule-wrapper {
   display: flex;
   flex-direction: column;
-  margin-top: 15px;  
+  margin-top: 15px;
   height: 100%;
   overflow: hidden;
 }
@@ -348,7 +349,6 @@ body, html {
   background: #888;
 }
 
-
 /* -------------------------
    TIME HEADERS (top row)
 ----------------------------*/
@@ -357,11 +357,10 @@ body, html {
   border-top-right-radius: 8px;
   overflow: hidden;
   display: grid;
-  min-width: calc(23 * 120px); /* full width of timeline */
-  grid-template-columns: repeat(23, 120px);
+  min-width: calc(24 * 120px);
+  grid-template-columns: repeat(24, 120px);
   background: #f9f9f9;
-  background:
-    repeating-linear-gradient(
+  background: repeating-linear-gradient(
       to right,
       #efefef 0px,
       #efefef 1px,
@@ -388,11 +387,10 @@ body, html {
 ----------------------------*/
 .schedule-grid {
   display: grid;
-  grid-template-columns: repeat(23, 120px);
+  grid-template-columns: repeat(24, 120px);
   grid-template-rows: repeat(8, 80px);
   width: max-content;
-  background:
-    repeating-linear-gradient(
+  background: repeating-linear-gradient(
       to right,
       #efefef 0px,
       #efefef 1px,
@@ -408,7 +406,6 @@ body, html {
     );
 }
 
-
 /* Base appointment box */
 .appointment {
   width: 96%;
@@ -421,7 +418,7 @@ body, html {
   background: #fff;
   padding: 6px;
   font-size: 12px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
 }
 
@@ -437,21 +434,32 @@ body, html {
   line-height: 1.3;
 }
 
-.green  { background: #e3f5e9; border: 2px solid #7ecb8f; }   /* deeper green */
-.yellow { background: #fff6da; border: 2px solid #e6c55c; }   /* gold-ish */
-.blue   { background: #e8f0ff; border: 2px solid #80a3ff; }   /* deeper blue */
-.red    { background: #ffe9e9; border: 2px solid #e08b8b; }   /* deeper red */
-
+.green {
+  background: #e3f5e9;
+  border: 2px solid #7ecb8f;
+} /* deeper green */
+.yellow {
+  background: #fff6da;
+  border: 2px solid #e6c55c;
+} /* gold-ish */
+.blue {
+  background: #e8f0ff;
+  border: 2px solid #80a3ff;
+} /* deeper blue */
+.red {
+  background: #ffe9e9;
+  border: 2px solid #e08b8b;
+} /* deeper red */
 
 .schedule-grid > div {
-  outline: 1px solid #efefef; 
+  outline: 1px solid #efefef;
   outline-offset: -1px;
-  position: relative; 
+  position: relative;
 }
 
 .schedule-header-row {
   display: grid;
-  grid-template-columns: 0.4fr auto 0.4fr; 
+  grid-template-columns: 0.4fr auto 0.4fr;
   align-items: center;
   padding-bottom: 10px;
   background: #fff;
@@ -461,24 +469,23 @@ body, html {
   border-bottom: 1px solid #ddd;
 }
 
-
 .nav-btn {
   width: 100%;
-  background: var(--neutral-100); 
-  padding: 4px 0;           
+  background: var(--neutral-100);
+  padding: 4px 0;
   font-size: 18px;
   font-weight: 600;
-  background: #ffffff;      
-  border:1px solid #666;  
-  border-radius: 3px;      
+  background: #ffffff;
+  border: 1px solid #666;
+  border-radius: 3px;
   cursor: pointer;
   transition: all 0.15s ease;
-  color: var(--neutral-900); 
+  color: var(--neutral-900);
   border: 1px solid var(--neutral-300);
 }
 
 .nav-btn:hover {
-  background: var(--neutral-200);  
+  background: var(--neutral-200);
 }
 
 .nav-btn:active {
@@ -500,16 +507,23 @@ body, html {
   margin-bottom: 4px;
 }
 
-
-.green  { background: #e3f5e9; }
-.yellow { background: #fff6da; }
-.blue   { background: #e8f0ff; }
-.red    { background: #ffe9e9; }
+.green {
+  background: #e3f5e9;
+}
+.yellow {
+  background: #fff6da;
+}
+.blue {
+  background: #e8f0ff;
+}
+.red {
+  background: #ffe9e9;
+}
 
 @media (max-width: 900px) {
   .time-header-row,
   .schedule-grid {
-    grid-template-columns: repeat(23, 80px);
+    grid-template-columns: repeat(24, 80px);
   }
 
   .schedule-grid {
@@ -517,8 +531,7 @@ body, html {
   }
 
   .time-header-row {
-    background:
-      repeating-linear-gradient(
+    background: repeating-linear-gradient(
         to right,
         #efefef 0px,
         #efefef 1px,
@@ -529,8 +542,7 @@ body, html {
   }
 
   .schedule-grid {
-    background:
-      repeating-linear-gradient(
+    background: repeating-linear-gradient(
         to right,
         #efefef 0px,
         #efefef 1px,
@@ -552,7 +564,7 @@ body, html {
   padding-bottom: 0px;
   justify-content: flex-end;
   display: flex;
-  width: 100%;        
+  width: 100%;
   gap: 6px;
   flex-wrap: wrap;
 }
@@ -576,7 +588,7 @@ body, html {
 }
 
 .legend-followup {
-  background: #e0ecff;      
+  background: #e0ecff;
   border-color: #3c77e6;
   color: #174078;
 }
@@ -588,7 +600,13 @@ body, html {
 }
 
 .legend-other {
-  background: #ffe2e2;      
+  background: #ffe2e2;
   border-color: #d03b3b;
   color: #7a1616;
+}
+
+.grey {
+  background: #e5e7eb;
+  border: 2px solid #6b7280;
+  color: #2e3035;
 }

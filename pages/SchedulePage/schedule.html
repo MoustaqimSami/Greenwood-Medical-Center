@@ -42,12 +42,20 @@
             </a>
 
             <a class="nav-item" href="../SchedulePage/schedule.html">
-              <img class="nav-icon" src="../../assets/icons/calendar.svg" alt="" />
+              <img
+                class="nav-icon"
+                src="../../assets/icons/calendar.svg"
+                alt=""
+              />
               <span class="nav-label">Schedule</span>
             </a>
 
             <a class="nav-item" href="../PatientPages/patients.html">
-              <img class="nav-icon" src="../../assets/icons/people.svg" alt="" />
+              <img
+                class="nav-icon"
+                src="../../assets/icons/people.svg"
+                alt=""
+              />
               <span class="nav-label">Patients</span>
             </a>
 
@@ -118,89 +126,66 @@
             <h1 class="page-title">Schedule</h1>
           </header>
 
-            <section class="page-body">
-              <div class="schedule-wrapper">
-                <div class="schedule-header-row">
-                  <button class="nav-btn">←</button>
-                  <h2 class="schedule-date">Monday - September 3rd, 2025</h2>
-                  <button class="nav-btn">→</button>
-                </div>
-
-                <div class="schedule-container">
-
-                  <!-- TIME HEADERS ACROSS TOP -->
-                  <div class="time-header-row">
-                    <div class="time-header">09:00</div>
-                    <div class="time-header">09:30</div>
-                    <div class="time-header">10:00</div>
-                    <div class="time-header">10:30</div>
-                    <div class="time-header">11:00</div>
-                    <div class="time-header">11:30</div>
-                    <div class="time-header">12:00</div>
-                    <div class="time-header">12:30</div>
-                    <div class="time-header">13:00</div>
-                    <div class="time-header">13:30</div>
-                    <div class="time-header">14:00</div>
-                    <div class="time-header">14:30</div>
-                    <div class="time-header">15:00</div>
-                    <div class="time-header">15:30</div>
-                    <div class="time-header">16:00</div>
-                    <div class="time-header">16:30</div>
-                    <div class="time-header">17:00</div>
-                    <div class="time-header">17:30</div>
-                    <div class="time-header">18:00</div>
-                    <div class="time-header">18:30</div>
-                    <div class="time-header">19:00</div>
-                    <div class="time-header">19:30</div>
-                    <div class="time-header">20:00</div>
-                  </div>
-
-                  <!-- APPOINTMENT GRID -->
-                  <div class="schedule-grid">
-
-                    <div class="appointment green" style="grid-column: 1; grid-row: 1;">
-                      <p class="p-name">Liam Mason</p>
-                      <small>Phone: 0000 XXX XXX</small>
-                      <small>Doctor: Dr. Smith</small>
-                    </div>
-
-                    <div class="appointment yellow" style="grid-column: 3; grid-row: 1;">
-                      <p class="p-name">Zoe Richard</p>
-                      <small>Phone: 0000 XXX XXX</small>
-                      <small>Doctor: Dr. Lee</small>
-                    </div>
-
-                    <div class="appointment blue" style="grid-column: 5; grid-row: 1;">
-                      <p class="p-name">Amber Wright</p>
-                      <small>Phone: 0000 XXX XXX</small>
-                      <small>Doctor: Dr. Hall</small>
-                    </div>
-
-                    <div class="appointment red" style="grid-column: 1; grid-row: 2;">
-                      <p class="p-name">Nora James</p>
-                      <small>Phone: 0000 XXX XXX</small>
-                      <small>Doctor: Dr. Lucy</small>
-                    </div>
-                  </div>
-                </div>
-                <div class="schedule-legend">
-                    <span class="legend-pill legend-assessment">Assessment</span>
-                    <span class="legend-pill legend-reports">Reports</span>
-                    <span class="legend-pill legend-followup">Follow-up</span>
-                    <span class="legend-pill legend-walkin">Walk-In</span>
-                    <span class="legend-pill legend-other">Other</span>
-                </div>
-
+          <section class="page-body">
+            <div class="schedule-wrapper">
+              <div class="schedule-header-row">
+                <button class="nav-btn">←</button>
+                <h2 class="schedule-date">Monday - September 3rd, 2025</h2>
+                <button class="nav-btn">→</button>
               </div>
-            </section>
 
+              <div class="schedule-container">
+                <!-- TIME HEADERS ACROSS TOP -->
+                <div class="time-header-row">
+                  <div class="time-header">09:00</div>
+                  <div class="time-header">09:30</div>
+                  <div class="time-header">10:00</div>
+                  <div class="time-header">10:30</div>
+                  <div class="time-header">11:00</div>
+                  <div class="time-header">11:30</div>
+                  <div class="time-header">12:00</div>
+                  <div class="time-header">12:30</div>
+                  <div class="time-header">13:00</div>
+                  <div class="time-header">13:30</div>
+                  <div class="time-header">14:00</div>
+                  <div class="time-header">14:30</div>
+                  <div class="time-header">15:00</div>
+                  <div class="time-header">15:30</div>
+                  <div class="time-header">16:00</div>
+                  <div class="time-header">16:30</div>
+                  <div class="time-header">17:00</div>
+                  <div class="time-header">17:30</div>
+                  <div class="time-header">18:00</div>
+                  <div class="time-header">18:30</div>
+                  <div class="time-header">19:00</div>
+                  <div class="time-header">19:30</div>
+                  <div class="time-header">20:00</div>
+                  <div class="time-header">20:30</div>
+                </div>
+
+                <!-- APPOINTMENT GRID -->
+                <div class="schedule-grid"></div>
+              </div>
+              <div class="schedule-legend">
+                <span class="legend-pill legend-assessment">Assessment</span>
+                <span class="legend-pill legend-reports">Reports</span>
+                <span class="legend-pill legend-followup">Follow-up</span>
+                <span class="legend-pill legend-walkin">Walk-In</span>
+                <span class="legend-pill legend-other">Other</span>
+              </div>
+            </div>
+          </section>
         </main>
         <!-- END OF PAGE -->
       </div>
     </div>
 
-    <script src="../layout.js"></script>
-    <script src="./scheduleDriver.js"></script>
+    <script src="../../database/appointments-database.js"></script>
+    <script src="../../database/patients-database.js"></script>
+    <script src="../../database/doctors-database.js"></script>
+    <script src="../../database/staff-database.js"></script>
 
+    <script src="../layout.js"></script>
+    <script src="./schedule-driver.js"></script>
   </body>
 </html>
