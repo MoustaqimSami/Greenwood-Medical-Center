@@ -225,7 +225,7 @@ body.sidebar-collapsed .nav-label {
   transition: margin-left 0.25s ease;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   width: calc(100% - var(--app-sidebar-width));
   margin-left: 0;
   overflow: hidden;
@@ -335,18 +335,14 @@ body.sidebar-collapsed .main {
   background: var(--neutral-50);
   box-sizing: border-box;
   min-height: calc(100vh - 72px);
-  overflow-y: auto;
-  scrollbar-width: none;
-}
-
-.page::-webkit-scrollbar {
-  display: none;
+  overflow-y: hidden;
 }
 
 .page-header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex: 0 0 auto;
 }
 
 .page-header--column {
@@ -395,6 +391,8 @@ body.sidebar-collapsed .main {
   border: 1px solid var(--neutral-200);
   padding: 24px;
   box-sizing: border-box;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .page-body--innerpage {

@@ -105,15 +105,15 @@
         <!-- Page Content (Shortcuts & Calendar) -->
         <div class="home-shortcuts-box">
           <!-- Quick Actions: Book Appointment and Add Patient -->
-<div class="quick-action" id="dashboard-book-appointment">
-  <div class="quick-action-iconbox quick-action-iconbox--orange">
-    <img src="/assets/icons/calendar-add-n50.svg">
-  </div>
-  <div class="quick-action-text">
-    <p class="body-md-medium" style="color: var(--secondary-500);">Book Appointment</p>
-    <img src="/assets/icons/chevron-right.svg" width="20" height="20">
-  </div>
-</div>
+          <div class="quick-action" id="dashboard-book-appointment">
+            <div class="quick-action-iconbox quick-action-iconbox--orange">
+              <img src="/assets/icons/calendar-add-n50.svg">
+            </div>
+            <div class="quick-action-text">
+              <p class="body-md-medium" style="color: var(--secondary-500);">Book Appointment</p>
+              <img src="/assets/icons/chevron-right.svg" width="20" height="20">
+            </div>
+          </div>
           <div class="quick-action">
             <div class="quick-action-iconbox quick-action-iconbox--teal">
               <img src="/assets/icons/person-add-fill-n50.svg">
@@ -129,22 +129,28 @@
               <p class="body-xl-semibold" id="week-month-label">October, 2025</p>
               <div class="flexrow-gap8">
                 <div class="week-nav-btn" id="week-prev-btn">
-                  <img src="/assets/icons/chevron-left.svg" />
+                  <svg xmlns="http://www.w3.org/2000/svg" class="week-nav-icon" viewBox="0 0 16 16">
+                    <path
+                      d="M10.3535 2.81307C10.5488 3.00833 10.5488 3.32492 10.3535 3.52018L5.87373 7.99996L10.3535 12.4798C10.5488 12.675 10.5488 12.9916 10.3535 13.1868C10.1582 13.3821 9.84169 13.3821 9.64642 13.1868L4.81307 8.35349C4.61781 8.15822 4.61781 7.84169 4.81307 7.64642L9.64642 2.81307C9.84169 2.61781 10.1582 2.61781 10.3535 2.81307Z" />
+                  </svg>
                 </div>
                 <div class="week-nav-btn" id="week-next-btn">
-                  <img src="/assets/icons/chevron-right.svg" />
+                  <svg xmlns="http://www.w3.org/2000/svg" class="week-nav-icon" viewBox="0 0 16 16">
+                    <path
+                      d="M5.64645 2.81307C5.45118 3.00833 5.45118 3.32492 5.64645 3.52018L10.1262 7.99996L5.64645 12.4798C5.45118 12.675 5.45118 12.9916 5.64645 13.1868C5.84171 13.3821 6.15829 13.3821 6.35355 13.1868L11.1869 8.35349C11.3821 8.15823 11.3821 7.84169 11.1869 7.64642L6.35355 2.81307C6.15829 2.61781 5.84171 2.61781 5.64645 2.81307Z" />
+                  </svg>
                 </div>
               </div>
-            </div>
+              </div>
             <div class="flexrow-gap8 week-days-container" id="week-days-container">
               <!-- JS will render -->
             </div>
           </div>
         </div>
 
-        <div class="flexrow-gap16">
+        <div class="dashboard-section">
           <!-- Page Content (Appointments Section) -->
-          <section class="page-body page-body--section">
+          <section class="page-body page-body--section appointments-section">
             <div class="flexcol-gap12">
               <h class="body-xl-semibold"> Appointments </h>
               <div class="tabs" id="appointments-tabs">
@@ -152,7 +158,7 @@
                 <button class="tab" data-tab="completed">Completed</button>
               </div>
             </div>
-            <div>
+            <div class="appointments-div">
               <!-- Upcoming appointments -->
               <div class="tab-panel tab-panel--active custom-scroll" id="upcoming-appointments-panel">
                 <!-- JS will render -->
