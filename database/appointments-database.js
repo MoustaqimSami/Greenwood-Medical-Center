@@ -7,7 +7,9 @@
     OTHER: "other",
   };
 
-  const appointments = [
+  const APPOINTMENTS_STORAGE_KEY = "gmc_appointments";
+
+  const seedAppointments = [
     // --- Original Appointments (1-10) ---
     {
       id: "appt-1",
@@ -263,7 +265,7 @@
       end: "19:30",
       reason: "Thyroid check",
       notes: "Fatigue and weight changes.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-22",
@@ -275,7 +277,7 @@
       end: "11:30",
       reason: "Food allergy test",
       notes: "Reaction to peanuts.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-23", // Manually fixed index for continuity
@@ -287,7 +289,7 @@
       end: "15:30",
       reason: "Joint swelling",
       notes: "Inflammation in knees.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-24",
@@ -299,7 +301,7 @@
       end: "13:30",
       reason: "Breathing difficulty",
       notes: "Shortness of breath on exertion.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-25",
@@ -311,7 +313,7 @@
       end: "14:30",
       reason: "Hypertension consult",
       notes: "Renal related BP issues.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-26",
@@ -323,7 +325,7 @@
       end: "16:00",
       reason: "Kidney function review",
       notes: "Lab results discussion.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-27",
@@ -335,7 +337,7 @@
       end: "15:00",
       reason: "Diabetes management",
       notes: "Review glucose logs.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-28",
@@ -347,7 +349,7 @@
       end: "19:30",
       reason: "Arthritis check",
       notes: "Joint stiffness in mornings.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-29",
@@ -359,7 +361,7 @@
       end: "18:30",
       reason: "Knee pain assessment",
       notes: "Patient reports clicking sound.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-30",
@@ -371,7 +373,7 @@
       end: "11:30",
       reason: "Kidney function review",
       notes: "Lab results discussion.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-31",
@@ -383,7 +385,7 @@
       end: "14:30",
       reason: "Mole check",
       notes: "Change in size/color noticed.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-32",
@@ -395,7 +397,7 @@
       end: "15:00",
       reason: "Asthma review",
       notes: "Inhaler refill needed.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-33",
@@ -407,7 +409,7 @@
       end: "14:30",
       reason: "Biopsy results",
       notes: "Discuss findings.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-34",
@@ -419,7 +421,7 @@
       end: "14:30",
       reason: "Migraine follow-up",
       notes: "Review medication efficacy.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-35",
@@ -431,7 +433,7 @@
       end: "12:00",
       reason: "Pain management",
       notes: "Chronic pain review.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-36",
@@ -443,7 +445,7 @@
       end: "11:00",
       reason: "Hernia consult",
       notes: "Pain in groin area.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-37",
@@ -455,7 +457,7 @@
       end: "10:00",
       reason: "Pre-operative assessment",
       notes: "Prepare for upcoming surgery.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-38",
@@ -467,7 +469,7 @@
       end: "12:00",
       reason: "Pre-operative assessment",
       notes: "Prepare for upcoming surgery.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-39",
@@ -479,7 +481,7 @@
       end: "14:30",
       reason: "Osteoporosis consult",
       notes: "Bone density review.",
-      status: "upcoming"
+      status: "upcoming",
     },
     {
       id: "appt-40",
@@ -491,9 +493,37 @@
       end: "22:30",
       reason: "Acute migraine",
       notes: "Severe pain and nausea.",
-      status: "completed"
-    }
+      status: "completed",
+    },
   ];
+
+  let appointments = [];
+
+  try {
+    const stored = window.localStorage.getItem(APPOINTMENTS_STORAGE_KEY);
+    if (stored) {
+      appointments = JSON.parse(stored);
+    } else {
+      appointments = seedAppointments;
+    }
+  } catch (e) {
+    console.warn(
+      "Could not read appointments from storage, using seed data",
+      e
+    );
+    appointments = seedAppointments;
+  }
+
+  function persistAppointments() {
+    try {
+      window.localStorage.setItem(
+        APPOINTMENTS_STORAGE_KEY,
+        JSON.stringify(appointments)
+      );
+    } catch (e) {
+      console.warn("Could not save appointments to storage", e);
+    }
+  }
 
   function getAppointmentById(id) {
     return appointments.find((appt) => appt.id === id) || null;
@@ -521,6 +551,7 @@
       ...data,
     };
     appointments.push(newAppt);
+    persistAppointments();
     return newAppt;
   }
 
@@ -528,6 +559,7 @@
     const idx = appointments.findIndex((a) => a.id === id);
     if (idx === -1) return null;
     appointments[idx] = { ...appointments[idx], ...changes };
+    persistAppointments();
     return appointments[idx];
   }
 
@@ -535,6 +567,7 @@
     const idx = appointments.findIndex((a) => a.id === id);
     if (idx === -1) return false;
     appointments.splice(idx, 1);
+    persistAppointments();
     return true;
   }
 

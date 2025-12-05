@@ -67,6 +67,10 @@ document.addEventListener("DOMContentLoaded", () => {
     logoutLink.addEventListener("click", (e) => {
       e.preventDefault();
       localStorage.removeItem("currentStaff");
+      localStorage.removeItem("gmc_active_doctor_id");
+      localStorage.removeItem("gmc_active_patient_id");
+      localStorage.removeItem("gmc_appointments");
+
       window.location.href = "../LoginPage/login.html";
     });
   }
