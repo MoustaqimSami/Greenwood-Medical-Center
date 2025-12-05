@@ -42,6 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
   let editMode = false;
   let statusHideTimer = null;
 
+  let pageStatusHideTimer = null;
+  const pageStatusEl = document.getElementById("appointment-status-stub");
+
   /* -----------------------------------------------------------
      STATUS / FEEDBACK
      ----------------------------------------------------------- */
@@ -66,42 +69,30 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function showStatus(message, type = "info", autoHide = true) {
-    if (!modal) return;
+    if (!pageStatusEl) return;
 
-    let statusEl = modal.querySelector(".appointment-status");
-
-    if (!statusEl) {
-      statusEl = document.createElement("div");
-      statusEl.className = "appointment-status";
-      modal.appendChild(statusEl);
+    if (pageStatusHideTimer) {
+      clearTimeout(pageStatusHideTimer);
+      pageStatusHideTimer = null;
     }
 
-    if (statusHideTimer) {
-      clearTimeout(statusHideTimer);
-      statusHideTimer = null;
-    }
-
-    statusEl.textContent = message;
-    statusEl.classList.remove(
-      "appointment-status--info",
-      "appointment-status--success",
-      "appointment-status--danger",
-      "is-visible"
-    );
+    // Reset base classes
+    pageStatusEl.className = "appointment-status-stub";
+    pageStatusEl.textContent = message;
 
     const cls =
       type === "success"
-        ? "appointment-status--success"
+        ? "appointment-status-stub--success"
         : type === "danger"
-        ? "appointment-status--danger"
-        : "appointment-status--info";
+        ? "appointment-status-stub--danger"
+        : "appointment-status-stub--info";
 
-    statusEl.classList.add(cls, "is-visible");
+    pageStatusEl.classList.add(cls, "is-visible");
 
     if (autoHide) {
-      statusHideTimer = setTimeout(() => {
-        statusEl.classList.remove("is-visible");
-      }, 2500);
+      pageStatusHideTimer = setTimeout(() => {
+        pageStatusEl.classList.remove("is-visible");
+      }, 3500);
     }
   }
 
@@ -359,6 +350,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     if (window.appointmentPatientSearch?.clearPatientResults) {
       window.appointmentPatientSearch.clearPatientResults();
+    }
+
+    // 🔥 FIX: Make sure reschedule banner stays visible after closing modal
+    if (inRescheduleMode && rescheduleBanner) {
+      rescheduleBanner.classList.add("is-visible");
     }
   }
 
@@ -665,6 +661,13 @@ document.addEventListener("DOMContentLoaded", function () {
         );
       }
 
+      //visible feedback when entering reschedule mode
+      showStatus(
+        "Rescheduling: select a new empty time slot in the calendar.",
+        "info",
+        false
+      );
+
       closeModal();
     });
   }
@@ -677,7 +680,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-  // If arriving from dashboard shortcut (?open=book), open a blank modal
+  // If arriving from dashboard shortcut
   const params = new URLSearchParams(window.location.search);
   if (params.get("open") === "book") {
     openBlankAppointmentModalFromShortcut();
