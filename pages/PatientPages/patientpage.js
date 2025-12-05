@@ -157,5 +157,67 @@
     if (sortSelect) {
       sortSelect.addEventListener("change", filterAndRender);
     }
+
+    // Modal functionality
+    const addPatientBtn = document.querySelector('.new-pat-btn');
+    const addPatientModal = document.getElementById('addPatientModal');
+    const modalClose = document.querySelector('.modal-close');
+    const modalCancel = document.querySelector('.modal-cancel');
+    const addPatientForm = document.getElementById('addPatientForm');
+
+    // Open modal
+    addPatientBtn.addEventListener('click', () => {
+      addPatientModal.classList.add('active');
+    });
+
+    // Close modal
+    function closeModal() {
+      addPatientModal.classList.remove('active');
+      addPatientForm.reset();
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modalCancel.addEventListener('click', closeModal);
+
+    // Close modal when clicking outside of it
+    window.addEventListener('click', (event) => {
+      if (event.target === addPatientModal) {
+        closeModal();
+      }
+    });
+
+    // Handle form submission
+    addPatientForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Collect form data
+      const formData = new FormData(addPatientForm);
+      const newPatient = {
+        firstName: formData.get('firstName'),
+        lastName: formData.get('lastName'),
+        dateOfBirth: formData.get('dateOfBirth'),
+        phone: formData.get('phone'),
+        address: formData.get('address'),
+        phoneNumber: formData.get('phoneNumber'),
+        emergencyContact: formData.get('emergencyContact'),
+        emergencyPhone: formData.get('emergencyPhone'),
+        healthcareNumber: formData.get('healthcareNumber'),
+        familyDoctor: formData.get('familyDoctor'),
+        referredBy: formData.get('referredBy'),
+        otherInsurance: formData.get('otherInsurance'),
+      };
+      
+      // Add to patients database       // Note: Currently Not adding to database 
+      if (window.patientsDatabase && window.patientsDatabase.patients) {
+        window.patientsDatabase.patients.push(newPatient);
+        console.log('Patient added:', newPatient);
+        alert('Patient added successfully!');
+        closeModal();
+        // Refresh the table if you have a function to do so
+        // refreshPatientsTable(); // Call your table refresh function here
+      }
+    });
   });
 })();
+
+

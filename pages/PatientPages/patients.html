@@ -99,7 +99,7 @@
         <header class="page-header">
           <h1 class="page-title">Patients</h1>
           <div style="margin-left:auto;">
-            <button class="btn btn--primary">Add new patient</button>
+            <button class="new-pat-btn"><img src="../../assets\icons\person-add-fill-n50.svg">Add Patient</button>
           </div>
         </header>
 
@@ -160,6 +160,99 @@
               <!-- Will be filled by JS -->
             </tbody>
           </table>
+
+          <!-- Add Patient Modal -->
+          <div id="addPatientModal" class="modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2>Add New Patient</h2>
+                <div class="modal-header-right">
+                  <div class="retrieve-ahs-box">
+                    <label>Retrieve AHS Information</label>
+                    <input type="text" class="ahs-input" placeholder="Enter AHS Number" />
+                  </div>
+                  <button class="modal-close">&times;</button>
+                </div>
+              </div>
+
+              <form id="addPatientForm" class="modal-form">
+                <!-- Personal Information Section -->
+                <div class="item--personal">
+                  <div class="item-header">
+                    <h3>Personal Information</h3>
+                  </div>
+                  <div class="content-1">
+                    <label>First name</label>
+                    <input type="text" placeholder="John" name="firstName" required />
+                  </div>
+                  <div class="content-2">
+                    <label>Last name</label>
+                    <input type="text" placeholder="Doe" name="lastName" required />
+                  </div>
+                  <div class="content-3">
+                    <label>Date of birth</label>
+                    <input type="date" name="dateOfBirth" required />
+                  </div>
+                  <div class="content-4">
+                    <label>Phone</label>
+                    <input type="tel" placeholder="(123) 456-7899" name="phone" required />
+                  </div>
+                </div>
+
+                <!-- Contact Information Section -->
+                <div class="item--personal">
+                  <div class="item-header">
+                    <h3>Contact Information</h3>
+                  </div>
+                  <div class="content-1">
+                    <label>Address</label>
+                    <input type="text" placeholder="123 Main St, City, Province" name="address" required />
+                  </div>
+                  <div class="content-2">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="(141) 911-2000" name="phoneNumber" required />
+                  </div>
+                  <div class="content-3">
+                    <label>Emergency Contact</label>
+                    <input type="text" placeholder="Jane Doe" name="emergencyContact" required />
+                  </div>
+                  <div class="content-4">
+                    <label>Emergency Phone</label>
+                    <input type="tel" placeholder="(555) 987-6543" name="emergencyPhone" required />
+                  </div>
+                </div>
+
+                <!-- Healthcare Information Section -->
+                <div class="item--personal">
+                  <div class="item-header">
+                    <h3>Healthcare Information</h3>
+                  </div>
+                  <div class="content-1">
+                    <label>Alberta Healthcare Number</label>
+                    <input type="text" placeholder="87651234" name="healthcareNumber" required />
+                  </div>
+                  <div class="content-2">
+                    <label>Family Doctor</label>
+                    <input type="text" placeholder="Dr. Nelson James" name="familyDoctor" required />
+                  </div>
+                  <div class="content-3">
+                    <label>Referred by</label>
+                    <input type="text" placeholder="Dr. John Whale" name="referredBy" required />
+                  </div>
+                  <div class="content-4">
+                    <label>Other Healthcare Insurance</label>
+                    <input type="text" placeholder="Insurance Company Name" name="otherInsurance" />
+                  </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="modal-actions">
+                  <button type="button" class="btn btn--secondary modal-cancel">Cancel</button>
+                  <button type="submit" class="btn btn--primary">Add Patient</button>
+                </div>
+              </form>
+            </div>
+          </div>
 
 
       </main>

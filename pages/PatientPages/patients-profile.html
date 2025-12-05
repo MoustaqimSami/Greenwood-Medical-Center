@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/template.css" />
     <link rel="stylesheet" href="../../css/components.css" />
+
+    <link rel="stylesheet" href="../../css/patients.css" />
+    <link rel="stylesheet" href="../../css/appointmentStyles/doctorsSchedule.css" />
   </head>
 
   <body>
@@ -150,6 +153,55 @@
               <!-- THIS IS THE ONLY PART THAT SHOULD BE CHANGING IN MOST CASES!!! -->
               <div>
                 <h class="body-xl-semibold"> Profile </h>
+                <div>
+                  <br>
+                  <div class="item">
+                    <div class="profile-name-area">
+                      <div class="patient-avatar">
+                      <img
+                        src="../../assets/icons/person-black.svg"
+                        alt="patient avatar"
+                        class="patient-avatar-img">
+                      </div>
+                      <span class="patient-name">Janet Dean</span> 
+                      </div>
+                      <button class="edit-profile-button"><img src="../../assets\icons\edit-green.svg"> Edit Profile</button>
+                  </div>
+
+                  <!--Reminder - This is only for "Janet Dean" as of now, unclear how functionality will work with patient search.-->
+                  <!--item 2 Personal info-->
+                  <div class="item--personal">
+                    <div class="item-header"><h3>Personal Information</h3></div>
+                     <div class="content-1">First name<br> Janet</div> <!-- could change color to secondary for titles here - clarity -->
+                     <div class="content-2">Last name<br> Dean</div>
+                     <div class="content-3">Date of birth<br> 1980-01-01</div>
+                     <div class="content-4">Phone<br> (555) 555-5555</div>          
+                  </div>
+                  
+                   <!--item 3 Contact info-->
+                  <div class="item--personal">
+                    <div class="item-header"><h3>Contact Information</h3></div>
+                     <div class="content-1">Address<br> 172 Glacier Ridge NW, T3P139</div>
+                     <div class="content-2">Phone Number<br> 503-825-7620</div>
+                     <div class="content-3">Emergency Contact<br> Hannah Dean</div>
+                     <div class="content-4">Emergency Contact<br>  825-712-4290</div>          
+                  </div>
+                  
+                   <!--item 4 Healthcare info-->
+                  <div class="item--personal">
+                    <div class="item-header"><h3>Healthcare Information</h3></div>
+                     <div class="content-1">Alberta Healthcare Number<br> 99251673</div>
+                     <div class="content-2">Family Doctor<br> Dr. Nelson James</div>
+                     <div class="content-3">Referred by<br> Dr. John Whale</div>
+                     <div class="content-4">Other Healthcare Insurance<br> N/A</div>          
+                  </div>
+
+                  <footer class="item-footer">
+                    <button class="book-appointment-btn">Book Appointment</button>
+                  </footer>
+                </div>
+                
+              
               </div>
             </div>          
           </section>
@@ -159,6 +211,90 @@
       </div>
     </div>
 
+    <!-- Add Patient Modal -->
+<div id="addPatientModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Add New Patient</h2>
+      <button class="modal-close">&times;</button>
+    </div>
+
+    <form id="addPatientForm" class="modal-form">
+      <!-- Personal Information Section -->
+      <div class="item--personal">
+        <div class="item-header"><h3>Personal Information</h3></div>
+        <div class="content-1">
+          <label>First name</label>
+          <input type="text" name="firstName" required />
+        </div>
+        <div class="content-2">
+          <label>Last name</label>
+          <input type="text" name="lastName" required />
+        </div>
+        <div class="content-3">
+          <label>Date of birth</label>
+          <input type="date" name="dateOfBirth" required />
+        </div>
+        <div class="content-4">
+          <label>Phone</label>
+          <input type="tel" name="phone" required />
+        </div>
+      </div>
+
+      <!-- Contact Information Section -->
+      <div class="item--personal">
+        <div class="item-header"><h3>Contact Information</h3></div>
+        <div class="content-1">
+          <label>Address</label>
+          <input type="text" name="address" required />
+        </div>
+        <div class="content-2">
+          <label>Phone Number</label>
+          <input type="tel" name="phoneNumber" required />
+        </div>
+        <div class="content-3">
+          <label>Emergency Contact</label>
+          <input type="text" name="emergencyContact" required />
+        </div>
+        <div class="content-4">
+          <label>Emergency Phone</label>
+          <input type="tel" name="emergencyPhone" required />
+        </div>
+      </div>
+
+      <!-- Healthcare Information Section -->
+      <div class="item--personal">
+        <div class="item-header"><h3>Healthcare Information</h3></div>
+        <div class="content-1">
+          <label>Alberta Healthcare Number</label>
+          <input type="text" name="healthcareNumber" required />
+        </div>
+        <div class="content-2">
+          <label>Family Doctor</label>
+          <input type="text" name="familyDoctor" required />
+        </div>
+        <div class="content-3">
+          <label>Referred by</label>
+          <input type="text" name="referredBy" required />
+        </div>
+        <div class="content-4">
+          <label>Other Healthcare Insurance</label>
+          <input type="text" name="otherInsurance" />
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="modal-actions">
+        <button type="button" class="btn btn--secondary modal-cancel">Cancel</button>
+        <button type="submit" class="btn btn--primary">Add Patient</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+    <script src="../../database/patientsDatabase.js"></script>
+    <script src="../../js/patients.js"></script>
+    
     <script src="../layout.js"></script>
   </body>
 </html>

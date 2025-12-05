@@ -1,5 +1,4 @@
-
-          * {
+* {
               box-sizing: border-box;
           }
         
@@ -50,7 +49,7 @@
             justify-content: flex-end; 
             padding: 10px 0;
         }
-        .pagination-controls button {
+        .pagination-controls button {  /* Likely no use for these now? */
             cursor: pointer;
             border: 1px solid #ccc;
             padding: 5px 10px;
@@ -60,3 +59,347 @@
             opacity: 0.5;
             cursor: default;
         }
+
+
+/* Patient Avatar Styles - borrowed from Sami's Doctor avatar styles (doctorSchedule.css) */
+.patient-avatar {
+  width: 100px;
+  height: 100px;
+  background: var(--neutral-100);
+  border-radius: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.patient-avatar-img {
+  width: 50px;
+  height: 60px;
+  object-fit: contain;
+} 
+
+/* Patient Profile Header Styles */
+/* Lots to cleanup here, later */
+.item {
+    display: flex; /* Enable Flexbox */
+    justify-content: space-between; /* Push items (name/avatar vs button) to opposite ends */
+    align-items: center; /* Vertically center content */
+    padding: 20px; /* Add some padding around the content */
+    border: 1px solid var(--primary-100); /* Optional: To match your image's border */
+    border-radius: 8px;
+    margin-bottom: 20px; /* Space below the header box */
+    grid-template-areas:
+    "item-header""item-header""item-header""item-header"
+    "content-1""content-2""content-3""content-4" ;
+}
+
+.profile-name-area {
+    display: flex;
+    align-items: center; /* Align avatar and text vertically */
+}
+
+.patient-name {
+    font-size: 1.5rem; /* Large font for the name */
+    font-weight: 600;
+    margin-left: 20px; /* Space between avatar and name */
+}
+
+.edit-profile-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 15px;;
+    background-color: white;
+    color: var(--primary-700);
+    border: 1px solid var(--primary-700);
+    border-radius: 6px; 
+}
+
+.edit-profile-button:hover {
+    background-color: var(--primary-100);
+    transition: 0.22s ease, box-shadow 0.22s ease, transform 0.18s ease;
+}
+
+.item--personal {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;  /* 4 columns for content items */
+  grid-template-rows: auto auto;  /* 2 rows: header row, content row */
+  grid-template-areas:
+    "item-header item-header item-header item-header"
+    "content-1 content-2 content-3 content-4";
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--primary-100);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.item--personal .item-header {
+  grid-area: item-header;
+  margin-bottom: 8px;
+}
+
+.item--personal .item-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.item--personal .content-1 {
+  grid-area: content-1;
+}
+
+.item--personal .content-2 {
+  grid-area: content-2;
+}
+
+.item--personal .content-3 {
+  grid-area: content-3;
+}
+
+.item--personal .content-4 {
+  grid-area: content-4;
+}
+
+.content-1, .content-2, .content-3, .content-4 {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--primary-100);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.item-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.book-appointment-btn {
+  padding: 16px 30px;
+  background-color: var(--primary-700);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.book-appointment-btn:hover {
+  opacity: 0.8;
+  transition: 0.22s ease, box-shadow 0.22s ease, transform 0.18s ease
+}
+
+.new-pat-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 25px;;
+  background-color: var(--primary-700);
+  color: white;
+  border-color: var(--primary-700);
+  border-radius: 6px; 
+}
+.new-pat-btn:hover {
+  opacity: 0.8;
+  transition: 0.22s ease, box-shadow 0.22s ease, transform 0.18s ease
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 50%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px var(--primary-300);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 2px solid var(--primary-100);
+  padding-bottom: 15px;
+}
+
+.modal-header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  color: #000;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Style form inputs in the content boxes */
+.modal-form .content-1,
+.modal-form .content-2,
+.modal-form .content-3,
+.modal-form .content-4 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-form input {
+  padding: 10px;
+  border: 1px solid var(--primary-100);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.modal-form input:focus {
+  outline: none;
+  border-color: var(--primary-700);
+  box-shadow: 0 0 0 3px rgba(150, 20, 20, 0.1);
+}
+
+.modal-form label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: rgba(26, 35, 51, 0.8);
+}
+
+.modal-actions {  /* Container for action buttons(cancel & add) */
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 25px;
+  padding-top: 20px;
+}
+
+.btn--primary {
+  background-color: var(--primary-700);
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: opacity 0.3s ease;
+}
+
+.btn--primary:hover {
+  opacity: 0.9;
+}
+
+.btn--secondary {
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 12px 30px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn--secondary:hover {
+  background-color: #e0e0e0;
+}
+
+.retrieve-ahs-btn {
+  padding: 10px 20px;
+  background-color: var(--primary-700);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: opacity 0.3s ease;
+}
+
+.retrieve-ahs-btn:hover {
+  opacity: 0.9;
+}
+
+.retrieve-ahs-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ahs-input {
+  padding: 8px 12px;
+  border: 1px solid var(--primary-100);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  width: 180px;
+}
+
+.ahs-input:focus {
+  outline: none;
+  border-color: var(--primary-700);
+  box-shadow: 0 0 0 3px rgba(150, 20, 20, 0.1);
+}
