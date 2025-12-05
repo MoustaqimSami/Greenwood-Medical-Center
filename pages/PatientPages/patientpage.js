@@ -1,4 +1,5 @@
 (function () {
+  // ---- Helpers ----
   function getAllPatients() {
     if (
       !window.patientsDatabase ||
@@ -7,7 +8,32 @@
       console.error("patientsDatabase is not available on window.");
       return [];
     }
-    return window.patientsDatabase.patients;
+
+    return [...window.patientsDatabase.patients].sort((a, b) => {
+      const an = (a.name || "").toLowerCase();
+      const bn = (b.name || "").toLowerCase();
+      return an.localeCompare(bn);
+    });
+  }
+
+  function applySort(patients, sortValue) {
+    const result = [...patients];
+
+    if (sortValue === "name-desc") {
+      result.sort((a, b) => {
+        const an = (a.name || "").toLowerCase();
+        const bn = (b.name || "").toLowerCase();
+        return bn.localeCompare(an);
+      });
+    } else {
+      result.sort((a, b) => {
+        const an = (a.name || "").toLowerCase();
+        const bn = (b.name || "").toLowerCase();
+        return an.localeCompare(bn);
+      });
+    }
+
+    return result;
   }
 
   function renderRows(patients) {
@@ -36,12 +62,12 @@
       row.innerHTML = `
         <td>${firstName || ""}</td>
         <td>${lastName || ""}</td>
-        <td>${p.dob || "—"}</td>
-        <td>${p.phone || "—"}</td>
-        <td>${p.gender || "—"}</td>
+        <td>${p.dob || "-"}</td>
+        <td>${p.phone || "-"}</td>
+        <td>${p.gender || "-"}</td>
       `;
 
-      // When a row is clicked, set active patient and go to profile
+      // Click: set active patient and go to profile page
       row.addEventListener("click", () => {
         if (
           window.patientsDatabase &&
@@ -49,7 +75,6 @@
         ) {
           window.patientsDatabase.setActivePatientId(p.id);
         }
-        // patients.html, patients-profile.html, etc. live in the same folder
         window.location.href = "patients-profile.html";
       });
 
@@ -57,41 +82,80 @@
     });
   }
 
-  function filterPatients() {
+  // ---- Core filter + search ----
+  function filterAndRender() {
     const allPatients = getAllPatients();
-    const input = document.getElementById("myInput");
-    const query = input ? input.value.trim().toLowerCase() : "";
+    const searchInput = document.getElementById("myInput");
+    const genderFilter = document.getElementById("genderFilter");
+    const sortSelect = document.getElementById("sortBy");
 
-    if (!query) {
-      renderRows(allPatients);
-      return;
+    const query = (searchInput?.value || "").trim().toLowerCase();
+    const genderValue = genderFilter?.value || "all";
+    const sortValue = sortSelect?.value || "name-asc";
+
+    let filtered = allPatients;
+
+    // Filter by gender
+    if (genderValue !== "all") {
+      filtered = filtered.filter(
+        (p) => (p.gender || "").toLowerCase() === genderValue.toLowerCase()
+      );
     }
 
-    const filtered = allPatients.filter((p) =>
-      (p.name || "").toLowerCase().includes(query)
-    );
+    // Search by "everything"
+    if (query) {
+      filtered = filtered.filter((p) => {
+        const haystack = [
+          p.name || "",
+          p.phone || "",
+          p.gender || "",
+          p.age != null ? String(p.age) : "",
+        ]
+          .join(" ")
+          .toLowerCase();
+
+        return haystack.includes(query);
+      });
+    }
+
+    // Apply sort
+    filtered = applySort(filtered, sortValue);
 
     renderRows(filtered);
   }
 
-  window.myFunction = filterPatients;
-
+  // ---- Init ----
   document.addEventListener("DOMContentLoaded", () => {
-    const allPatients = getAllPatients();
-    renderRows(allPatients);
+    // Initial render
+    renderRows(getAllPatients());
 
     const searchButton = document.getElementById("searchButton");
+    const searchInput = document.getElementById("myInput");
+    const genderFilter = document.getElementById("genderFilter");
+    const sortSelect = document.getElementById("sortBy");
+
     if (searchButton) {
-      searchButton.addEventListener("click", filterPatients);
+      searchButton.addEventListener("click", filterAndRender);
     }
 
-    const searchInput = document.getElementById("myInput");
     if (searchInput) {
+      searchInput.addEventListener("input", () => {
+        filterAndRender();
+      });
+
       searchInput.addEventListener("keyup", (event) => {
         if (event.key === "Enter") {
-          filterPatients();
+          filterAndRender();
         }
       });
+    }
+
+    if (genderFilter) {
+      genderFilter.addEventListener("change", filterAndRender);
+    }
+
+    if (sortSelect) {
+      sortSelect.addEventListener("change", filterAndRender);
     }
   });
 })();
