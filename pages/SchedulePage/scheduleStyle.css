@@ -316,7 +316,7 @@ html {
   display: flex;
   flex-direction: column;
   margin-top: 15px;
-  height: 100%;
+  height: calc(100vh - 70px);
   overflow: hidden;
 }
 
@@ -357,15 +357,15 @@ html {
   border-top-right-radius: 8px;
   overflow: hidden;
   display: grid;
-  min-width: calc(24 * 120px);
-  grid-template-columns: repeat(24, 120px);
+  min-width: calc(24 * 150px);
+  grid-template-columns: repeat(24, 150px);
   background: #f9f9f9;
   background: repeating-linear-gradient(
       to right,
       #efefef 0px,
       #efefef 1px,
       transparent 1px,
-      transparent 120px
+      transparent 150px
     ),
     #f9f9f9;
   border-bottom: 1px solid #ddd;
@@ -387,22 +387,22 @@ html {
 ----------------------------*/
 .schedule-grid {
   display: grid;
-  grid-template-columns: repeat(24, 120px);
-  grid-template-rows: repeat(8, 80px);
+  grid-template-columns: repeat(24, 150px);
+  grid-template-rows: repeat(8, 100px);
   width: max-content;
   background: repeating-linear-gradient(
       to right,
       #efefef 0px,
       #efefef 1px,
       transparent 1px,
-      transparent 120px
+      transparent 150px
     ),
     repeating-linear-gradient(
       to bottom,
       #efefef 0px,
       #efefef 1px,
       transparent 1px,
-      transparent 80px
+      transparent 100px
     );
 }
 
@@ -423,13 +423,13 @@ html {
 }
 
 .appointment .p-name {
-  font-size: 13px;
+  font-size: 17px;
   font-weight: 600;
   margin-bottom: 2px;
 }
 
 .appointment small {
-  font-size: 9.5px;
+  font-size: 11px;
   display: block;
   line-height: 1.3;
 }
@@ -482,6 +482,9 @@ html {
   transition: all 0.15s ease;
   color: var(--neutral-900);
   border: 1px solid var(--neutral-300);
+  display: flex;   
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-btn:hover {
@@ -492,6 +495,11 @@ html {
   background: var(--black);
   color: var(--white);
   border-color: var(--black);
+}
+
+.chevron-icon {
+  width: 18px;   /* tweak size to your liking */
+  height: 18px;
 }
 
 .schedule-date {
@@ -589,7 +597,7 @@ html {
 
 .legend-followup {
   background: #e0ecff;
-  border-color: #3c77e6;
+  border: 1px solid #3c77e6;
   color: #174078;
 }
 
@@ -601,7 +609,7 @@ html {
 
 .legend-other {
   background: #ffe2e2;
-  border-color: #d03b3b;
+  border: 1px solid #d03b3b;
   color: #7a1616;
 }
 
