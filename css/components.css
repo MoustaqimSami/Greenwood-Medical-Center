@@ -212,6 +212,13 @@
   background-color: var(--accent-coral);
 }
 
+.dashboard-section {
+  display: flex;
+  gap: 16px;
+  flex: 1 0 0;
+  overflow: hidden
+}
+
 /* Apointments Tab */
 .tabs {
   display: flex;
@@ -256,6 +263,11 @@
 
 .tab-panel--active {
   display: flex;
+}
+
+.appointments-section {
+  flex: 1;
+  min-width: 0;
 }
 
 .appointment-card {
@@ -304,6 +316,7 @@
   padding-right: 12px;
   max-height: var(--tab-max-height);
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .availability-card {
