@@ -73,12 +73,12 @@
             gap: 5px;
         }
 
-        .item {
+        /* .item {
             background-color: #ffffff;
             padding: 2em;
             border: 1px solid var(--primary-100);
             border-radius: 8px;
-        }
+        } */
 
         /* .item :hover {       /* not working - fix later
             background-color: var(--primary-300);
@@ -96,11 +96,68 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: start;
+  margin: 0;
 }
 
 .patient-avatar-img {
-  width: 60px;
+  width: 50px;
   height: 60px;
   object-fit: contain;
-}       
+} 
+
+.item {
+    display: flex; /* Enable Flexbox */
+    justify-content: space-between; /* Push items (name/avatar vs button) to opposite ends */
+    align-items: center; /* Vertically center content */
+    padding: 20px; /* Add some padding around the content */
+    border: 1px solid var(--primary-100); /* Optional: To match your image's border */
+    border-radius: 8px;
+    margin-bottom: 20px; /* Space below the header box */
+}
+
+.profile-name-area {
+    display: flex;
+    align-items: center; /* Align avatar and text vertically */
+}
+
+.patient-name {
+    font-size: 1.5rem; /* Large font for the name */
+    font-weight: 600;
+    margin-left: 20px; /* Space between avatar and name */
+}
+
+.edit-profile-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 15px;;
+    background-color: white;
+    color: var(--primary-700);
+    border: 1px solid var(--primary-700);
+    border-radius: 6px; 
+}
+
+.edit-profile-button:hover {
+    background-color: var(--primary-100);
+    transition: 0.22s ease, box-shadow 0.22s ease, transform 0.18s ease;
+}
+
+.item--personal {
+  display: flex;
+  grid-template-areas: 
+  "item-header"
+  "content-1""content-2""content-3""content-";
+  gap: 12px;
+  padding: 20px;
+  min-height: 50px; /* give the item an explicit min-height so 1fr has space; adjust as needed */
+}
+
+.content-1, .content-2, .content-3, .content-4 {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--primary-100);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
