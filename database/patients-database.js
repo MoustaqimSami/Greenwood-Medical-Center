@@ -19,6 +19,7 @@
       age: 78,
       gender: "Female",
       phone: "825 288 8888",
+      dob: "1947-12-04",
     },
     {
       id: "pat-2",
@@ -26,6 +27,7 @@
       age: 46,
       gender: "Male",
       phone: "825 555 1010",
+      dob: "1979-12-04",
     },
     {
       id: "pat-3",
@@ -33,6 +35,7 @@
       age: 32,
       gender: "Female",
       phone: "825 555 2020",
+      dob: "1993-12-04",
     },
     {
       id: "pat-4",
@@ -40,6 +43,7 @@
       age: 58,
       gender: "Male",
       phone: "825 555 3030",
+      dob: "1967-12-04",
     },
     {
       id: "pat-5",
@@ -47,6 +51,7 @@
       age: 27,
       gender: "Female",
       phone: "825 555 4040",
+      dob: "1998-12-04",
     },
     {
       id: "pat-6",
@@ -54,6 +59,7 @@
       age: 65,
       gender: "Male",
       phone: "825 555 5050",
+      dob: "1960-12-04",
     },
     {
       id: "pat-7",
@@ -61,6 +67,7 @@
       age: 19,
       gender: "Female",
       phone: "825 555 6060",
+      dob: "2006-12-04",
     },
     {
       id: "pat-8",
@@ -68,6 +75,7 @@
       age: 82,
       gender: "Male",
       phone: "825 555 7070",
+      dob: "1943-12-04",
     },
     {
       id: "pat-9",
@@ -75,6 +83,7 @@
       age: 41,
       gender: "Female",
       phone: "825 555 8080",
+      dob: "1984-12-04",
     },
     {
       id: "pat-10",
@@ -82,6 +91,7 @@
       age: 50,
       gender: "Male",
       phone: "825 555 9090",
+      dob: "1975-12-04",
     },
     {
       id: "pat-11",
@@ -89,6 +99,7 @@
       age: 24,
       gender: "Female",
       phone: "825 555 1111",
+      dob: "2001-12-04",
     },
     {
       id: "pat-12",
@@ -96,6 +107,7 @@
       age: 63,
       gender: "Male",
       phone: "825 555 2222",
+      dob: "1962-12-04",
     },
     {
       id: "pat-13",
@@ -103,6 +115,7 @@
       age: 37,
       gender: "Female",
       phone: "825 555 3333",
+      dob: "1988-12-04",
     },
     {
       id: "pat-14",
@@ -110,6 +123,7 @@
       age: 72,
       gender: "Male",
       phone: "825 555 4444",
+      dob: "1953-12-04",
     },
     {
       id: "pat-15",
@@ -117,6 +131,7 @@
       age: 29,
       gender: "Female",
       phone: "825 555 5555",
+      dob: "1996-12-04",
     },
     {
       id: "pat-16",
@@ -124,6 +139,7 @@
       age: 55,
       gender: "Male",
       phone: "825 555 6666",
+      dob: "1970-12-04",
     },
     {
       id: "pat-17",
@@ -131,6 +147,7 @@
       age: 49,
       gender: "Female",
       phone: "825 555 7777",
+      dob: "1976-12-04",
     },
     {
       id: "pat-18",
@@ -138,6 +155,7 @@
       age: 12,
       gender: "Male",
       phone: "825 555 8888",
+      dob: "2013-12-04",
     },
     {
       id: "pat-19",
@@ -145,6 +163,7 @@
       age: 90,
       gender: "Female",
       phone: "825 555 9999",
+      dob: "1935-12-04",
     },
     {
       id: "pat-20",
@@ -152,6 +171,7 @@
       age: 31,
       gender: "Male",
       phone: "825 555 0000",
+      dob: "1994-12-04",
     },
     {
       id: "pat-21",
@@ -159,6 +179,7 @@
       age: 68,
       gender: "Female",
       phone: "825 555 1020",
+      dob: "1957-12-04",
     },
     {
       id: "pat-22",
@@ -166,6 +187,7 @@
       age: 22,
       gender: "Male",
       phone: "825 555 2030",
+      dob: "2003-12-04",
     },
     {
       id: "pat-23",
@@ -173,6 +195,7 @@
       age: 43,
       gender: "Female",
       phone: "825 555 3040",
+      dob: "1982-12-04",
     },
     {
       id: "pat-24",
@@ -180,6 +203,7 @@
       age: 76,
       gender: "Male",
       phone: "825 555 4050",
+      dob: "1949-12-04",
     },
     {
       id: "pat-25",
@@ -187,6 +211,7 @@
       age: 21,
       gender: "Female",
       phone: "825 555 5060",
+      dob: "2004-12-04",
     },
     {
       id: "pat-26",
@@ -194,6 +219,7 @@
       age: 59,
       gender: "Male",
       phone: "825 555 6070",
+      dob: "1966-12-04",
     },
     {
       id: "pat-27",
@@ -201,6 +227,7 @@
       age: 35,
       gender: "Female",
       phone: "825 555 7080",
+      dob: "1990-12-04",
     },
     {
       id: "pat-28",
@@ -208,6 +235,7 @@
       age: 88,
       gender: "Male",
       phone: "825 555 8090",
+      dob: "1937-12-04",
     },
     {
       id: "pat-29",
@@ -215,6 +243,7 @@
       age: 52,
       gender: "Female",
       phone: "825 555 9001",
+      dob: "1973-12-04",
     },
     {
       id: "pat-30",
@@ -222,6 +251,7 @@
       age: 44,
       gender: "Male",
       phone: "825 555 0112",
+      dob: "1981-12-04",
     },
   ];
 

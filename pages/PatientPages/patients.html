@@ -1,243 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Patients | GMC</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="../../css/style.css" />
-    <link rel="stylesheet" href="../../css/template.css" />
+<head>
+  <meta charset="UTF-8" />
+  <title>Patients | GMC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="../../css/patients.css" />
-  </head>
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/template.css" />
 
-  <body>
-    <div class="app-shell">
-      <!-- SIDEBAR -->
-      <aside class="sidebar">
-        <div class="sidebar-inner">
-          <div class="sidebar-top">
-            <button class="brand-button" aria-label="Clinic home">
-              <img
-                src="../../assets/icons/logo.svg"
-                alt="Clinic logo"
-                class="brand-logo"
-              />
-            </button>
+  <link rel="stylesheet" href="../../css/patients.css" />
+</head>
 
-            <button class="sidebar-toggle" aria-label="Toggle sidebar">
-              <img
-                src="../../assets/icons/layout-sidebar.svg"
-                data-open-src="../../assets/icons/layout-sidebar.svg"
-                data-collapsed-src="../../assets/icons/layout-sidebar-closed.svg"
-                alt="Toggle sidebar"
-                class="sidebar-toggle-icon"
-              />
-            </button>
-          </div>
+<body>
+  <div class="app-shell">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-top">
+          <button class="brand-button" aria-label="Clinic home">
+            <img src="../../assets/icons/logo.svg" alt="Clinic logo" class="brand-logo" />
+          </button>
 
-          <!-- Navigation -->
-          <nav class="sidebar-nav">
-            <a class="nav-item" href="../HomePage/dashboard.html">
-              <img class="nav-icon" src="../../assets/icons/home.svg" alt="" />
-              <span class="nav-label">Home</span>
-            </a>
+          <button class="sidebar-toggle" aria-label="Toggle sidebar">
+            <img src="../../assets/icons/layout-sidebar.svg" data-open-src="../../assets/icons/layout-sidebar.svg"
+              data-collapsed-src="../../assets/icons/layout-sidebar-closed.svg" alt="Toggle sidebar"
+              class="sidebar-toggle-icon" />
+          </button>
+        </div>
 
-            <a class="nav-item" href="../SchedulePage/schedule.html">
-              <img class="nav-icon" src="../../assets/icons/calendar.svg" alt="" />
-              <span class="nav-label">Schedule</span>
-            </a>
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+          <a class="nav-item" href="../HomePage/dashboard.html">
+            <img class="nav-icon" src="../../assets/icons/home.svg" alt="" />
+            <span class="nav-label">Home</span>
+          </a>
 
-            <a class="nav-item" href="../PatientPages/patients.html">
-              <img class="nav-icon" src="../../assets/icons/people.svg" alt="" />
-              <span class="nav-label">Patients</span>
-            </a>
+          <a class="nav-item" href="../SchedulePage/schedule.html">
+            <img class="nav-icon" src="../../assets/icons/calendar.svg" alt="" />
+            <span class="nav-label">Schedule</span>
+          </a>
 
-            <a class="nav-item" href="../DoctorPages/doctors.html">
-              <img
-                class="nav-icon"
-                src="../../assets/icons/stethoscope.svg"
-                alt=""
-              />
-              <span class="nav-label">Doctors</span>
-            </a>
-          </nav>
+          <a class="nav-item" href="../PatientPages/patients.html">
+            <img class="nav-icon" src="../../assets/icons/people.svg" alt="" />
+            <span class="nav-label">Patients</span>
+          </a>
 
-          <!-- Bottom Links -->
-          <div class="sidebar-bottom">
-            <a class="nav-item" href="#">
-              <img
-                class="nav-icon"
-                src="../../assets/icons/question-circle.svg"
-                alt=""
-              />
-              <span class="nav-label">Help center</span>
-            </a>
+          <a class="nav-item" href="../DoctorPages/doctors.html">
+            <img class="nav-icon" src="../../assets/icons/stethoscope.svg" alt="" />
+            <span class="nav-label">Doctors</span>
+          </a>
+        </nav>
 
-            <a class="nav-item" href="#">
-              <img
-                class="nav-icon"
-                src="../../assets/icons/tabler_logout.svg"
-                alt=""
-              />
-              <span class="nav-label">Log out</span>
-            </a>
+        <!-- Bottom Links -->
+        <div class="sidebar-bottom">
+          <a class="nav-item" href="#">
+            <img class="nav-icon" src="../../assets/icons/question-circle.svg" alt="" />
+            <span class="nav-label">Help center</span>
+          </a>
+
+          <a class="nav-item" href="#">
+            <img class="nav-icon" src="../../assets/icons/tabler_logout.svg" alt="" />
+            <span class="nav-label">Log out</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+      <!-- HEADER -->
+      <header class="topbar">
+        <div class="topbar-left"></div>
+
+        <div class="topbar-right">
+          <button class="icon-button" aria-label="Notifications">
+            <img src="../../assets/icons/alert.svg" alt="Notifications" />
+          </button>
+
+          <div class="user-chip">
+            <div class="avatar-circle">
+              <img src="../../assets/icons/person.svg" alt="User profile" class="avatar-icon" />
+            </div>
+            <div class="user-meta">
+              <span class="user-name">Selena Doe</span>
+              <span class="user-role">Front Desk Staff</span>
+            </div>
           </div>
         </div>
-      </aside>
+      </header>
 
-      <!-- MAIN CONTENT -->
-      <div class="main">
-        <!-- HEADER -->
-        <header class="topbar">
-          <div class="topbar-left"></div>
+      <!-- PAGE -->
+      <!-- THIS IS THE ONLY PART THAT SHOULD BE CHANGING IN MOST CASES!!! -->
 
-          <div class="topbar-right">
-            <button class="icon-button" aria-label="Notifications">
-              <img src="../../assets/icons/alert.svg" alt="Notifications" />
-            </button>
-
-            <div class="user-chip">
-              <div class="avatar-circle">
-                <img
-                  src="../../assets/icons/person.svg"
-                  alt="User profile"
-                  class="avatar-icon"
-                />
-              </div>
-              <div class="user-meta">
-                <span class="user-name">Selena Doe</span>
-                <span class="user-role">Front Desk Staff</span>
-              </div>
-            </div>
+      <main class="page">
+        <header class="page-header">
+          <h1 class="page-title">Patients</h1>
+          <div style="margin-left:auto;">
+            <button class="btn btn--primary">Add new patient</button>
           </div>
         </header>
 
-        <!-- PAGE -->
-        <!-- THIS IS THE ONLY PART THAT SHOULD BE CHANGING IN MOST CASES!!! -->
-        
-        <main class="page">
-          <header class="page-header">
-            <h1 class="page-title">Patients</h1>
-            <div style="margin-left:auto;">
-              <button class="btn btn--primary">Add new patient</button>
-            </div>
-          </header>
-
-          <section class="page-body">
-            <!-- content to come -->
-             <div class="search-box">
+        <section class="page-body">
+          <!-- content to come -->
+          <div class="search-box">
             <div class="search-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="search-icon">
                 <path
                   d="M3.75 8.33333C3.75 5.80202 5.80202 3.75 8.33333 3.75C10.8647 3.75 12.9167 5.80202 12.9167 8.33333C12.9167 10.8647 10.8647 12.9167 8.33333 12.9167C5.80202 12.9167 3.75 10.8647 3.75 8.33333ZM8.33333 2.5C5.11168 2.5 2.5 5.11168 2.5 8.33333C2.5 11.555 5.11168 14.1667 8.33333 14.1667C9.719 14.1667 10.9918 13.6835 11.9926 12.8765L16.4331 17.3169C16.6772 17.561 17.0728 17.561 17.3169 17.3169C17.561 17.0728 17.561 16.6772 17.3169 16.4331L12.8765 11.9926C13.6835 10.9918 14.1667 9.719 14.1667 8.33333C14.1667 5.11168 11.555 2.5 8.33333 2.5Z" />
               </svg>
-              <input type="text" id="myInput" onkeyup="myFunction()" class="search-input" placeholder="Search patients..." /> <!-- Search bar -->
+              <input type="text" id="myInput" class="search-input" placeholder="Search patients..." />
             </div>
-            <button class="btn btn--sec">Search</button> <!-- change search input (onkeyup) to implement search button --> 
+            <button class="btn btn--sec" id="searchButton">Search</button>
+
+            <!-- change search input (onkeyup) to implement search button -->
             <button class="filter-btn">
               Filter
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40  " class="filter-btn-icon"> <!-- Filter icon, messing up - fix later -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40  " class="filter-btn-icon">
+                <!-- Filter icon, messing up - fix later -->
                 <path
                   d="M11.25 13.3333C11.5952 13.3333 11.875 13.6132 11.875 13.9583C11.875 14.3035 11.5952 14.5833 11.25 14.5833H8.75C8.40483 14.5833 8.125 14.3035 8.125 13.9583C8.125 13.6132 8.40483 13.3333 8.75 13.3333H11.25ZM13.75 9.16667C14.0952 9.16667 14.375 9.4465 14.375 9.79167C14.375 10.1368 14.0952 10.4167 13.75 10.4167H6.25C5.90482 10.4167 5.625 10.1368 5.625 9.79167C5.625 9.4465 5.90482 9.16667 6.25 9.16667H13.75ZM16.25 5C16.5952 5 16.875 5.27983 16.875 5.625C16.875 5.97017 16.5952 6.25 16.25 6.25H3.75C3.40483 6.25 3.125 5.97017 3.125 5.625C3.125 5.27983 3.40483 5 3.75 5H16.25Z" />
               </svg>
             </button>
-           </div>
-            <table id="myTable"> <!-- Table of patients/ Need to shift this into js -->
-              <thead>
-                <tr>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Date of Birth</th>
-                  <th>Phone Number</th>
-                  <th>Gender</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Janet</td>
-                  <td>Dean</td>
-                  <td>12/08/1985</td>
-                  <td>234-567-8901</td>
-                  <td>Female</td>
-                </tr>
-                <tr>
-                  <td>Michael</td>
-                  <td>Smith</td>
-                  <td>23/04/1990</td>
-                  <td>987-654-3210</td>
-                  <td>Male</td>
-                </tr>
-                <tr>
-                  <td>Linda</td>
-                  <td>Johnson</td>
-                  <td>15/11/1978</td>
-                  <td>456-789-0123</td>
-                  <td>Female</td>
-                </tr>
-                <tr>
-                  <td>James</td>
-                  <td>Williams</td>
-                  <td>30/06/1982</td>
-                  <td>321-654-0987</td>
-                  <td>Male</td>
-                </tr> 
-                <tr>
-                  <td>Patricia</td>
-                  <td>Brown</td>
-                  <td>05/02/1995</td>
-                  <td>654-321-7890</td>
-                  <td>Female</td>
-                </tr>
-                <tr>
-                  <td>Robert</td>
-                  <td>Jones</td>
-                  <td>19/09/1988</td>
-                  <td>789-012-3456</td>
-                  <td>Male</td>
-                </tr>
-                <tr>
-                  <td>Barbara</td>
-                  <td>Miller</td>
-                  <td>27/12/1975</td>
-                  <td>012-345-6789</td>
-                  <td>Female</td>
-                </tr> 
-                <tr>
-                  <td>William</td>
-                  <td>Davis</td>
-                  <td>14/03/1992</td>
-                  <td>345-678-9012</td>   
-                  <td>Male</td>
-                </tr> 
-                <tr>
-                  <td>Elizabeth</td>
-                  <td>Garcia</td>
-                  <td>08/07/1980</td>
-                  <td>678-901-2345</td> 
-                  <td>Female </td>
-                </tr>
-                <tr>
-                  <td>David</td>
-                  <td>Martinez</td>
-                  <td>22/10/1983</td>
-                  <td>901-234-5678</td> 
-                  <td>Male</td>
-                </tr> 
+          </div>
+          <table id="myTable"> <!-- Table of patients/ Need to shift this into js -->
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>Phone Number</th>
+                <th>Gender</th>
+              </tr>
+            </thead>
+            <tbody id="patientsTableBody">
+              <!-- Rows will be injected by JS -->
+            </tbody>
+        </section>
+        <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"> template for search bar -->
+        </table>
 
-
-              </tbody>
-           </section>
-           <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"> template for search bar -->
-          </table>
-      
-        </main>
-        <!-- END OF PAGE -->
-      </div>
+      </main>
+      <!-- END OF PAGE -->
     </div>
+  </div>
 
-    <script src="patientpage.js"></script>
+  <script src="../../database/patients-database.js"></script>
+  <script src="patientpage.js"></script>
 
-    <script src="../layout.js"></script>
-  </body>
+  <script src="../layout.js"></script>
+</body>
+
 </html>
