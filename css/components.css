@@ -253,10 +253,9 @@
 .tab-panel {
   display: none;
   flex-direction: column;
-  align-items: flex-start;
   gap: 16px;
   padding-right: 12px;
-  flex: 1 0 0;
+  height: 100%;
   max-height: var(--tab-max-height);
   overflow-y: auto;
 }
@@ -268,6 +267,13 @@
 .appointments-section {
   flex: 1;
   min-width: 0;
+}
+
+.appointments-div {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .appointment-card {
