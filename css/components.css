@@ -562,6 +562,62 @@
   background: var(--success-100);
 }
 
+
+/* ===============================================
+   4. Patient'S  Billing  PAGE (make payment page)
+   ============================================= */
+  /* used model-box --- https://www.w3schools.com/howto/howto_css_modals.asp  */
+
+.modal {
+  display: flex; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.5); 
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #ffffff;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 600px;
+  height:auto;
+}
+
+.close{
+  float: right;
+  font-size: 26px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-align{
+  display: flex;
+  margin-bottom: 6px;
+  margin-left: 6px;
+  justify-content:flex-end;
+}
+
+.model-table table{
+  width: 100%;
+  border: #888;
+  border: 1px solid #888;
+}
+
+.model-table thead{
+  background-color: var(--primary-600);
+}
+
+.model-table table{
+  text-align: center;
+}
+
 .feedback-popup {
   position: fixed;
   right: 24px;
@@ -778,3 +834,6 @@
 .confirm-modal-btn--primary:hover {
   background: var(--danger-300);
 }
+
+
+

@@ -139,9 +139,7 @@
                 </a>
 
                 <div class="inner-sidebar-bottom">
-                  <button class="btn btn--small btn--danger-txt-red">
-                    Delete Account
-                  </button>
+                  <button class="btn btn--small btn--danger-txt-red">Delete Account</button>
                 </div>
               </nav>
             </aside>
@@ -184,7 +182,6 @@
               <!-- Table -->
               <div class="inv-tbl-contain"><!--invoice table container-->
                 <table class="inv-tbl"><!--invoice table-->
-                  
                   <thead>
                     <tr>
                       <th></th><!--table column heading-->
@@ -199,6 +196,7 @@
                   </thead>
 
                   <tbody>
+
                     <tr class="row-select">
                       <td><input type="checkbox" checked></td>
                       <td>103258</td>
@@ -256,6 +254,7 @@
                   </tbody>
                 </table>
 
+
               </div>
             </div>          
           </section>
@@ -266,6 +265,45 @@
     </div>
 
     <script src="../layout.js"></script>
+
+    <!--using the model box  https://www.w3schools.com/howto/howto_css_modals.asp-->
+  <!-- The Modal Box  -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3><b>Janet Dean - Billing Summary</b></h3>
+        <p>Insurance Coverage: NA</p>
+        <div class="model-table"><!--Initilizing the table-->
+          <br>       
+          <table>
+            <thead>
+              <tr>
+                <th>Outstanding Charges</th> <!--model tabel heading-->
+                <th>Charges</th>
+                <th>Type</th>
+                <th>Due</th>
+              </tr>
+            </thead>
+            
+            <tbody> <!--modeltable body-->
+              <tr>
+              <td>Today</td>
+              <td>Sick Note</td>
+              <td>$30</td>
+              <td>Due</td>
+              </tr>
+            </tbody>
+            
+          </table>
+        </div>  
+        <br>
+        <p>Total Amount to  pay: $30 </p>
+        <div class="btn-align">  <button class="process-btn"><a herf="/">Make Payment</a></button> </div><!--Make payment button-->
+
+      
+      </div>
+    </div>
   </body>
-  
 </html>
