@@ -2,7 +2,7 @@
 /* PAGE CENTERING */
 body {
   background: #f3f3f3;
-  font-family: Arial, sans-serif;
+  font-family: "Figtree", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,7 +60,7 @@ form label {
 
 input {
   width: 100%;
-  padding: 12px 3px;
+  padding: 12px 12px;
   margin: 6px 0 26px;  /* ⬅️ bigger space before next label */
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -72,7 +72,7 @@ input {
 }
 
 input::placeholder {
-  padding :5px;
+  text-indent: 0px; 
   color: #bcbcbc;   /* light grey */
   opacity: 1;       /* ensures browsers don't fade it */
 }
