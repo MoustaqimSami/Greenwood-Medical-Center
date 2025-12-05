@@ -7,8 +7,14 @@
 
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/template.css" />
-    <link rel="stylesheet" href="../../css/appointmentStyles/doctorsSchedule.css" />
-    <link rel="stylesheet" href="../../css/appointmentStyles/appointmentPopup.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/appointmentStyles/doctorsSchedule.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../css/appointmentStyles/appointmentPopup.css"
+    />
   </head>
 
   <body>
@@ -126,6 +132,12 @@
 
         <!-- PAGE -->
         <main class="page">
+          <div
+            id="appointment-status-stub"
+            class="appointment-status-stub"
+            aria-live="polite"
+          ></div>
+
           <header class="page-header">
             <h1 class="page-title">Doctor's Schedule</h1>
           </header>
@@ -162,7 +174,10 @@
                   </p>
                 </div>
 
-                <button class="change-doctor-btn">
+                <button
+                  class="change-doctor-btn"
+                  onclick="window.location.href='../DoctorPages/doctors.html'"
+                >
                   <img
                     src="../../assets/icons/edit.svg"
                     alt=""
@@ -621,16 +636,17 @@
       </div>
     </div>
 
-    <script src="../../database/appointmentsDatabase.js"></script>
-    <script src="../../database/patientsDatabase.js"></script>
-    <script src="../../database/doctorsDatabase.js"></script>
+    <script src="../../database/appointments-database.js"></script>
+    <script src="../../database/patients-database.js"></script>
+    <script src="../../database/doctors-database.js"></script>
+    <script src="../../database/staff-database.js"></script>
 
-    <script src="./scheduleLogic/doctorsSchedule.js"></script>
-    <script src="./scheduleLogic/weekSelector.js"></script>
-    <script src="./scheduleLogic/appointmentModal.doctorSearch.js"></script>
-    <script src="./scheduleLogic/appointmentModal.patientSearch.js"></script>
-    <script src="./scheduleLogic/appointmentModal.core.js"></script>
-    <script src="./scheduleLogic/appointmentModal.buttons.js"></script>
+    <script src="./scheduleLogic/doctors-schedule.js"></script>
+    <script src="./scheduleLogic/week-selector.js"></script>
+    <script src="./scheduleLogic/appointmentModal-doctorSearch.js"></script>
+    <script src="./scheduleLogic/appointmentModal-patientSearch.js"></script>
+    <script src="./scheduleLogic/appointmentModal-core.js"></script>
+    <script src="./scheduleLogic/appointmentModal-buttons.js"></script>
 
     <script src="../layout.js"></script>
   </body>

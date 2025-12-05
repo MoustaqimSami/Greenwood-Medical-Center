@@ -13,24 +13,16 @@
 
       doctorPanel.classList.remove("appointment-profile--generic");
       doctorPanel.innerHTML = `
-        <div class="appointment-avatar">
-          <img src="../../assets/icons/person-black.svg" 
-               alt="" class="appointment-avatar-icon">
-        </div>
-        <div class="appointment-profile-name">${doctor.name}</div>
-        <div class="appointment-profile-detail">Specialty: ${doctor.specialty}</div>
-        <div class="appointment-profile-detail">Age: ${doctor.age}</div>
-        <div class="appointment-profile-detail">Gender: ${doctor.gender}</div>
-        <div class="appointment-profile-detail">Phone: ${doctor.phone}</div>
-        <div class="appointment-profile-action">
-          <button class="appointment-profile-button" type="button">
-            <img src="../../assets/icons/edit.svg"
-                 alt=""
-                 class="appointment-profile-edit-icon" />
-            <span>Change Doctor</span>
-          </button>
-        </div>
-      `;
+    <div class="appointment-avatar">
+      <img src="../../assets/icons/person-black.svg" 
+           alt="" class="appointment-avatar-icon">
+    </div>
+    <div class="appointment-profile-name">${doctor.name}</div>
+    <div class="appointment-profile-detail">Specialty: ${doctor.specialty}</div>
+    <div class="appointment-profile-detail">Age: ${doctor.age}</div>
+    <div class="appointment-profile-detail">Gender: ${doctor.gender}</div>
+    <div class="appointment-profile-detail">Phone: ${doctor.phone}</div>
+  `;
     }
 
     function renderGenericDoctorPanel() {
@@ -129,9 +121,7 @@
       clearDoctorResults,
       getActiveDoctor() {
         const activeId = window.doctorsDatabase?.getActiveDoctorId?.();
-        return activeId
-          ? window.doctorsDatabase.getDoctorById(activeId)
-          : null;
+        return activeId ? window.doctorsDatabase.getDoctorById(activeId) : null;
       },
     };
   });

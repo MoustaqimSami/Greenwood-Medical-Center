@@ -418,3 +418,47 @@
   border: 1px solid #d03b3b;
   color: #7a1616;
 }
+
+.appointment-status-stub {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 480px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 15px;
+  line-height: 1.4;
+  background: var(--neutral-50);
+  color: var(--neutral-800);
+  border: 1px solid var(--neutral-300);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 250;
+  transition: opacity 0.2s ease;
+}
+
+.appointment-status-stub.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.appointment-status-stub--info {
+  border-color: var(--neutral-400);
+  background: var(--neutral-50);
+  color: var(--neutral-800);
+}
+
+.appointment-status-stub--success {
+  border-color: var(--primary-400);
+  background: var(--primary-50);
+  color: var(--primary-800);
+}
+
+.appointment-status-stub--danger {
+  border-color: var(--danger-400);
+  background: #fef2f2;
+  color: #b91c1c;
+}
+

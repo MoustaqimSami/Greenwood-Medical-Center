@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../../css/style.css" />
   <link rel="stylesheet" href="../../css/template.css" />
   <link rel="stylesheet" href="../../css/components.css" />
+
+  <link rel="stylesheet" href="../../css/appointmentStyles/appointmentPopup.css" />
 </head>
 
 <body>
@@ -96,22 +98,22 @@
           <h1 class="page-title">Good morning, Selena</h1>
           <div class="week-view">
             <img src="/assets/icons/calendar-empty.svg" width="20" height="20">
-            <p class="body-md-regular">20 Oct - 27 Oct 2025</p>
+            <p class="body-md-regular" id="week-range-label">20 Oct - 27 Oct 2025</p>
           </div>
         </header>
 
         <!-- Page Content (Shortcuts & Calendar) -->
         <div class="home-shortcuts-box">
           <!-- Quick Actions: Book Appointment and Add Patient -->
-          <div class="quick-action">
-            <div class="quick-action-iconbox quick-action-iconbox--orange">
-              <img src="/assets/icons/calendar-add-n50.svg">
-            </div>
-            <div class="quick-action-text">
-              <p class="body-md-medium" style="color: var(--secondary-500);">Book Appointment</p>
-              <img src="/assets/icons/chevron-right.svg" width="20" height="20">
-            </div>
-          </div>
+<div class="quick-action" id="dashboard-book-appointment">
+  <div class="quick-action-iconbox quick-action-iconbox--orange">
+    <img src="/assets/icons/calendar-add-n50.svg">
+  </div>
+  <div class="quick-action-text">
+    <p class="body-md-medium" style="color: var(--secondary-500);">Book Appointment</p>
+    <img src="/assets/icons/chevron-right.svg" width="20" height="20">
+  </div>
+</div>
           <div class="quick-action">
             <div class="quick-action-iconbox quick-action-iconbox--teal">
               <img src="/assets/icons/person-add-fill-n50.svg">
@@ -124,45 +126,18 @@
           <!-- Weekly Calendar -->
           <div class="week-calendar">
             <div class="week-calendar-header">
-              <p class="body-xl-semibold">October, 2025</p>
+              <p class="body-xl-semibold" id="week-month-label">October, 2025</p>
               <div class="flexrow-gap8">
-                <div class="week-nav-btn">
-                  <img src="/assets/icons/chevron-left.svg">
+                <div class="week-nav-btn" id="week-prev-btn">
+                  <img src="/assets/icons/chevron-left.svg" />
                 </div>
-                <div class="week-nav-btn">
-                  <img src="/assets/icons/chevron-right.svg">
+                <div class="week-nav-btn" id="week-next-btn">
+                  <img src="/assets/icons/chevron-right.svg" />
                 </div>
               </div>
             </div>
-            <div class="flexrow-gap8">
-              <div class="week-day">
-                <div class="day-label day-label--today"> Mon </div>
-                <div class="day-number day-number--today"> 21 </div>
-              </div>
-              <div class="week-day">
-                <div class="day-label"> Tue </div>
-                <div class="day-number"> 22 </div>
-              </div>
-              <div class="week-day">
-                <div class="day-label"> Wed </div>
-                <div class="day-number"> 23 </div>
-              </div>
-              <div class="week-day">
-                <div class="day-label"> Thu </div>
-                <div class="day-number"> 24 </div>
-              </div>
-              <div class="week-day">
-                <div class="day-label"> Fri </div>
-                <div class="day-number"> 25 </div>
-              </div>
-              <div class="week-day">
-                <div class="day-label"> Sat </div>
-                <div class="day-number"> 26 </div>
-              </div>
-              <div class="week-day">
-                <div class="day-label"> Sun </div>
-                <div class="day-number"> 27 </div>
-              </div>
+            <div class="flexrow-gap8 week-days-container" id="week-days-container">
+              <!-- JS will render -->
             </div>
           </div>
         </div>
@@ -172,395 +147,70 @@
           <section class="page-body page-body--section">
             <div class="flexcol-gap12">
               <h class="body-xl-semibold"> Appointments </h>
-              <div class="tabs">
-                <button class="tab tab--active">Upcoming</button>
-                <button class="tab">Completed</button>
+              <div class="tabs" id="appointments-tabs">
+                <button class="tab tab--active" data-tab="upcoming">Upcoming</button>
+                <button class="tab" data-tab="completed">Completed</button>
               </div>
             </div>
             <div>
-              <div class="tab-panel tab-panel--active custom-scroll">
-                <div class="appointment-card">
-                  <div class="flexrow-gap12" style="align-items: center;">
-                    <div class="avatar">JD</div>
-                    <div class="appointment-card-info">
-                      <p class="appointment-card-patient">Janet Dean</p>
-                      <p class="appointment-card-doctor">Dr. N. James</p>
-                      <p class="appointment-card-time">9:00 AM</p>
-                    </div>
-                  </div>
-                  <div class="flexrow-gap4">
-                    <button class="btn btn--small btn--txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M3.02024 8.64649C2.82498 8.45122 2.50839 8.45122 2.31313 8.64649C2.11787 8.84175 2.11787 9.15829 2.31313 9.35355L5.31313 12.3536C5.50839 12.5488 5.82498 12.5488 6.02024 12.3536L13.3536 5.02024C13.5488 4.82498 13.5488 4.50839 13.3536 4.31313C13.1583 4.11787 12.8418 4.11787 12.6465 4.31313L5.66669 11.2929L3.02024 8.64649Z" />
-                      </svg>
-                      Check-in
-                    </button>
-                    <button class="btn btn--small btn--danger-txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M2.58902 2.71602L2.64602 2.64602C2.72888 2.56335 2.83811 2.51236 2.9547 2.50194C3.07128 2.49153 3.18782 2.52234 3.28402 2.58902L3.35402 2.64602L8.00002 7.29302L12.646 2.64602C12.7399 2.55213 12.8672 2.49939 13 2.49939C13.1328 2.49939 13.2601 2.55213 13.354 2.64602C13.4479 2.73991 13.5007 2.86725 13.5007 3.00002C13.5007 3.1328 13.4479 3.26013 13.354 3.35402L8.70702 8.00002L13.354 12.646C13.4367 12.7289 13.4877 12.8381 13.4981 12.9547C13.5085 13.0713 13.4777 13.1878 13.411 13.284L13.354 13.354C13.2712 13.4367 13.1619 13.4877 13.0453 13.4981C12.9288 13.5085 12.8122 13.4777 12.716 13.411L12.646 13.354L8.00002 8.70702L3.35402 13.354C3.26013 13.4479 3.1328 13.5007 3.00002 13.5007C2.86725 13.5007 2.73991 13.4479 2.64602 13.354C2.55213 13.2601 2.49939 13.1328 2.49939 13C2.49939 12.8672 2.55213 12.7399 2.64602 12.646L7.29302 8.00002L2.64602 3.35402C2.56335 3.27117 2.51236 3.16193 2.50194 3.04535C2.49153 2.92876 2.52234 2.81222 2.58902 2.71602Z" />
-                      </svg>
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-                <div class="appointment-card">
-                  <div class="flexrow-gap12" style="align-items: center;">
-                    <div class="avatar">RW</div>
-                    <div class="appointment-card-info">
-                      <p class="appointment-card-patient">Raila West</p>
-                      <p class="appointment-card-doctor">Dr. E. Ade</p>
-                      <p class="appointment-card-time">9:30 AM</p>
-                    </div>
-                  </div>
-                  <div class="flexrow-gap4">
-                    <button class="btn btn--small btn--txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M3.02024 8.64649C2.82498 8.45122 2.50839 8.45122 2.31313 8.64649C2.11787 8.84175 2.11787 9.15829 2.31313 9.35355L5.31313 12.3536C5.50839 12.5488 5.82498 12.5488 6.02024 12.3536L13.3536 5.02024C13.5488 4.82498 13.5488 4.50839 13.3536 4.31313C13.1583 4.11787 12.8418 4.11787 12.6465 4.31313L5.66669 11.2929L3.02024 8.64649Z" />
-                      </svg>
-                      Check-in
-                    </button>
-                    <button class="btn btn--small btn--danger-txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M2.58902 2.71602L2.64602 2.64602C2.72888 2.56335 2.83811 2.51236 2.9547 2.50194C3.07128 2.49153 3.18782 2.52234 3.28402 2.58902L3.35402 2.64602L8.00002 7.29302L12.646 2.64602C12.7399 2.55213 12.8672 2.49939 13 2.49939C13.1328 2.49939 13.2601 2.55213 13.354 2.64602C13.4479 2.73991 13.5007 2.86725 13.5007 3.00002C13.5007 3.1328 13.4479 3.26013 13.354 3.35402L8.70702 8.00002L13.354 12.646C13.4367 12.7289 13.4877 12.8381 13.4981 12.9547C13.5085 13.0713 13.4777 13.1878 13.411 13.284L13.354 13.354C13.2712 13.4367 13.1619 13.4877 13.0453 13.4981C12.9288 13.5085 12.8122 13.4777 12.716 13.411L12.646 13.354L8.00002 8.70702L3.35402 13.354C3.26013 13.4479 3.1328 13.5007 3.00002 13.5007C2.86725 13.5007 2.73991 13.4479 2.64602 13.354C2.55213 13.2601 2.49939 13.1328 2.49939 13C2.49939 12.8672 2.55213 12.7399 2.64602 12.646L7.29302 8.00002L2.64602 3.35402C2.56335 3.27117 2.51236 3.16193 2.50194 3.04535C2.49153 2.92876 2.52234 2.81222 2.58902 2.71602Z" />
-                      </svg>
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-                <div class="appointment-card">
-                  <div class="flexrow-gap12" style="align-items: center;">
-                    <div class="avatar">RW</div>
-                    <div class="appointment-card-info">
-                      <p class="appointment-card-patient">Raila West</p>
-                      <p class="appointment-card-doctor">Dr. E. Ade</p>
-                      <p class="appointment-card-time">9:30 AM</p>
-                    </div>
-                  </div>
-                  <div class="flexrow-gap4">
-                    <button class="btn btn--small btn--txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M3.02024 8.64649C2.82498 8.45122 2.50839 8.45122 2.31313 8.64649C2.11787 8.84175 2.11787 9.15829 2.31313 9.35355L5.31313 12.3536C5.50839 12.5488 5.82498 12.5488 6.02024 12.3536L13.3536 5.02024C13.5488 4.82498 13.5488 4.50839 13.3536 4.31313C13.1583 4.11787 12.8418 4.11787 12.6465 4.31313L5.66669 11.2929L3.02024 8.64649Z" />
-                      </svg>
-                      Check-in
-                    </button>
-                    <button class="btn btn--small btn--danger-txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M2.58902 2.71602L2.64602 2.64602C2.72888 2.56335 2.83811 2.51236 2.9547 2.50194C3.07128 2.49153 3.18782 2.52234 3.28402 2.58902L3.35402 2.64602L8.00002 7.29302L12.646 2.64602C12.7399 2.55213 12.8672 2.49939 13 2.49939C13.1328 2.49939 13.2601 2.55213 13.354 2.64602C13.4479 2.73991 13.5007 2.86725 13.5007 3.00002C13.5007 3.1328 13.4479 3.26013 13.354 3.35402L8.70702 8.00002L13.354 12.646C13.4367 12.7289 13.4877 12.8381 13.4981 12.9547C13.5085 13.0713 13.4777 13.1878 13.411 13.284L13.354 13.354C13.2712 13.4367 13.1619 13.4877 13.0453 13.4981C12.9288 13.5085 12.8122 13.4777 12.716 13.411L12.646 13.354L8.00002 8.70702L3.35402 13.354C3.26013 13.4479 3.1328 13.5007 3.00002 13.5007C2.86725 13.5007 2.73991 13.4479 2.64602 13.354C2.55213 13.2601 2.49939 13.1328 2.49939 13C2.49939 12.8672 2.55213 12.7399 2.64602 12.646L7.29302 8.00002L2.64602 3.35402C2.56335 3.27117 2.51236 3.16193 2.50194 3.04535C2.49153 2.92876 2.52234 2.81222 2.58902 2.71602Z" />
-                      </svg>
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-                <div class="appointment-card">
-                  <div class="flexrow-gap12" style="align-items: center;">
-                    <div class="avatar">RW</div>
-                    <div class="appointment-card-info">
-                      <p class="appointment-card-patient">Raila West</p>
-                      <p class="appointment-card-doctor">Dr. E. Ade</p>
-                      <p class="appointment-card-time">9:30 AM</p>
-                    </div>
-                  </div>
-                  <div class="flexrow-gap4">
-                    <button class="btn btn--small btn--txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M3.02024 8.64649C2.82498 8.45122 2.50839 8.45122 2.31313 8.64649C2.11787 8.84175 2.11787 9.15829 2.31313 9.35355L5.31313 12.3536C5.50839 12.5488 5.82498 12.5488 6.02024 12.3536L13.3536 5.02024C13.5488 4.82498 13.5488 4.50839 13.3536 4.31313C13.1583 4.11787 12.8418 4.11787 12.6465 4.31313L5.66669 11.2929L3.02024 8.64649Z" />
-                      </svg>
-                      Check-in
-                    </button>
-                    <button class="btn btn--small btn--danger-txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M2.58902 2.71602L2.64602 2.64602C2.72888 2.56335 2.83811 2.51236 2.9547 2.50194C3.07128 2.49153 3.18782 2.52234 3.28402 2.58902L3.35402 2.64602L8.00002 7.29302L12.646 2.64602C12.7399 2.55213 12.8672 2.49939 13 2.49939C13.1328 2.49939 13.2601 2.55213 13.354 2.64602C13.4479 2.73991 13.5007 2.86725 13.5007 3.00002C13.5007 3.1328 13.4479 3.26013 13.354 3.35402L8.70702 8.00002L13.354 12.646C13.4367 12.7289 13.4877 12.8381 13.4981 12.9547C13.5085 13.0713 13.4777 13.1878 13.411 13.284L13.354 13.354C13.2712 13.4367 13.1619 13.4877 13.0453 13.4981C12.9288 13.5085 12.8122 13.4777 12.716 13.411L12.646 13.354L8.00002 8.70702L3.35402 13.354C3.26013 13.4479 3.1328 13.5007 3.00002 13.5007C2.86725 13.5007 2.73991 13.4479 2.64602 13.354C2.55213 13.2601 2.49939 13.1328 2.49939 13C2.49939 12.8672 2.55213 12.7399 2.64602 12.646L7.29302 8.00002L2.64602 3.35402C2.56335 3.27117 2.51236 3.16193 2.50194 3.04535C2.49153 2.92876 2.52234 2.81222 2.58902 2.71602Z" />
-                      </svg>
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-                <div class="appointment-card">
-                  <div class="flexrow-gap12" style="align-items: center;">
-                    <div class="avatar">RW</div>
-                    <div class="appointment-card-info">
-                      <p class="appointment-card-patient">Raila West</p>
-                      <p class="appointment-card-doctor">Dr. E. Ade</p>
-                      <p class="appointment-card-time">9:30 AM</p>
-                    </div>
-                  </div>
-                  <div class="flexrow-gap4">
-                    <button class="btn btn--small btn--txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M3.02024 8.64649C2.82498 8.45122 2.50839 8.45122 2.31313 8.64649C2.11787 8.84175 2.11787 9.15829 2.31313 9.35355L5.31313 12.3536C5.50839 12.5488 5.82498 12.5488 6.02024 12.3536L13.3536 5.02024C13.5488 4.82498 13.5488 4.50839 13.3536 4.31313C13.1583 4.11787 12.8418 4.11787 12.6465 4.31313L5.66669 11.2929L3.02024 8.64649Z" />
-                      </svg>
-                      Check-in
-                    </button>
-                    <button class="btn btn--small btn--danger-txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M2.58902 2.71602L2.64602 2.64602C2.72888 2.56335 2.83811 2.51236 2.9547 2.50194C3.07128 2.49153 3.18782 2.52234 3.28402 2.58902L3.35402 2.64602L8.00002 7.29302L12.646 2.64602C12.7399 2.55213 12.8672 2.49939 13 2.49939C13.1328 2.49939 13.2601 2.55213 13.354 2.64602C13.4479 2.73991 13.5007 2.86725 13.5007 3.00002C13.5007 3.1328 13.4479 3.26013 13.354 3.35402L8.70702 8.00002L13.354 12.646C13.4367 12.7289 13.4877 12.8381 13.4981 12.9547C13.5085 13.0713 13.4777 13.1878 13.411 13.284L13.354 13.354C13.2712 13.4367 13.1619 13.4877 13.0453 13.4981C12.9288 13.5085 12.8122 13.4777 12.716 13.411L12.646 13.354L8.00002 8.70702L3.35402 13.354C3.26013 13.4479 3.1328 13.5007 3.00002 13.5007C2.86725 13.5007 2.73991 13.4479 2.64602 13.354C2.55213 13.2601 2.49939 13.1328 2.49939 13C2.49939 12.8672 2.55213 12.7399 2.64602 12.646L7.29302 8.00002L2.64602 3.35402C2.56335 3.27117 2.51236 3.16193 2.50194 3.04535C2.49153 2.92876 2.52234 2.81222 2.58902 2.71602Z" />
-                      </svg>
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-                <div class="appointment-card">
-                  <div class="flexrow-gap12" style="align-items: center;">
-                    <div class="avatar">RW</div>
-                    <div class="appointment-card-info">
-                      <p class="appointment-card-patient">Raila West</p>
-                      <p class="appointment-card-doctor">Dr. E. Ade</p>
-                      <p class="appointment-card-time">9:30 AM</p>
-                    </div>
-                  </div>
-                  <div class="flexrow-gap4">
-                    <button class="btn btn--small btn--txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M3.02024 8.64649C2.82498 8.45122 2.50839 8.45122 2.31313 8.64649C2.11787 8.84175 2.11787 9.15829 2.31313 9.35355L5.31313 12.3536C5.50839 12.5488 5.82498 12.5488 6.02024 12.3536L13.3536 5.02024C13.5488 4.82498 13.5488 4.50839 13.3536 4.31313C13.1583 4.11787 12.8418 4.11787 12.6465 4.31313L5.66669 11.2929L3.02024 8.64649Z" />
-                      </svg>
-                      Check-in
-                    </button>
-                    <button class="btn btn--small btn--danger-txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M2.58902 2.71602L2.64602 2.64602C2.72888 2.56335 2.83811 2.51236 2.9547 2.50194C3.07128 2.49153 3.18782 2.52234 3.28402 2.58902L3.35402 2.64602L8.00002 7.29302L12.646 2.64602C12.7399 2.55213 12.8672 2.49939 13 2.49939C13.1328 2.49939 13.2601 2.55213 13.354 2.64602C13.4479 2.73991 13.5007 2.86725 13.5007 3.00002C13.5007 3.1328 13.4479 3.26013 13.354 3.35402L8.70702 8.00002L13.354 12.646C13.4367 12.7289 13.4877 12.8381 13.4981 12.9547C13.5085 13.0713 13.4777 13.1878 13.411 13.284L13.354 13.354C13.2712 13.4367 13.1619 13.4877 13.0453 13.4981C12.9288 13.5085 12.8122 13.4777 12.716 13.411L12.646 13.354L8.00002 8.70702L3.35402 13.354C3.26013 13.4479 3.1328 13.5007 3.00002 13.5007C2.86725 13.5007 2.73991 13.4479 2.64602 13.354C2.55213 13.2601 2.49939 13.1328 2.49939 13C2.49939 12.8672 2.55213 12.7399 2.64602 12.646L7.29302 8.00002L2.64602 3.35402C2.56335 3.27117 2.51236 3.16193 2.50194 3.04535C2.49153 2.92876 2.52234 2.81222 2.58902 2.71602Z" />
-                      </svg>
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-                <div class="appointment-card">
-                  <div class="flexrow-gap12" style="align-items: center;">
-                    <div class="avatar">RW</div>
-                    <div class="appointment-card-info">
-                      <p class="appointment-card-patient">Raila West</p>
-                      <p class="appointment-card-doctor">Dr. E. Ade</p>
-                      <p class="appointment-card-time">9:30 AM</p>
-                    </div>
-                  </div>
-                  <div class="flexrow-gap4">
-                    <button class="btn btn--small btn--txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M3.02024 8.64649C2.82498 8.45122 2.50839 8.45122 2.31313 8.64649C2.11787 8.84175 2.11787 9.15829 2.31313 9.35355L5.31313 12.3536C5.50839 12.5488 5.82498 12.5488 6.02024 12.3536L13.3536 5.02024C13.5488 4.82498 13.5488 4.50839 13.3536 4.31313C13.1583 4.11787 12.8418 4.11787 12.6465 4.31313L5.66669 11.2929L3.02024 8.64649Z" />
-                      </svg>
-                      Check-in
-                    </button>
-                    <button class="btn btn--small btn--danger-txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M2.58902 2.71602L2.64602 2.64602C2.72888 2.56335 2.83811 2.51236 2.9547 2.50194C3.07128 2.49153 3.18782 2.52234 3.28402 2.58902L3.35402 2.64602L8.00002 7.29302L12.646 2.64602C12.7399 2.55213 12.8672 2.49939 13 2.49939C13.1328 2.49939 13.2601 2.55213 13.354 2.64602C13.4479 2.73991 13.5007 2.86725 13.5007 3.00002C13.5007 3.1328 13.4479 3.26013 13.354 3.35402L8.70702 8.00002L13.354 12.646C13.4367 12.7289 13.4877 12.8381 13.4981 12.9547C13.5085 13.0713 13.4777 13.1878 13.411 13.284L13.354 13.354C13.2712 13.4367 13.1619 13.4877 13.0453 13.4981C12.9288 13.5085 12.8122 13.4777 12.716 13.411L12.646 13.354L8.00002 8.70702L3.35402 13.354C3.26013 13.4479 3.1328 13.5007 3.00002 13.5007C2.86725 13.5007 2.73991 13.4479 2.64602 13.354C2.55213 13.2601 2.49939 13.1328 2.49939 13C2.49939 12.8672 2.55213 12.7399 2.64602 12.646L7.29302 8.00002L2.64602 3.35402C2.56335 3.27117 2.51236 3.16193 2.50194 3.04535C2.49153 2.92876 2.52234 2.81222 2.58902 2.71602Z" />
-                      </svg>
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-                <div class="appointment-card">
-                  <div class="flexrow-gap12" style="align-items: center;">
-                    <div class="avatar">RW</div>
-                    <div class="appointment-card-info">
-                      <p class="appointment-card-patient">Raila West</p>
-                      <p class="appointment-card-doctor">Dr. E. Ade</p>
-                      <p class="appointment-card-time">9:30 AM</p>
-                    </div>
-                  </div>
-                  <div class="flexrow-gap4">
-                    <button class="btn btn--small btn--txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M3.02024 8.64649C2.82498 8.45122 2.50839 8.45122 2.31313 8.64649C2.11787 8.84175 2.11787 9.15829 2.31313 9.35355L5.31313 12.3536C5.50839 12.5488 5.82498 12.5488 6.02024 12.3536L13.3536 5.02024C13.5488 4.82498 13.5488 4.50839 13.3536 4.31313C13.1583 4.11787 12.8418 4.11787 12.6465 4.31313L5.66669 11.2929L3.02024 8.64649Z" />
-                      </svg>
-                      Check-in
-                    </button>
-                    <button class="btn btn--small btn--danger-txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M2.58902 2.71602L2.64602 2.64602C2.72888 2.56335 2.83811 2.51236 2.9547 2.50194C3.07128 2.49153 3.18782 2.52234 3.28402 2.58902L3.35402 2.64602L8.00002 7.29302L12.646 2.64602C12.7399 2.55213 12.8672 2.49939 13 2.49939C13.1328 2.49939 13.2601 2.55213 13.354 2.64602C13.4479 2.73991 13.5007 2.86725 13.5007 3.00002C13.5007 3.1328 13.4479 3.26013 13.354 3.35402L8.70702 8.00002L13.354 12.646C13.4367 12.7289 13.4877 12.8381 13.4981 12.9547C13.5085 13.0713 13.4777 13.1878 13.411 13.284L13.354 13.354C13.2712 13.4367 13.1619 13.4877 13.0453 13.4981C12.9288 13.5085 12.8122 13.4777 12.716 13.411L12.646 13.354L8.00002 8.70702L3.35402 13.354C3.26013 13.4479 3.1328 13.5007 3.00002 13.5007C2.86725 13.5007 2.73991 13.4479 2.64602 13.354C2.55213 13.2601 2.49939 13.1328 2.49939 13C2.49939 12.8672 2.55213 12.7399 2.64602 12.646L7.29302 8.00002L2.64602 3.35402C2.56335 3.27117 2.51236 3.16193 2.50194 3.04535C2.49153 2.92876 2.52234 2.81222 2.58902 2.71602Z" />
-                      </svg>
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-                <div class="appointment-card">
-                  <div class="flexrow-gap12" style="align-items: center;">
-                    <div class="avatar">RW</div>
-                    <div class="appointment-card-info">
-                      <p class="appointment-card-patient">Raila West</p>
-                      <p class="appointment-card-doctor">Dr. E. Ade</p>
-                      <p class="appointment-card-time">9:30 AM</p>
-                    </div>
-                  </div>
-                  <div class="flexrow-gap4">
-                    <button class="btn btn--small btn--txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M3.02024 8.64649C2.82498 8.45122 2.50839 8.45122 2.31313 8.64649C2.11787 8.84175 2.11787 9.15829 2.31313 9.35355L5.31313 12.3536C5.50839 12.5488 5.82498 12.5488 6.02024 12.3536L13.3536 5.02024C13.5488 4.82498 13.5488 4.50839 13.3536 4.31313C13.1583 4.11787 12.8418 4.11787 12.6465 4.31313L5.66669 11.2929L3.02024 8.64649Z" />
-                      </svg>
-                      Check-in
-                    </button>
-                    <button class="btn btn--small btn--danger-txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M2.58902 2.71602L2.64602 2.64602C2.72888 2.56335 2.83811 2.51236 2.9547 2.50194C3.07128 2.49153 3.18782 2.52234 3.28402 2.58902L3.35402 2.64602L8.00002 7.29302L12.646 2.64602C12.7399 2.55213 12.8672 2.49939 13 2.49939C13.1328 2.49939 13.2601 2.55213 13.354 2.64602C13.4479 2.73991 13.5007 2.86725 13.5007 3.00002C13.5007 3.1328 13.4479 3.26013 13.354 3.35402L8.70702 8.00002L13.354 12.646C13.4367 12.7289 13.4877 12.8381 13.4981 12.9547C13.5085 13.0713 13.4777 13.1878 13.411 13.284L13.354 13.354C13.2712 13.4367 13.1619 13.4877 13.0453 13.4981C12.9288 13.5085 12.8122 13.4777 12.716 13.411L12.646 13.354L8.00002 8.70702L3.35402 13.354C3.26013 13.4479 3.1328 13.5007 3.00002 13.5007C2.86725 13.5007 2.73991 13.4479 2.64602 13.354C2.55213 13.2601 2.49939 13.1328 2.49939 13C2.49939 12.8672 2.55213 12.7399 2.64602 12.646L7.29302 8.00002L2.64602 3.35402C2.56335 3.27117 2.51236 3.16193 2.50194 3.04535C2.49153 2.92876 2.52234 2.81222 2.58902 2.71602Z" />
-                      </svg>
-                      Cancel
-                    </button>
-                  </div>
-                </div>
+              <!-- Upcoming appointments -->
+              <div class="tab-panel tab-panel--active custom-scroll" id="upcoming-appointments-panel">
+                <!-- JS will render -->
               </div>
-              <div class="tab-panel">
-                <div class="appointment-card">
-                  <div class="flexrow-gap12" style="align-items: center;">
-                    <div class="avatar">JD</div>
-                    <div class="appointment-card-info">
-                      <p class="appointment-card-patient">Janet Dean</p>
-                      <p class="appointment-card-doctor">Dr. N. James</p>
-                      <p class="appointment-card-time">9:00 AM</p>
-                    </div>
-                  </div>
-                  <div class="flexrow-gap4">
-                    <button class="btn btn--small btn--sec-txt">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon btn-icon--small">
-                        <path
-                          d="M14 4.16667C14 2.97005 13.0299 2 11.8333 2H4.16667C2.97005 2 2 2.97005 2 4.16667V11.8333C2 13.0299 2.97005 14 4.16667 14H8V13.9881C7.69347 13.9437 7.40513 13.7783 7.2128 13.5051C7.10327 13.3495 7.01153 13.1785 6.9364 13H4.16667C3.52233 13 3 12.4777 3 11.8333V5.66667H13V9.01687C13.1561 9.17607 13.2573 9.36893 13.3038 9.5718C13.5236 9.4596 13.7671 9.42333 14 9.45707V4.16667ZM4.16667 3H11.8333C12.4777 3 13 3.52233 13 4.16667V4.66667H3V4.16667C3 3.52233 3.52233 3 4.16667 3ZM11.5202 8.4798C11.3249 8.28453 11.0084 8.28453 10.8131 8.4798C10.6179 8.67507 10.6179 8.9916 10.8131 9.18687L10.9595 9.33333H9.66667C8.378 9.33333 7.33333 10.378 7.33333 11.6667C7.33333 12.1655 7.49047 12.6292 7.75787 13.0089C7.91687 13.2347 8.2288 13.2888 8.45453 13.1298C8.68033 12.9709 8.73447 12.6589 8.57547 12.4331C8.42287 12.2165 8.33333 11.9527 8.33333 11.6667C8.33333 10.9303 8.93027 10.3333 9.66667 10.3333H10.9595L10.8131 10.4798C10.6179 10.6751 10.6179 10.9916 10.8131 11.1869C11.0084 11.3821 11.3249 11.3821 11.5202 11.1869L12.5202 10.1869C12.7155 9.9916 12.7155 9.67507 12.5202 9.4798L11.5202 8.4798ZM14.2416 10.3237C14.0825 10.098 13.7706 10.0439 13.5449 10.2031C13.3192 10.3621 13.2651 10.6741 13.4243 10.8998C13.577 11.1165 13.6667 11.3804 13.6667 11.6667C13.6667 12.4031 13.0697 13 12.3333 13H11.0405L11.1869 12.8535C11.3821 12.6583 11.3821 12.3417 11.1869 12.1465C10.9916 11.9512 10.6751 11.9512 10.4798 12.1465L9.4798 13.1465C9.28453 13.3417 9.28453 13.6583 9.4798 13.8535L10.4798 14.8535C10.6751 15.0488 10.9916 15.0488 11.1869 14.8535C11.3821 14.6583 11.3821 14.3417 11.1869 14.1465L11.0405 14H12.3333C13.622 14 14.6667 12.9553 14.6667 11.6667C14.6667 11.1675 14.5093 10.7036 14.2416 10.3237Z" />
-                      </svg>
-                      Follow-up
-                    </button>
-                  </div>
-                </div>
+
+              <!-- Completed appointments -->
+              <div class="tab-panel custom-scroll" id="completed-appointments-panel">
+                <!-- JS will render  -->
               </div>
             </div>
           </section>
+
           <!-- Page Content (Doctors Today Section) -->
           <section class="page-body page-body--section doctors-today-section">
             <h class="body-xl-semibold"> Doctors Today </h>
-            <div class="doctors-today-list custom-scroll">
-              <div class="availability-card">
-                <p class="availability-card-doctor">Dr. E. Ade</p>
-                <div class="availability-card-info">
-                  <div class="availability-card-tag availability-card-tag--available">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="availability-card-tag-icon">
-                      <path
-                        d="M0.5 3C0.5 1.61929 1.61929 0.5 3 0.5C4.3807 0.5 5.5 1.61929 5.5 3C5.5 4.3807 4.3807 5.5 3 5.5C1.61929 5.5 0.5 4.3807 0.5 3Z" />
-                    </svg>
-                    <p>Available now</p>
-                  </div>
-                  <div class="flexrow-gap2">
-                    <p class="availability-card-label">Available at: </p>
-                    <p class="availability-card-time">2:30 PM</p>
-                  </div>
-                </div>
-              </div>
-              <div class="availability-card">
-                <p class="availability-card-doctor">Dr. E. Ade</p>
-                <div class="availability-card-info">
-                  <div class="availability-card-tag availability-card-tag--available">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="availability-card-tag-icon">
-                      <path
-                        d="M0.5 3C0.5 1.61929 1.61929 0.5 3 0.5C4.3807 0.5 5.5 1.61929 5.5 3C5.5 4.3807 4.3807 5.5 3 5.5C1.61929 5.5 0.5 4.3807 0.5 3Z" />
-                    </svg>
-                    <p>Available now</p>
-                  </div>
-                  <div class="flexrow-gap2">
-                    <p class="availability-card-label">Available at: </p>
-                    <p class="availability-card-time">2:30 PM</p>
-                  </div>
-                </div>
-              </div>
-              <div class="availability-card">
-                <p class="availability-card-doctor">Dr. E. Ade</p>
-                <div class="availability-card-info">
-                  <div class="availability-card-tag availability-card-tag--available">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="availability-card-tag-icon">
-                      <path
-                        d="M0.5 3C0.5 1.61929 1.61929 0.5 3 0.5C4.3807 0.5 5.5 1.61929 5.5 3C5.5 4.3807 4.3807 5.5 3 5.5C1.61929 5.5 0.5 4.3807 0.5 3Z" />
-                    </svg>
-                    <p>Available now</p>
-                  </div>
-                  <div class="flexrow-gap2">
-                    <p class="availability-card-label">Available at: </p>
-                    <p class="availability-card-time">2:30 PM</p>
-                  </div>
-                </div>
-              </div>
-              <div class="availability-card">
-                <p class="availability-card-doctor">Dr. E. Ade</p>
-                <div class="availability-card-info">
-                  <div class="availability-card-tag availability-card-tag--available">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="availability-card-tag-icon">
-                      <path
-                        d="M0.5 3C0.5 1.61929 1.61929 0.5 3 0.5C4.3807 0.5 5.5 1.61929 5.5 3C5.5 4.3807 4.3807 5.5 3 5.5C1.61929 5.5 0.5 4.3807 0.5 3Z" />
-                    </svg>
-                    <p>Available now</p>
-                  </div>
-                  <div class="flexrow-gap2">
-                    <p class="availability-card-label">Available at: </p>
-                    <p class="availability-card-time">2:30 PM</p>
-                  </div>
-                </div>
-              </div>
-              <div class="availability-card">
-                <p class="availability-card-doctor">Dr. E. Ade</p>
-                <div class="availability-card-info">
-                  <div class="availability-card-tag availability-card-tag--available">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="availability-card-tag-icon">
-                      <path
-                        d="M0.5 3C0.5 1.61929 1.61929 0.5 3 0.5C4.3807 0.5 5.5 1.61929 5.5 3C5.5 4.3807 4.3807 5.5 3 5.5C1.61929 5.5 0.5 4.3807 0.5 3Z" />
-                    </svg>
-                    <p>Available now</p>
-                  </div>
-                  <div class="flexrow-gap2">
-                    <p class="availability-card-label">Available at: </p>
-                    <p class="availability-card-time">2:30 PM</p>
-                  </div>
-                </div>
-              </div>
-              <div class="availability-card">
-                <p class="availability-card-doctor">Dr. E. Ade</p>
-                <div class="availability-card-info">
-                  <div class="availability-card-tag availability-card-tag--available">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="availability-card-tag-icon">
-                      <path
-                        d="M0.5 3C0.5 1.61929 1.61929 0.5 3 0.5C4.3807 0.5 5.5 1.61929 5.5 3C5.5 4.3807 4.3807 5.5 3 5.5C1.61929 5.5 0.5 4.3807 0.5 3Z" />
-                    </svg>
-                    <p>Available now</p>
-                  </div>
-                  <div class="flexrow-gap2">
-                    <p class="availability-card-label">Available at: </p>
-                    <p class="availability-card-time">2:30 PM</p>
-                  </div>
-                </div>
-              </div>
-              <div class="availability-card">
-                <p class="availability-card-doctor">Dr. E. Ade</p>
-                <div class="availability-card-info">
-                  <div class="availability-card-tag availability-card-tag--available">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="availability-card-tag-icon">
-                      <path
-                        d="M0.5 3C0.5 1.61929 1.61929 0.5 3 0.5C4.3807 0.5 5.5 1.61929 5.5 3C5.5 4.3807 4.3807 5.5 3 5.5C1.61929 5.5 0.5 4.3807 0.5 3Z" />
-                    </svg>
-                    <p>Available now</p>
-                  </div>
-                  <div class="flexrow-gap2">
-                    <p class="availability-card-label">Available at: </p>
-                    <p class="availability-card-time">2:30 PM</p>
-                  </div>
-                </div>
-              </div>
+            <div class="doctors-today-list custom-scroll" id="doctors-today-list">
+              <!-- JS will render -->
             </div>
           </section>
+
         </div>
 
       </main>
     </div>
 
+    <script src="../../database/appointments-database.js"></script>
+    <script src="../../database/doctors-database.js"></script>
+    <script src="../../database/patients-database.js"></script>
+
+    <script src="./dashboardLogic/dashboard-namespace.js"></script>
+    <script src="./dashboardLogic/dashboard-helpers.js"></script>
+    <script src="./dashboardLogic/dashboard-ui.js"></script>
+    <script src="./dashboardLogic/dashboard-state.js"></script>
+    <script src="./dashboardLogic/dashboard-calendar.js"></script>
+    <script src="./dashboardLogic/dashboard-appointments.js"></script>
+    <script src="./dashboardLogic/dashboard-doctors.js"></script>
+    <script src="./dashboardLogic/dashboard-init.js"></script>
+
+    <script src="../DoctorPages/scheduleLogic/doctors-schedule.js"></script>
+    <script src="../DoctorPages/scheduleLogic/week-selector.js"></script>
+    <script src="../DoctorPages/scheduleLogic/appointmentModal-doctorSearch.js"></script>
+    <script src="../DoctorPages/scheduleLogic/appointmentModal-patientSearch.js"></script>
+    <script src="../DoctorPages/scheduleLogic/appointmentModal-core.js"></script>
+    <script src="../DoctorPages/scheduleLogic/appointmentModal-buttons.js"></script>
+
     <script src="../layout.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const bookShortcut = document.getElementById("dashboard-book-appointment");
+    if (!bookShortcut) return;
+
+    bookShortcut.addEventListener("click", function () {
+      // Adjust the path if your doctorsSchedule.html lives somewhere else
+      window.location.href = "../DoctorPages/doctorsSchedule.html?open=book";
+    });
+  });
+</script>
 </body>
 
 </html>

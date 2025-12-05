@@ -13,27 +13,19 @@
 
       patientPanel.classList.remove("appointment-profile--generic");
       patientPanel.innerHTML = `
-        <div class="appointment-avatar">
-          <img src="../../assets/icons/person-black.svg"
-               alt=""
-               class="appointment-avatar-icon">
-        </div>
-        <div class="appointment-profile-name">${patient.name}</div>
-        <div class="appointment-profile-detail">Age: ${patient.age}</div>
-        <div class="appointment-profile-detail">Gender: ${patient.gender}</div>
-        <div class="appointment-profile-detail">
-          Last Appointment: ${patient.lastAppointment || "—"}
-        </div>
-        <div class="appointment-profile-detail">Phone: ${patient.phone}</div>
-        <div class="appointment-profile-action">
-          <button class="appointment-profile-button" type="button">
-            <img src="../../assets/icons/edit.svg"
-                 alt=""
-                 class="appointment-profile-edit-icon" />
-            <span>Change Patient</span>
-          </button>
-        </div>
-      `;
+    <div class="appointment-avatar">
+      <img src="../../assets/icons/person-black.svg"
+           alt=""
+           class="appointment-avatar-icon">
+    </div>
+    <div class="appointment-profile-name">${patient.name}</div>
+    <div class="appointment-profile-detail">Age: ${patient.age}</div>
+    <div class="appointment-profile-detail">Gender: ${patient.gender}</div>
+    <div class="appointment-profile-detail">
+      Last Appointment: ${patient.lastAppointment || "—"}
+    </div>
+    <div class="appointment-profile-detail">Phone: ${patient.phone}</div>
+  `;
     }
 
     function renderGenericPatientPanel() {

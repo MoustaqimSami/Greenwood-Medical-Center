@@ -5,8 +5,8 @@
     <title>Schedule | GMC</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="../../css/style.css" />
-    <link rel="stylesheet" href="../../css/template.css" />
+    <link rel="stylesheet" href="./scheduleStyle.css" />
+    <link rel="stylesheet" href="./scheduleTemplate.css" />
   </head>
 
   <body>
@@ -42,12 +42,20 @@
             </a>
 
             <a class="nav-item" href="../SchedulePage/schedule.html">
-              <img class="nav-icon" src="../../assets/icons/calendar.svg" alt="" />
+              <img
+                class="nav-icon"
+                src="../../assets/icons/calendar.svg"
+                alt=""
+              />
               <span class="nav-label">Schedule</span>
             </a>
 
             <a class="nav-item" href="../PatientPages/patients.html">
-              <img class="nav-icon" src="../../assets/icons/people.svg" alt="" />
+              <img
+                class="nav-icon"
+                src="../../assets/icons/people.svg"
+                alt=""
+              />
               <span class="nav-label">Patients</span>
             </a>
 
@@ -119,13 +127,69 @@
           </header>
 
           <section class="page-body">
-            <!-- content to come -->
+            <div class="schedule-wrapper">
+              <div class="schedule-header-row">
+                <button class="nav-btn">
+                  <img src="../../assets/icons/chevron-left.svg" alt="Previous" class="chevron-icon">
+                </button>
+                <h2 class="schedule-date">Monday - September 3rd, 2025</h2>
+                <button class="nav-btn">
+                  <img src="../../assets/icons/chevron-right.svg" alt="Previous" class="chevron-icon">
+                </button>
+              </div>
+
+              <div class="schedule-container">
+                <!-- TIME HEADERS ACROSS TOP -->
+                <div class="time-header-row">
+                  <div class="time-header">09:00</div>
+                  <div class="time-header">09:30</div>
+                  <div class="time-header">10:00</div>
+                  <div class="time-header">10:30</div>
+                  <div class="time-header">11:00</div>
+                  <div class="time-header">11:30</div>
+                  <div class="time-header">12:00</div>
+                  <div class="time-header">12:30</div>
+                  <div class="time-header">13:00</div>
+                  <div class="time-header">13:30</div>
+                  <div class="time-header">14:00</div>
+                  <div class="time-header">14:30</div>
+                  <div class="time-header">15:00</div>
+                  <div class="time-header">15:30</div>
+                  <div class="time-header">16:00</div>
+                  <div class="time-header">16:30</div>
+                  <div class="time-header">17:00</div>
+                  <div class="time-header">17:30</div>
+                  <div class="time-header">18:00</div>
+                  <div class="time-header">18:30</div>
+                  <div class="time-header">19:00</div>
+                  <div class="time-header">19:30</div>
+                  <div class="time-header">20:00</div>
+                  <div class="time-header">20:30</div>
+                </div>
+
+                <!-- APPOINTMENT GRID -->
+                <div class="schedule-grid"></div>
+              </div>
+              <div class="schedule-legend">
+                <span class="legend-pill legend-assessment">Assessment</span>
+                <span class="legend-pill legend-reports">Reports</span>
+                <span class="legend-pill legend-followup">Follow-up</span>
+                <span class="legend-pill legend-walkin">Walk-In</span>
+                <span class="legend-pill legend-other">Other</span>
+              </div>
+            </div>
           </section>
         </main>
         <!-- END OF PAGE -->
       </div>
     </div>
 
+    <script src="../../database/appointments-database.js"></script>
+    <script src="../../database/patients-database.js"></script>
+    <script src="../../database/doctors-database.js"></script>
+    <script src="../../database/staff-database.js"></script>
+
     <script src="../layout.js"></script>
+    <script src="./schedule-driver.js"></script>
   </body>
 </html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | GMC</title>
+    <link rel="stylesheet" href="./loginstyle.css" />
+  </head>
+
+  <body>
+    <div class="login-container">
+      <div class="login-box">
+        <!-- LOGO + TITLE -->
+        <div class="login-header">
+          <img
+            src="../../assets/icons/logo.svg"
+            alt="Greenwood Medical Center Logo"
+            class="logo-img"
+          />
+
+          <div class="title-text">
+            <h1 class="brand-name">GREENWOOD</h1>
+            <h4 class="brand-sub">MEDICAL CENTER</h4>
+          </div>
+        </div>
+
+        <!-- FORM -->
+        <form>
+          <div class="email-field">
+            <label>Email</label>
+            <input
+              type="email"
+              id="email-input"
+              placeholder="Enter your email"
+            />
+          </div>
+
+          <label>Password</label>
+          <div class="password-field">
+            <input
+              type="password"
+              id="password-input"
+              placeholder="Enter your password"
+            />
+            <img
+              src="../../assets/icons/eye-off.svg"
+              id="eye-icon"
+              class="eye-icon"
+            />
+          </div>
+          <p id="login-message" class="login-message"></p>
+
+          <button type="submit" id="login-btn" class="login-btn">Login</button>
+        </form>
+      </div>
+    </div>
+  </body>
+
+  <script src="../../database/staff-database.js"></script>
+  <script src="./login.js"></script>
+</html>

@@ -1,0 +1,130 @@
+
+/* PAGE CENTERING */
+body {
+  background: #f3f3f3;
+  font-family: "Figtree", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* WHITE BOX */
+.login-box {
+  background: white;
+  width: 380px;
+  padding: 40px 45px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+
+  /* Taller box */
+  padding-bottom: 70px;
+}
+
+/* LOGO + TITLE SIDE-BY-SIDE */
+.login-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.logo-img {
+  width: 80px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-size: 42px;
+  padding-bottom : 5px;
+  font-weight: 700;
+  margin: 0;
+  color: #0b544a;
+  letter-spacing: 1px;
+}
+
+.brand-sub {
+  margin: 0;
+  font-size: 20px;
+  color: #0b544a;
+  font-weight: 100; 
+}
+
+form label {
+  font-size: 15px;
+  font-weight: 550;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 12px 12px;
+  margin: 6px 0 26px;  /* ⬅️ bigger space before next label */
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.password-field input {
+  margin-bottom: 8px; /* MUCH smaller gap */
+}
+
+input::placeholder {
+  text-indent: 0px; 
+  color: #bcbcbc;   /* light grey */
+  opacity: 1;       /* ensures browsers don't fade it */
+}
+
+input:focus {
+  border: 1px solid #0b544a;   /* your green */
+  outline: none;               /* removes default blue/black outline */
+}
+
+/* PASSWORD FIELD WITH ICON */
+.password-field {
+  position: relative;
+}
+
+.email-field {
+    padding-top: 25px;
+}
+
+.eye-icon {
+  width: 20px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.login-message {
+  font-size: 0.9rem;
+  text-align: center;  
+  padding-bottom:4px;
+}
+
+.login-message.error {
+  color: #d9534f;      /* red */
+}
+
+.login-message.success {
+  color: #5cb85c;      /* green */
+}
+.login-btn {
+  width: calc(100% + 6px);  
+  padding: 13px 3px; /* SAME as input */
+  background: #0b544a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+  cursor: pointer;
+transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.login-btn:hover {
+  transform: scale(1.01);     /* slight expand */
+}
