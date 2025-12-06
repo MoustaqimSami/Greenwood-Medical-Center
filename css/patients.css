@@ -22,6 +22,7 @@
 
         #myTable tr.header, #myTable tr:hover {
           background-color: var(--primary-100);
+          cursor: pointer;
           transition: background 0.22s ease, box-shadow 0.22s ease, transform 0.18s ease;
         }
         
@@ -199,8 +200,10 @@
   padding: 12px 25px;;
   background-color: var(--primary-700);
   color: white;
-  border-color: var(--primary-700);
+  border-color: none;
   border-radius: 6px; 
+  box-shadow: none ;
+  cursor: pointer;
 }
 .new-pat-btn:hover {
   opacity: 0.8;
@@ -317,12 +320,13 @@
   border-radius: 6px;
   font-size: 1rem;
   font-family: inherit;
+  cursor: text;
 }
 
 .modal-form input:focus {
   outline: none;
   border-color: var(--primary-700);
-  box-shadow: 0 0 0 3px rgba(150, 20, 20, 0.1);
+  box-shadow: 0 0 0 3px var(--primary-100);
 }
 
 .modal-form label {
@@ -402,4 +406,19 @@
   outline: none;
   border-color: var(--primary-700);
   box-shadow: 0 0 0 3px rgba(150, 20, 20, 0.1);
+}
+
+.filter-select {
+  display: flex;
+  padding: 5px 16px;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+  color: var(--neutral-900);
+  border-radius: 4px;
+  border: 1px solid var(--neutral-200);
+  background: var(--White);
+  cursor: pointer;
+  width: 150px;  /* Set fixed width */
+  min-width: 150px;  /* Prevent shrinking */  
 }

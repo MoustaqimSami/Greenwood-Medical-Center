@@ -105,7 +105,7 @@
 
         <section class="page-body">
           <!-- content to come -->
-          <div class="search-box">
+          <div class="search-box">  <!-- Search Box -->
             <div class="search-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="search-icon">
                 <path
@@ -115,36 +115,36 @@
                 placeholder="Search patients (name, phone, date of birth, etc.)..." />
             </div>
 
-            <button class="btn btn--sec" id="searchButton">Search</button>
+            <button class="btn btn--sec" id="searchButton">Search</button> <!-- Search Button -->
 
-            <button class="filter-btn" type="button">
+            <!-- <button class="filter-btn" type="button">
               Filter
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" class="filter-btn-icon">
                 <path
                   d="M11.25 13.3333C11.5952 13.3333 11.875 13.6112 11.875 13.9583V15H16.25C16.5952 15 16.875 15.2778 16.875 15.625C16.875 15.9722 16.5952 16.25 16.25 16.25H11.875V17.2917C11.875 17.6388 11.5952 17.9167 11.25 17.9167C10.9048 17.9167 10.625 17.6388 10.625 17.2917V13.9583C10.625 13.6112 10.9048 13.3333 11.25 13.3333ZM6.875 8.75C6.875 8.40283 7.15483 8.125 7.5 8.125H12.5C12.8452 8.125 13.125 8.40283 13.125 8.75C13.125 9.09717 12.8452 9.375 12.5 9.375H7.5C7.15483 9.375 6.875 9.09717 6.875 8.75ZM3.75 5H16.25C16.5952 5 16.875 5.27983 16.875 5.625C16.875 5.97017 16.5952 6.25 16.25 6.25H3.75C3.40483 6.25 3.125 5.97017 3.125 5.625C3.125 5.27983 3.40483 5 3.75 5Z" />
               </svg>
-            </button>
-          </div>
+            </button> -->
 
-          <div class="patients-filters">
-            <label class="filter-label">
-              Gender
-              <select id="genderFilter" class="filter-select">
-                <option value="all">All</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
-            </label>
+            <div class="patients-filters">
+              <label class="filter-label">
+                
+                <select id="genderFilter" class="filter-select">
+                  <option value="">All genders</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </label>
 
-            <label class="filter-label">
-              Sort
-              <select id="sortBy" class="filter-select">
-                <option value="name-asc">Name (A–Z)</option>
-                <option value="name-desc">Name (Z–A)</option>
-              </select>
-            </label>
+              <label class="filter-label">
+              
+                <select id="sortBy" class="filter-select">
+                  <option value="name-asc">Name (A–Z)</option>
+                  <option value="name-desc">Name (Z–A)</option>
+                </select>
+              </label>
           </div>
+        </div>
 
           <table id="myTable">
             <thead>
