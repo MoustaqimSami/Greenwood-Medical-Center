@@ -14,13 +14,24 @@
 
   const patients = [
     {
-      id: "pat-1",
+      id: "pat-2",
       name: "Janet Dean",
       age: 78,
       gender: "Female",
       phone: "825 288 8888",
       dob: "1947-12-04",
+      extendedInfo: {
+        address: "172 Glacier Ridge NW, T3P139",
+        phoneNumber: "503-825-7620",
+        emergencyContactName: "Hannah Dean",
+        emergencyContactPhone: "825-712-4290",
+        healthcareNumber: "99251673",
+        familyDoctor: "Dr. Nelson James",
+        referredBy: "Dr. John Whale",
+        otherInsurance: "N/A",
+      },
     },
+    ,
     {
       id: "pat-2",
       name: "Michael Brown",
