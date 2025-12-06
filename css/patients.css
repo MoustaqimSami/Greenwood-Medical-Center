@@ -129,11 +129,11 @@
   grid-template-areas:
     "item-header item-header item-header item-header"
     "content-1 content-2 content-3 content-4";
-  gap: 12px;
-  padding: 20px;
+  gap: 8px;
+  padding: 15px;
   border: 1px solid var(--primary-100);
   border-radius: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;  /* Reduced from 10px */
 }
 
 .item--personal .item-header {
@@ -143,7 +143,7 @@
 
 .item--personal .item-header h3 {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .item--personal .content-1 {
@@ -175,16 +175,18 @@
 .item-footer {
   display: flex;
   justify-content: flex-end;
+  margin-top: 5px;  /* Reduced from 10px */
+  margin-bottom: 0;  /* Add this to remove bottom spacing */
 }
 
 .book-appointment-btn {
-  padding: 16px 30px;
+  padding: 12px 25px;  /* Reduced from 16px 30px */
   background-color: var(--primary-700);
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 16px;  /* Reduced from 20px */
   transition: background-color 0.3s ease;
 }
 
@@ -421,4 +423,33 @@
   cursor: pointer;
   width: 150px;  /* Set fixed width */
   min-width: 150px;  /* Prevent shrinking */  
+}
+
+.modal-form select {   /* Style for select dropdowns in modal form */
+  padding: 10px;
+  border: 1px solid var(--primary-100);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal-form select:focus {
+  outline: none;
+  border-color: var(--primary-700);
+  box-shadow: 0 0 0 3px var(--primary-100);
+}
+
+.content-1 label,    /* Style labels in content boxes */
+.content-2 label,
+.content-3 label,
+.content-4 label {
+  color: var(--primary-300);
+}
+
+/* Remove excess bottom padding from main content area */
+.main--innerpage {
+  padding-bottom: 10px;  /* Reduce if it has large padding */
 }
