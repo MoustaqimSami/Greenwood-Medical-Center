@@ -1,3 +1,10 @@
+const NAV_PAGE_GROUPS = {
+  dashboard: ["dashboard.html"],
+  schedule: ["schedule.html"],
+  patients: ["patients.html", "patients-profile.html", "patients-billing.html", "patients-billing-process.html", "patients-appointments.html"],
+  doctors: ["doctors.html", "doctorsSchedule.html"],
+};
+
 // 1) Sidebar collapse toggle
 document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.querySelector(".sidebar-toggle");
@@ -14,13 +21,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentPage = path.split("/").pop() || "index.html";
   const navItems = document.querySelectorAll(".sidebar-nav .nav-item");
 
+  let activeKey = null;
+
+  for (const [key, pages] of Object.entries(NAV_PAGE_GROUPS)) {
+    if (pages.includes(currentPage)) {
+      activeKey = key;
+      break;
+    }
+  }
+
   navItems.forEach((item) => {
     const href = item.getAttribute("href");
     if (!href) return;
 
-    const targetPage = href.split("/").pop();
+    const file = href.split("/").pop();
 
-    if (targetPage === currentPage) {
+    if (activeKey && NAV_PAGE_GROUPS[activeKey].includes(file)) {
       item.classList.add("nav-item-active");
     } else {
       item.classList.remove("nav-item-active");
