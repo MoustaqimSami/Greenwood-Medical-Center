@@ -10,6 +10,8 @@ CPSC 481 – Interaction Design Portfolio II (Fall 2025)
 
 [https://greenwood-medical-center-qfrw.vercel.app/](https://greenwood-medical-center-qfrw.vercel.app/)
 
+*Best viewed at: 1800 × 1100*
+
 ## 🔐 Login Credentials
 
 - **Email:** [selena@gmcclinic.com](mailto:selena@gmcclinic.com)
