@@ -680,10 +680,34 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-  // If arriving from dashboard shortcut
+  // If arriving with special URL params
   const params = new URLSearchParams(window.location.search);
+
+  // 1) From dashboard shortcut: create new appointment
   if (params.get("open") === "book") {
     openBlankAppointmentModalFromShortcut();
+  }
+
+  // 2) From patients-appointments: view a specific existing appointment
+  const apptIdFromUrl = params.get("appointmentId");
+  if (apptIdFromUrl && window.appointmentsDatabase?.getAppointmentById) {
+    const appt = window.appointmentsDatabase.getAppointmentById(apptIdFromUrl);
+    if (appt) {
+      const dateRaw = appt.date;
+      const timeRaw = appt.start;
+      const labels = dateRaw ? getDateLabels(dateRaw) : { day: "", date: "" };
+
+      const slotInfo = {
+        dateRaw,
+        timeRaw,
+        time: timeRaw ? formatTimeTo12h(timeRaw) : "",
+        day: labels.day,
+        date: labels.date,
+        appointment: appt,
+      };
+
+      openModal(slotInfo);
+    }
   }
 
   setupAppointmentSlotHandlers();
