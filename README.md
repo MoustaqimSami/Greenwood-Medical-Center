@@ -108,7 +108,7 @@ This demo covers the entire lifecycle of a clinic visit - from first contact to 
 
 ### Patient Management
 
-* Add patients manually or via **AHS auto-fill**
+* Add new patients manually (AHS auto-fill is a planned feature and is not implemented in this prototype)
 * Comprehensive patient profiles
 * Search by **name, AHS number, phone, or ID**
 
@@ -177,8 +177,8 @@ No installation needed.
 
 ## 5. Team
 
-* **Hamna** – Login Design & System Entry
-* **Grace** – Dashboard & Schedule Interaction
-* **Ali** – Add Patient + AHS Lookup + Booking Flow
-* **Moustaqim** – Reschedule, Cancel, Check-In, Follow-Up
-* **Neel** – Billing System
+* **Hamna Asad** – Login Design & System Entry
+* **Grace Ilori** – Dashboard & Schedule Interaction
+* **Ali Khan** – Add Patient + AHS Lookup + Booking Flow
+* **Mohammad Moustaqim** – Reschedule, Cancel, Check-In, Follow-Up
+* **Neel Savani** – Billing System
