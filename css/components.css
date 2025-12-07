@@ -597,3 +597,182 @@
   font-size: var(--body-md-size);
   color: var(--neutral-700);
 }
+
+/** MODALS FOR DASHBOARD **/
+
+.confirm-modal-title {
+  font-size: var(--body-lg-size);
+  font-weight: var(--weight-semibold);
+  color: var(--neutral-900);
+}
+
+.confirm-modal-message {
+  font-size: var(--body-sm-size);
+  color: var(--neutral-700);
+}
+
+.confirm-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+}
+
+.confirm-modal {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 16px 18px;
+  max-width: 420px;
+  width: min(420px, 90vw);
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.confirm-appt-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--neutral-100);
+  background-color: var(--neutral-50);
+}
+
+.confirm-appt-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary-100);
+  color: var(--secondary-300);
+  font-size: var(--body-sm-size);
+  font-weight: var(--weight-medium);
+}
+
+.confirm-appt-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.confirm-appt-patient {
+  font-size: var(--body-sm-size);
+  font-weight: var(--weight-medium);
+  color: var(--neutral-900);
+}
+
+.confirm-appt-doctor,
+.confirm-appt-time {
+  font-size: var(--body-sm-size);
+  font-weight: var(--weight-regular);
+  color: var(--neutral-700);
+}
+
+.confirm-modal {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 24px 28px;
+  max-width: 520px;
+  width: min(520px, 95vw);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.confirm-modal-title {
+  font-size: var(--body-xl-size);
+  font-weight: var(--weight-semibold);
+  color: var(--neutral-900);
+}
+
+.confirm-modal-message {
+  font-size: var(--body-md-size);
+  color: var(--neutral-700);
+}
+
+.confirm-appt-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background-color: var(--neutral-50);
+  border: 1px solid var(--neutral-200);
+}
+
+.confirm-appt-avatar {
+  width: 42px;
+  height: 42px;
+  font-size: var(--body-md-size);
+  background: var(--secondary-100);
+  color: var(--secondary-500);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm-appt-patient {
+  font-size: var(--body-md-size);
+  font-weight: var(--weight-medium);
+}
+
+.confirm-appt-doctor,
+.confirm-appt-time {
+  font-size: var(--body-sm-size);
+  color: var(--neutral-700);
+}
+
+.confirm-modal-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+  width: 100%;
+}
+
+.confirm-modal-btn {
+  flex: 1;
+  padding: 12px 0;
+  border-radius: 4px;
+  font-size: var(--body-md-size);
+  font-weight: var(--weight-medium);
+  background: var(--neutral-50);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.confirm-modal-btn--secondary {
+  background-color: var(--secondary-500);
+  color: var(--neutral-50);
+}
+.confirm-modal-btn--secondary:hover {
+  background: var(--secondary-400);
+}
+
+.confirm-modal-btn--teal {
+  background-color: var(--primary-600);
+  color: var(--neutral-50);
+}
+.confirm-modal-btn--teal:hover {
+  background-color: var(--primary-700);
+}
+
+.confirm-modal-btn--primary {
+  background-color: var(--danger-200);
+  color: var(--neutral-50);
+}
+.confirm-modal-btn--primary:hover {
+  background: var(--danger-300);
+}

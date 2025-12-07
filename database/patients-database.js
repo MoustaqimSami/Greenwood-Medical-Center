@@ -555,6 +555,26 @@
     },
   ];
 
+    const EXTRA_PATIENTS_STORAGE_KEY = "gmc_extra_patients";
+
+  // Load any extra patients saved to localStorage and append them
+  try {
+    const storedExtras = window.localStorage.getItem(EXTRA_PATIENTS_STORAGE_KEY);
+    if (storedExtras) {
+      const parsed = JSON.parse(storedExtras);
+      if (Array.isArray(parsed)) {
+        parsed.forEach((p) => {
+          if (p && p.id) {
+            patients.push(p);
+          }
+        });
+      }
+    }
+  } catch (e) {
+    console.warn("Could not read extra patients from storage", e);
+  }
+
+
   function getActivePatientId() {
     return ACTIVE_PATIENT_ID;
   }
@@ -583,10 +603,40 @@
 
     return match || null;
   }
+
+    function addPatient(newPatient) {
+    if (!newPatient || !newPatient.id) return;
+
+    // Add to in-memory list
+    patients.push(newPatient);
+
+    // Update extras in localStorage
+    try {
+      const storedExtras = window.localStorage.getItem(EXTRA_PATIENTS_STORAGE_KEY);
+      let extras = [];
+      if (storedExtras) {
+        const parsed = JSON.parse(storedExtras);
+        if (Array.isArray(parsed)) extras = parsed;
+      }
+
+      const idx = extras.findIndex((p) => p && p.id === newPatient.id);
+      if (idx >= 0) {
+        extras[idx] = newPatient;
+      } else {
+        extras.push(newPatient);
+      }
+
+      window.localStorage.setItem(EXTRA_PATIENTS_STORAGE_KEY, JSON.stringify(extras));
+    } catch (e) {
+      console.warn("Could not save extra patients to storage", e);
+    }
+  }
+
   window.patientsDatabase = {
     patients,
     getActivePatientId,
     setActivePatientId,
     getPatientById,
+    addPatient,
   };
 })();

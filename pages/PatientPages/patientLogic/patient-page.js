@@ -125,6 +125,7 @@
   }
 
   // ---- Init ----
+  // ---- Init ----
   document.addEventListener("DOMContentLoaded", () => {
     // Initial render
     renderRows(getAllPatients());
@@ -159,73 +160,126 @@
     }
 
     // Modal functionality
-    const addPatientBtn = document.querySelector('.new-pat-btn');
-    const addPatientModal = document.getElementById('addPatientModal');
-    const modalClose = document.querySelector('.modal-close');
-    const modalCancel = document.querySelector('.modal-cancel');
-    const addPatientForm = document.getElementById('addPatientForm');
+    const addPatientBtn = document.querySelector(".new-pat-btn");
+    const addPatientModal = document.getElementById("addPatientModal");
+    const modalClose = document.querySelector(".modal-close");
+    const modalCancel = document.querySelector(".modal-cancel");
+    const addPatientForm = document.getElementById("addPatientForm");
+
+    if (!addPatientBtn || !addPatientModal || !addPatientForm) {
+      return;
+    }
 
     // Open modal
-    addPatientBtn.addEventListener('click', () => {
-      addPatientModal.classList.add('active');
+    addPatientBtn.addEventListener("click", () => {
+      addPatientModal.classList.add("active");
     });
 
     // Close modal
     function closeModal() {
-      addPatientModal.classList.remove('active');
+      addPatientModal.classList.remove("active");
       addPatientForm.reset();
     }
 
-    modalClose.addEventListener('click', closeModal);
-    modalCancel.addEventListener('click', closeModal);
+    if (modalClose) modalClose.addEventListener("click", closeModal);
+    if (modalCancel) modalCancel.addEventListener("click", closeModal);
 
     // Close modal when clicking outside of it
-    window.addEventListener('click', (event) => {
+    window.addEventListener("click", (event) => {
       if (event.target === addPatientModal) {
         closeModal();
       }
     });
 
-    // Handle form submission
-    addPatientForm.addEventListener('submit', (e) => {
+    addPatientForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      
-      // Collect form data
-      const formData = new FormData(addPatientForm);
-      const newPatient = {
-        firstName: formData.get('firstName'),
-        lastName: formData.get('lastName'),
-        dateOfBirth: formData.get('dateOfBirth'),
-        gender: formData.get('gender'),  
-        phoneNumber: formData.get('phoneNumber'),
-        address: formData.get('address'),
-        emergencyContact: formData.get('emergencyContact'),
-        emergencyPhone: formData.get('emergencyPhone'),
-        healthcareNumber: formData.get('healthcareNumber'),
-        familyDoctor: formData.get('familyDoctor'),
-        referredBy: formData.get('referredBy'),
-        otherInsurance: formData.get('otherInsurance'),
-      };
-      
-      // Add to patients database       // Note: Currently Not adding to database 
-      if (window.patientsDatabase && window.patientsDatabase.patients) {
-        window.patientsDatabase.patients.push(newPatient);
-        console.log('Patient added:', newPatient);
-        alert('Patient added successfully!');
-        closeModal();
-        // Refresh the table if you have a function to do so
-        // refreshPatientsTable(); // Call your table refresh function here
+
+      if (!window.patientsDatabase) {
+        console.error("patientsDatabase is not available.");
+        return;
       }
+
+      const formData = new FormData(addPatientForm);
+
+      const firstName = (formData.get("firstName") || "").trim();
+      const lastName = (formData.get("lastName") || "").trim();
+      const dateOfBirth = formData.get("dateOfBirth") || "";
+      const gender = formData.get("gender") || "";
+      const phoneNumber = (formData.get("phoneNumber") || "").trim();
+      const address = (formData.get("address") || "").trim();
+      const emergencyContact = (formData.get("emergencyContact") || "").trim();
+      const emergencyPhone = (formData.get("emergencyPhone") || "").trim();
+      const healthcareNumber = (formData.get("healthcareNumber") || "").trim();
+      const familyDoctor = (formData.get("familyDoctor") || "").trim();
+      const referredBy = (formData.get("referredBy") || "").trim();
+      const otherInsurance = (formData.get("otherInsurance") || "").trim();
+
+      // Required fields; browser "required" also helps
+      if (!firstName || !lastName || !dateOfBirth || !gender || !phoneNumber) {
+        return;
+      }
+
+      const list = window.patientsDatabase.patients;
+
+      // Generate new id like "pat-31"
+      let maxNumeric = 0;
+      if (Array.isArray(list)) {
+        list.forEach((p) => {
+          if (!p || !p.id) return;
+          const match = String(p.id).match(/(\d+)$/);
+          if (match) {
+            const n = parseInt(match[1], 10);
+            if (!Number.isNaN(n) && n > maxNumeric) maxNumeric = n;
+          }
+        });
+      }
+      const newId = `pat-${maxNumeric + 1}`;
+
+      // Match structure used in patients-database.js
+      const newPatient = {
+        id: newId,
+        name: `${firstName} ${lastName}`,
+        gender,
+        phone: phoneNumber,
+        dob: dateOfBirth,
+        extendedInfo: {
+          address,
+          phoneNumber,
+          emergencyContactName: emergencyContact,
+          emergencyContactPhone: emergencyPhone,
+          healthcareNumber,
+          familyDoctor,
+          referredBy,
+          otherInsurance,
+        },
+      };
+
+      // 🔗 Add to DB with persistence
+      if (typeof window.patientsDatabase.addPatient === "function") {
+        window.patientsDatabase.addPatient(newPatient);
+      } else if (Array.isArray(window.patientsDatabase.patients)) {
+        // fallback, but ideally addPatient exists
+        window.patientsDatabase.patients.push(newPatient);
+      }
+
+      // ✅ Set active patient BEFORE redirect
+      if (typeof window.patientsDatabase.setActivePatientId === "function") {
+        window.patientsDatabase.setActivePatientId(newId);
+      }
+
+      // Refresh table for when you come back
+      if (typeof filterAndRender === "function") {
+        filterAndRender();
+      }
+
+      // Close modal and reset
+      addPatientForm.reset();
+      addPatientModal.classList.remove("active");
+
+      // Go straight to profile page
+      window.location.href = "patients-profile.html";
     });
   });
+
+  // Close the IIFE
 })();
-
-// Adding close button model functionally
-document.addEventListener("DOMContentLoaded",() =>  {
-  const modal = document.getElementById("myModal");
-  const closeBtn = document.querySelector(".close");
-  closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-  });
-})
-
