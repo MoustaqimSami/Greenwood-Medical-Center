@@ -267,6 +267,19 @@
   <script src="./patientLogic/patient-page.js"></script>
 
   <script src="../layout.js"></script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("open") === "addPatient") {
+      const addBtn = document.querySelector(".new-pat-btn");
+      if (addBtn) {
+        addBtn.click();
+      }
+    }
+  });
+</script>
+
 </body>
 
 </html>

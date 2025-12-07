@@ -114,7 +114,7 @@
               <img src="/assets/icons/chevron-right.svg" width="20" height="20">
             </div>
           </div>
-          <div class="quick-action">
+          <div class="quick-action" id="dashboard-add-patient">
             <div class="quick-action-iconbox quick-action-iconbox--teal">
               <img src="/assets/icons/person-add-fill-n50.svg">
             </div>
@@ -123,6 +123,7 @@
               <img src="/assets/icons/chevron-right.svg" width="20" height="20">
             </div>
           </div>
+
           <!-- Weekly Calendar -->
           <div class="week-calendar">
             <div class="week-calendar-header">
@@ -141,7 +142,7 @@
                   </svg>
                 </div>
               </div>
-              </div>
+            </div>
             <div class="flexrow-gap8 week-days-container" id="week-days-container">
               <!-- JS will render -->
             </div>
@@ -206,17 +207,26 @@
 
     <script src="../layout.js"></script>
 
-<script>
+    <script>
   document.addEventListener("DOMContentLoaded", function () {
     const bookShortcut = document.getElementById("dashboard-book-appointment");
-    if (!bookShortcut) return;
+    if (bookShortcut) {
+      bookShortcut.addEventListener("click", function () {
+        // Doctors schedule with booking modal
+        window.location.href = "../DoctorPages/doctorsSchedule.html?open=book";
+      });
+    }
 
-    bookShortcut.addEventListener("click", function () {
-      // Adjust the path if your doctorsSchedule.html lives somewhere else
-      window.location.href = "../DoctorPages/doctorsSchedule.html?open=book";
-    });
+    const addPatientShortcut = document.getElementById("dashboard-add-patient");
+    if (addPatientShortcut) {
+      addPatientShortcut.addEventListener("click", function () {
+        // Patients page with Add Patient modal open
+        window.location.href = "../PatientPages/patients.html?open=addPatient";
+      });
+    }
   });
 </script>
+
 </body>
 
 </html>
