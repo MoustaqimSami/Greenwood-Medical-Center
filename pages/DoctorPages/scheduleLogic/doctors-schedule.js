@@ -33,11 +33,27 @@ if (window.doctorsDatabase) {
   activeDoctor = window.doctorsDatabase.getDoctorById(activeDoctorId);
   availabilityWindows =
     window.doctorsDatabase.getDoctorAvailability(activeDoctorId) || [];
-}
-function populateDoctorCard(doc) {
-  const doctor = doc;
-  const current = doctor || activeDoctor;
 
+  // ⬇⬇ NEW: sync patient from URL
+  if (
+    window.patientsDatabase &&
+    typeof window.patientsDatabase.setActivePatientId === "function"
+  ) {
+    const patientIdFromUrl = params.get("patientId");
+    if (
+      patientIdFromUrl &&
+      typeof window.patientsDatabase.getPatientById === "function" &&
+      window.patientsDatabase.getPatientById(patientIdFromUrl)
+    ) {
+      window.patientsDatabase.setActivePatientId(patientIdFromUrl);
+    }
+  }
+}
+
+function populateDoctorCard(doc) {
+  // Grab elements first
+  const breadcrumbEl = document.getElementById("doctor-name-breadcrumb");
+  const headingEl = document.getElementById("doctor-name-heading");
   const nameEl = document.getElementById("doctor-name");
   const specEl = document.getElementById("doctor-specialty");
   const ageEl = document.getElementById("doctor-age");
@@ -45,25 +61,36 @@ function populateDoctorCard(doc) {
   const phoneEl = document.getElementById("doctor-phone");
   const changeLabelEl = document.querySelector(".change-doctor-label");
 
+  // If we’re on a page that doesn’t even have these elements (e.g. dashboard),
+  // just bail out silently.
+  if (!breadcrumbEl && !headingEl && !nameEl) {
+    return;
+  }
+
+  const current = doc || activeDoctor;
+
   if (!current) {
+    if (breadcrumbEl) breadcrumbEl.textContent = "No doctor selected";
+    if (headingEl) headingEl.textContent = "No doctor selected";
     if (nameEl) nameEl.textContent = "No doctor selected";
     if (specEl) specEl.textContent = "-";
     if (ageEl) ageEl.textContent = "-";
     if (genderEl) genderEl.textContent = "-";
     if (phoneEl) phoneEl.textContent = "-";
-
     if (changeLabelEl) changeLabelEl.textContent = "Select Doctor";
     return;
   }
 
+  if (breadcrumbEl) breadcrumbEl.textContent = current.name;
+  if (headingEl) headingEl.textContent = current.name;
   if (nameEl) nameEl.textContent = current.name;
   if (specEl) specEl.textContent = current.specialty;
   if (ageEl) ageEl.textContent = current.age;
   if (genderEl) genderEl.textContent = current.gender;
   if (phoneEl) phoneEl.textContent = current.phone;
-
   if (changeLabelEl) changeLabelEl.textContent = "Change Doctor";
 }
+
 
 populateDoctorCard(activeDoctor);
 

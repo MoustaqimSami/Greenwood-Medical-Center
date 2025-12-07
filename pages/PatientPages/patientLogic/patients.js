@@ -1,18 +1,24 @@
 (function () {
-  if (!window.patientsDatabase) return;
+  if (!window.patientsDatabase) {
+    console.warn("patients.js: window.patientsDatabase is not defined");
+    return;
+  }
 
   const { patients, getActivePatientId } = window.patientsDatabase;
 
   function getActivePatient() {
-    const id = typeof getActivePatientId === "function" ? getActivePatientId() : null;
+    if (!Array.isArray(patients) || patients.length === 0) return null;
+
+    const id =
+      typeof getActivePatientId === "function" ? getActivePatientId() : null;
 
     if (id) {
-      const found = patients.find((p) => p.id === id);
+      const found = patients.find((p) => p && p.id === id);
       if (found) return found;
     }
 
-    // Fallback: first patient
-    return patients[0] || null;
+    const firstValid = patients.find((p) => p && p.id);
+    return firstValid || null;
   }
 
   function splitName(fullName) {
@@ -29,7 +35,6 @@
     const { first, last } = splitName(patient.name || "");
     const fullName = patient.name || `${first} ${last}`.trim();
 
-    // Titles / name
     const mainTitle = document.querySelector("h1.page-title");
     const breadcrumbInner = document.querySelector(".page-title--inner");
     const patientNameSpan = document.querySelector(".patient-name");
@@ -38,7 +43,6 @@
     if (breadcrumbInner) breadcrumbInner.textContent = fullName;
     if (patientNameSpan) patientNameSpan.textContent = fullName;
 
-    // Sections: Personal, Contact, Healthcare
     const sections = document.querySelectorAll(".item--personal");
     if (sections.length < 3) return;
 
@@ -46,7 +50,6 @@
     const contactSection = sections[1];
     const healthSection = sections[2];
 
-    // ---------- Personal Information ----------
     const personalFirstNameEl = personalSection.querySelector(".content-1");
     const personalLastNameEl = personalSection.querySelector(".content-2");
     const personalDobEl = personalSection.querySelector(".content-3");
@@ -65,7 +68,6 @@
       personalPhoneEl.innerHTML = `Phone<br>${patient.phone || "—"}`;
     }
 
-    // ---------- Contact Information ----------
     const ei = patient.extendedInfo || {};
 
     const contactAddressEl = contactSection.querySelector(".content-1");
@@ -92,7 +94,6 @@
       }`;
     }
 
-    // ---------- Healthcare Information ----------
     const healthNumberEl = healthSection.querySelector(".content-1");
     const familyDoctorEl = healthSection.querySelector(".content-2");
     const referredByEl = healthSection.querySelector(".content-3");
@@ -114,9 +115,7 @@
       }`;
     }
     if (otherInsuranceEl) {
-      healthSection
-        .querySelector(".content-4")
-        .innerHTML = `Other Healthcare Insurance<br>${
+      otherInsuranceEl.innerHTML = `Other Healthcare Insurance<br>${
         ei.otherInsurance || "N/A"
       }`;
     }

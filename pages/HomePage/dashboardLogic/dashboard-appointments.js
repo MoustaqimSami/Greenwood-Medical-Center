@@ -18,8 +18,11 @@
   }
 
   function renderAppointmentCard(appt, statusView) {
-    const patient = patients.find((p) => p.id === appt.patientId);
-    const doctor = doctors.find((d) => d.id === appt.doctorId);
+    const patient = patients.find((p) => p && p.id === appt.patientId);
+    const doctor = doctors.find((d) => {
+      if (!d) return false;
+      return d.id === appt.doctorId;
+    });
 
     const patientName = patient ? patient.name : "Unknown patient";
     const doctorName = doctor ? doctor.name : "Unknown doctor";

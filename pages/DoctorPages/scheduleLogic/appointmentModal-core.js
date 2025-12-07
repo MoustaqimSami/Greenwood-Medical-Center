@@ -372,8 +372,8 @@ document.addEventListener("DOMContentLoaded", function () {
       window.patientsDatabase.setActivePatientId(null);
     }
 
+    const dateRaw = "2025-09-03";
     const now = new Date();
-    const dateRaw = now.toISOString().slice(0, 10);
 
     const minutes = now.getMinutes();
     const roundedMinutes = minutes < 30 ? "00" : "30";

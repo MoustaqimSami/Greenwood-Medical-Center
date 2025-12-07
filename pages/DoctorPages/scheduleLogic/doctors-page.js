@@ -1,6 +1,9 @@
 (function () {
   if (!window.doctorsDatabase || !window.appointmentsDatabase) return;
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const patientIdFromUrl = urlParams.get("patientId");
+
   const { doctors, setActiveDoctorId } = window.doctorsDatabase;
   const { appointments } = window.appointmentsDatabase;
 
@@ -136,8 +139,15 @@
       window.location.origin
     );
     url.searchParams.set("doctorId", doctorId);
+
+    // If we arrived on this page with a patientId, carry it forward
+    if (patientIdFromUrl) {
+      url.searchParams.set("patientId", patientIdFromUrl);
+    }
+
     window.location.href = url.toString();
   }
+
 
   // -------------------------- card creation --------------------------
 

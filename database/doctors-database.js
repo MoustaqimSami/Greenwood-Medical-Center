@@ -1,10 +1,10 @@
 (function () {
-  const STORAGE_KEY = "gmc_active_doctor_id";
+  const ACTIVE_DOCTOR_STORAGE_KEY = "gmc_active_doctor_id";
 
   let ACTIVE_DOCTOR_ID = null;
 
   try {
-    const storedId = window.localStorage.getItem(STORAGE_KEY);
+    const storedId = window.localStorage.getItem(ACTIVE_DOCTOR_STORAGE_KEY);
     if (storedId) {
       ACTIVE_DOCTOR_ID = storedId;
     }
@@ -315,7 +315,7 @@
   function setActiveDoctorId(id) {
     ACTIVE_DOCTOR_ID = id;
     try {
-      window.localStorage.setItem(STORAGE_KEY, id);
+      window.localStorage.setItem(ACTIVE_DOCTOR_STORAGE_KEY, id);
     } catch (e) {
       console.warn("Could not save active doctor to storage", e);
     }
