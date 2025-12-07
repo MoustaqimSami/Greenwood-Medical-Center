@@ -21,8 +21,8 @@
         }
 
         #myTable tr.header, #myTable tr:hover {
+          cursor:pointer;
           background-color: var(--primary-100);
-          cursor: pointer;
           transition: background 0.22s ease, box-shadow 0.22s ease, transform 0.18s ease;
         }
         
@@ -121,7 +121,7 @@
     background-color: var(--primary-100);
     transition: 0.22s ease, box-shadow 0.22s ease, transform 0.18s ease;
 }
-
+/*Add Patient Popup*/
 .item--personal {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;  /* 4 columns for content items */
@@ -129,11 +129,11 @@
   grid-template-areas:
     "item-header item-header item-header item-header"
     "content-1 content-2 content-3 content-4";
-  gap: 8px;
-  padding: 15px;
+  gap: 12px;
+  padding: 20px;
   border: 1px solid var(--primary-100);
   border-radius: 8px;
-  margin-bottom: 5px;  /* Reduced from 10px */
+  margin-bottom: 20px;
 }
 
 .item--personal .item-header {
@@ -143,7 +143,7 @@
 
 .item--personal .item-header h3 {
   margin: 0;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .item--personal .content-1 {
@@ -175,18 +175,16 @@
 .item-footer {
   display: flex;
   justify-content: flex-end;
-  margin-top: 5px;  /* Reduced from 10px */
-  margin-bottom: 0;  /* Add this to remove bottom spacing */
 }
 
 .book-appointment-btn {
-  padding: 12px 25px;  /* Reduced from 16px 30px */
+  padding: 16px 30px;
   background-color: var(--primary-700);
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 16px;  /* Reduced from 20px */
+  font-size: 20px;
   transition: background-color 0.3s ease;
 }
 
@@ -202,10 +200,8 @@
   padding: 12px 25px;;
   background-color: var(--primary-700);
   color: white;
-  border-color: none;
+  border-color: var(--primary-700);
   border-radius: 6px; 
-  box-shadow: none ;
-  cursor: pointer;
 }
 .new-pat-btn:hover {
   opacity: 0.8;
@@ -244,9 +240,10 @@
   background-color: #fff;
   padding: 30px;
   border-radius: 8px;
-  width: 50%;
   max-height: 90vh;
-  overflow-y: auto;
+  overflow-y:scroll;
+  width: 85%;
+  max-width: 1200px;
   box-shadow: 0 4px 20px var(--primary-300);
   animation: slideIn 0.3s ease;
 }
@@ -306,6 +303,47 @@
   gap: 20px;
 }
 
+/* Grid layout for modal form sections */
+.modal-form .item--personal {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "item-header item-header item-header item-header"
+    "content-1 content-2 content-3 content-4";
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--primary-100);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.modal-form .item--personal .item-header {
+  grid-area: item-header;
+  margin-bottom: 8px;
+}
+
+.modal-form .item--personal .item-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.modal-form .item--personal .content-1 {
+  grid-area: content-1;
+}
+
+.modal-form .item--personal .content-2 {
+  grid-area: content-2;
+}
+
+.modal-form .item--personal .content-3 {
+  grid-area: content-3;
+}
+
+.modal-form .item--personal .content-4 {
+  grid-area: content-4;
+}
+
 /* Style form inputs in the content boxes */
 .modal-form .content-1,
 .modal-form .content-2,
@@ -314,6 +352,11 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-width: 0;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--primary-100);
+  background: #fff;
 }
 
 .modal-form input {
@@ -322,7 +365,8 @@
   border-radius: 6px;
   font-size: 1rem;
   font-family: inherit;
-  cursor: text;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .modal-form input:focus {
@@ -337,7 +381,24 @@
   color: rgba(26, 35, 51, 0.8);
 }
 
-.modal-actions {  /* Container for action buttons(cancel & add) */
+.modal-form select {
+  padding: 10px;
+  border: 1px solid var(--primary-100);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal-form select:focus {
+  outline: none;
+  border-color: var(--primary-700);
+  box-shadow: 0 0 0 3px var(--primary-100);
+}
+
+.modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
@@ -374,7 +435,6 @@
 .btn--secondary:hover {
   background-color: #e0e0e0;
 }
-
 .retrieve-ahs-btn {
   padding: 10px 20px;
   background-color: var(--primary-700);
@@ -408,48 +468,4 @@
   outline: none;
   border-color: var(--primary-700);
   box-shadow: 0 0 0 3px rgba(150, 20, 20, 0.1);
-}
-
-.filter-select {
-  display: flex;
-  padding: 5px 16px;
-  justify-content: start;
-  align-items: center;
-  gap: 8px;
-  color: var(--neutral-900);
-  border-radius: 4px;
-  border: 1px solid var(--neutral-200);
-  background: var(--White);
-  cursor: pointer;
-  width: 150px;  /* Set fixed width */
-  min-width: 150px;  /* Prevent shrinking */  
-}
-
-.modal-form select {   /* Style for select dropdowns in modal form */
-  padding: 10px;
-  border: 1px solid var(--primary-100);
-  border-radius: 6px;
-  font-size: 1rem;
-  font-family: inherit;
-  cursor: pointer;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.modal-form select:focus {
-  outline: none;
-  border-color: var(--primary-700);
-  box-shadow: 0 0 0 3px var(--primary-100);
-}
-
-.content-1 label,    /* Style labels in content boxes */
-.content-2 label,
-.content-3 label,
-.content-4 label {
-  color: var(--primary-300);
-}
-
-/* Remove excess bottom padding from main content area */
-.main--innerpage {
-  padding-bottom: 10px;  /* Reduce if it has large padding */
 }
