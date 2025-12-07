@@ -301,6 +301,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
+    if (appt && window.doctorsDatabase?.setActiveDoctorId) {
+      window.doctorsDatabase.setActiveDoctorId(appt.doctorId);
+    }
+
     // Doctor panel
     if (doctorModule && doctorModule.renderDoctorPanel) {
       const activeDoctor = doctorModule.getActiveDoctor();
@@ -398,6 +402,77 @@ document.addEventListener("DOMContentLoaded", function () {
     openBlankAppointmentModalFromShortcut;
 
   window.setupAppointmentSlotHandlers = setupAppointmentSlotHandlers;
+
+  function openFollowupAppointmentModalFromShortcut() {
+    if (!modal) return;
+
+    let ctx = null;
+    try {
+      if (window.localStorage) {
+        const raw = localStorage.getItem("gmc_followup_context");
+        if (raw) {
+          ctx = JSON.parse(raw);
+        }
+      }
+    } catch (e) {
+      console.error("Failed to read follow-up context", e);
+    }
+
+    // If we don't have stored context, just fall back to the normal blank flow
+    if (!ctx) {
+      openBlankAppointmentModalFromShortcut();
+      return;
+    }
+
+    const { doctorId, patientId } = ctx || {};
+
+    // Preselect doctor and patient in their respective databases
+    if (doctorId && window.doctorsDatabase?.setActiveDoctorId) {
+      window.doctorsDatabase.setActiveDoctorId(doctorId);
+    }
+
+    if (patientId && window.patientsDatabase?.setActivePatientId) {
+      window.patientsDatabase.setActivePatientId(patientId);
+    }
+
+    // Use similar logic as the blank shortcut for date/time
+    const dateRaw = "2025-09-03"; // same anchor date as existing shortcut
+    const now = new Date();
+
+    const minutes = now.getMinutes();
+    const roundedMinutes = minutes < 30 ? "00" : "30";
+    const hour = String(now.getHours()).padStart(2, "0");
+    const timeRaw = `${hour}:${roundedMinutes}`;
+
+    const labels = dateRaw ? getDateLabels(dateRaw) : { day: "", date: "" };
+
+    const slotInfo = {
+      dateRaw,
+      timeRaw,
+      time: timeRaw ? formatTimeTo12h(timeRaw) : "",
+      day: labels.day,
+      date: labels.date,
+      appointment: null, // new appointment
+    };
+
+    // Open modal as a new appointment…
+    openModal(slotInfo);
+
+    // …then switch to the Follow-up tab in edit mode
+    currentAppointmentType = "followup";
+    const followTab = modal.querySelector('[data-appointment-tab="followup"]');
+
+    if (followTab && editMode) {
+      tabButtons.forEach((b) => b.classList.remove("is-active"));
+      followTab.classList.add("is-active");
+      renderForm("followup");
+    }
+  }
+
+  window.openBlankAppointmentModalFromShortcut =
+    openBlankAppointmentModalFromShortcut;
+  window.openFollowupAppointmentModalFromShortcut =
+    openFollowupAppointmentModalFromShortcut;
 
   /* -----------------------------------------------------------
      SLOT CLICK HANDLERS
@@ -683,12 +758,17 @@ document.addEventListener("DOMContentLoaded", function () {
   // If arriving with special URL params
   const params = new URLSearchParams(window.location.search);
 
-  // 1) From dashboard shortcut: create new appointment
-  if (params.get("open") === "book") {
+  const openParam = params.get("open");
+
+  // 1) From dashboard shortcut: create new blank appointment
+  if (openParam === "book") {
     openBlankAppointmentModalFromShortcut();
+  } else if (openParam === "bookFollowup") {
+    // From dashboard completed → Follow-up
+    openFollowupAppointmentModalFromShortcut();
   }
 
-  // 2) From patients-appointments: view a specific existing appointment
+  // 2) From patients-appointments or other links: view a specific existing appointment
   const apptIdFromUrl = params.get("appointmentId");
   if (apptIdFromUrl && window.appointmentsDatabase?.getAppointmentById) {
     const appt = window.appointmentsDatabase.getAppointmentById(apptIdFromUrl);

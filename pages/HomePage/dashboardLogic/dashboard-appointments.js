@@ -282,7 +282,23 @@
           });
           if (!confirmed) return;
 
-          console.log("[Appointments] Follow-up started:", apptId);
+          try {
+            if (window.localStorage) {
+              localStorage.setItem(
+                "gmc_followup_context",
+                JSON.stringify({
+                  appointmentId: apptId,
+                  doctorId: appt.doctorId,
+                  patientId: appt.patientId,
+                })
+              );
+            }
+          } catch (e) {
+            console.error("Unable to persist follow-up context", e);
+          }
+
+          window.location.href =
+            "../DoctorPages/doctorsSchedule.html?open=bookFollowup";
         }
 
         if (removeBtn) {
