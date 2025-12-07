@@ -525,7 +525,7 @@
 }
 
 .sum-v {
-  font-size: var(--body-md-size);
+  font-size: var(--body-lg-size);
   color: var(--neutral-900);
   font-weight: var(--weight-bold);
 }
@@ -546,7 +546,6 @@
   font-weight: var(--weight-bold);
   cursor: pointer;
 }
-
 .process-btn:hover {
   background: var(--primary-800);
 }
@@ -599,9 +598,6 @@
   color: var(--neutral-700);
 }
 
-.row-select {
-  background: var(--success-100);
-}
 
 
 /* ===============================================
@@ -628,7 +624,7 @@
   padding: 20px;
   border: 1px solid #888;
   width: 600px;
-  height:auto;
+  height: 300px;
 }
 
 .close{
@@ -643,20 +639,6 @@
   margin-bottom: 6px;
   margin-left: 6px;
   justify-content:flex-end;
-}
-
-.model-table table{
-  width: 100%;
-  border: #888;
-  border: 1px solid #888;
-}
-
-.model-table thead{
-  background-color: var(--primary-600);
-}
-
-.model-table table{
-  text-align: center;
 }
 
 .feedback-popup {
