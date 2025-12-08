@@ -185,47 +185,62 @@
       </main>
     </div>
 
-    <script src="../../database/appointments-database.js"></script>
-    <script src="../../database/doctors-database.js"></script>
-    <script src="../../database/patients-database.js"></script>
+    <!-- Help center in-development toast -->
+    <div id="helpcenter-toast" class="helpcenter-toast" role="status" aria-live="polite">
+      <div class="helpcenter-toast-content">
+        <div class="helpcenter-toast-text">
+          <strong class="helpcenter-toast-title">Feature in development</strong>
+          <span class="helpcenter-toast-body">
+            This feature is still under development. Please check back soon.
+          </span>
+        </div>
 
-    <script src="./dashboardLogic/dashboard-namespace.js"></script>
-    <script src="./dashboardLogic/dashboard-helpers.js"></script>
-    <script src="./dashboardLogic/dashboard-ui.js"></script>
-    <script src="./dashboardLogic/dashboard-state.js"></script>
-    <script src="./dashboardLogic/dashboard-calendar.js"></script>
-    <script src="./dashboardLogic/dashboard-appointments.js"></script>
-    <script src="./dashboardLogic/dashboard-doctors.js"></script>
-    <script src="./dashboardLogic/dashboard-init.js"></script>
+        <button type="button" class="helpcenter-toast-close" aria-label="Dismiss notification">
+          ×
+        </button>
+      </div>
 
-    <script src="../DoctorPages/scheduleLogic/doctors-schedule.js"></script>
-    <script src="../DoctorPages/scheduleLogic/week-selector.js"></script>
-    <script src="../DoctorPages/scheduleLogic/appointmentModal-doctorSearch.js"></script>
-    <script src="../DoctorPages/scheduleLogic/appointmentModal-patientSearch.js"></script>
-    <script src="../DoctorPages/scheduleLogic/appointmentModal-core.js"></script>
-    <script src="../DoctorPages/scheduleLogic/appointmentModal-buttons.js"></script>
+      <script src="../../database/appointments-database.js"></script>
+      <script src="../../database/doctors-database.js"></script>
+      <script src="../../database/patients-database.js"></script>
 
-    <script src="../layout.js"></script>
+      <script src="./dashboardLogic/dashboard-namespace.js"></script>
+      <script src="./dashboardLogic/dashboard-helpers.js"></script>
+      <script src="./dashboardLogic/dashboard-ui.js"></script>
+      <script src="./dashboardLogic/dashboard-state.js"></script>
+      <script src="./dashboardLogic/dashboard-calendar.js"></script>
+      <script src="./dashboardLogic/dashboard-appointments.js"></script>
+      <script src="./dashboardLogic/dashboard-doctors.js"></script>
+      <script src="./dashboardLogic/dashboard-init.js"></script>
 
-    <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const bookShortcut = document.getElementById("dashboard-book-appointment");
-    if (bookShortcut) {
-      bookShortcut.addEventListener("click", function () {
-        // Doctors schedule with booking modal
-        window.location.href = "../DoctorPages/doctorsSchedule.html?open=book";
-      });
-    }
+      <script src="../DoctorPages/scheduleLogic/doctors-schedule.js"></script>
+      <script src="../DoctorPages/scheduleLogic/week-selector.js"></script>
+      <script src="../DoctorPages/scheduleLogic/appointmentModal-doctorSearch.js"></script>
+      <script src="../DoctorPages/scheduleLogic/appointmentModal-patientSearch.js"></script>
+      <script src="../DoctorPages/scheduleLogic/appointmentModal-core.js"></script>
+      <script src="../DoctorPages/scheduleLogic/appointmentModal-buttons.js"></script>
 
-    const addPatientShortcut = document.getElementById("dashboard-add-patient");
-    if (addPatientShortcut) {
-      addPatientShortcut.addEventListener("click", function () {
-        // Patients page with Add Patient modal open
-        window.location.href = "../PatientPages/patients.html?open=addPatient";
-      });
-    }
-  });
-</script>
+      <script src="../layout.js"></script>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const bookShortcut = document.getElementById("dashboard-book-appointment");
+          if (bookShortcut) {
+            bookShortcut.addEventListener("click", function () {
+              // Doctors schedule with booking modal
+              window.location.href = "../DoctorPages/doctorsSchedule.html?open=book";
+            });
+          }
+
+          const addPatientShortcut = document.getElementById("dashboard-add-patient");
+          if (addPatientShortcut) {
+            addPatientShortcut.addEventListener("click", function () {
+              // Patients page with Add Patient modal open
+              window.location.href = "../PatientPages/patients.html?open=addPatient";
+            });
+          }
+        });
+      </script>
 
 </body>
 

@@ -1,195 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Schedule | GMC</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="./scheduleStyle.css" />
-    <link rel="stylesheet" href="./scheduleTemplate.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <title>Schedule | GMC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <body>
-    <div class="app-shell">
-      <!-- SIDEBAR -->
-      <aside class="sidebar">
-        <div class="sidebar-inner">
-          <div class="sidebar-top">
-            <button class="brand-button" aria-label="Clinic home">
-              <img
-                src="../../assets/icons/logo.svg"
-                alt="Clinic logo"
-                class="brand-logo"
-              />
-            </button>
+  <link rel="stylesheet" href="../../css/template.css">
 
-            <button class="sidebar-toggle" aria-label="Toggle sidebar">
-              <img
-                src="../../assets/icons/layout-sidebar.svg"
-                data-open-src="../../assets/icons/layout-sidebar.svg"
-                data-collapsed-src="../../assets/icons/layout-sidebar-closed.svg"
-                alt="Toggle sidebar"
-                class="sidebar-toggle-icon"
-              />
-            </button>
-          </div>
+  <link rel="stylesheet" href="./scheduleStyle.css" />
+  <link rel="stylesheet" href="./scheduleTemplate.css" />
+</head>
 
-          <!-- Navigation -->
-          <nav class="sidebar-nav">
-            <a class="nav-item" href="../HomePage/dashboard.html">
-              <img class="nav-icon" src="../../assets/icons/home.svg" alt="" />
-              <span class="nav-label">Home</span>
-            </a>
+<body>
+  <div class="app-shell">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-top">
+          <button class="brand-button" aria-label="Clinic home">
+            <img src="../../assets/icons/logo.svg" alt="Clinic logo" class="brand-logo" />
+          </button>
 
-            <a class="nav-item" href="../SchedulePage/schedule.html">
-              <img
-                class="nav-icon"
-                src="../../assets/icons/calendar.svg"
-                alt=""
-              />
-              <span class="nav-label">Schedule</span>
-            </a>
+          <button class="sidebar-toggle" aria-label="Toggle sidebar">
+            <img src="../../assets/icons/layout-sidebar.svg" data-open-src="../../assets/icons/layout-sidebar.svg"
+              data-collapsed-src="../../assets/icons/layout-sidebar-closed.svg" alt="Toggle sidebar"
+              class="sidebar-toggle-icon" />
+          </button>
+        </div>
 
-            <a class="nav-item" href="../PatientPages/patients.html">
-              <img
-                class="nav-icon"
-                src="../../assets/icons/people.svg"
-                alt=""
-              />
-              <span class="nav-label">Patients</span>
-            </a>
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+          <a class="nav-item" href="../HomePage/dashboard.html">
+            <img class="nav-icon" src="../../assets/icons/home.svg" alt="" />
+            <span class="nav-label">Home</span>
+          </a>
 
-            <a class="nav-item" href="../DoctorPages/doctors.html">
-              <img
-                class="nav-icon"
-                src="../../assets/icons/stethoscope.svg"
-                alt=""
-              />
-              <span class="nav-label">Doctors</span>
-            </a>
-          </nav>
+          <a class="nav-item" href="../SchedulePage/schedule.html">
+            <img class="nav-icon" src="../../assets/icons/calendar.svg" alt="" />
+            <span class="nav-label">Schedule</span>
+          </a>
 
-          <!-- Bottom Links -->
-          <div class="sidebar-bottom">
-            <a class="nav-item" href="#">
-              <img
-                class="nav-icon"
-                src="../../assets/icons/question-circle.svg"
-                alt=""
-              />
-              <span class="nav-label">Help center</span>
-            </a>
+          <a class="nav-item" href="../PatientPages/patients.html">
+            <img class="nav-icon" src="../../assets/icons/people.svg" alt="" />
+            <span class="nav-label">Patients</span>
+          </a>
 
-            <a class="nav-item" href="#">
-              <img
-                class="nav-icon"
-                src="../../assets/icons/tabler_logout.svg"
-                alt=""
-              />
-              <span class="nav-label">Log out</span>
-            </a>
+          <a class="nav-item" href="../DoctorPages/doctors.html">
+            <img class="nav-icon" src="../../assets/icons/stethoscope.svg" alt="" />
+            <span class="nav-label">Doctors</span>
+          </a>
+        </nav>
+
+        <!-- Bottom Links -->
+        <div class="sidebar-bottom">
+          <a class="nav-item" href="#">
+            <img class="nav-icon" src="../../assets/icons/question-circle.svg" alt="" />
+            <span class="nav-label">Help center</span>
+          </a>
+
+          <a class="nav-item" href="#">
+            <img class="nav-icon" src="../../assets/icons/tabler_logout.svg" alt="" />
+            <span class="nav-label">Log out</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+      <!-- HEADER -->
+      <header class="topbar">
+        <div class="topbar-left"></div>
+
+        <div class="topbar-right">
+          <button class="icon-button" aria-label="Notifications">
+            <img src="../../assets/icons/alert.svg" alt="Notifications" />
+          </button>
+
+          <div class="user-chip">
+            <div class="avatar-circle">
+              <img src="../../assets/icons/person.svg" alt="User profile" class="avatar-icon" />
+            </div>
+            <div class="user-meta">
+              <span class="user-name">Selena Doe</span>
+              <span class="user-role">Front Desk Staff</span>
+            </div>
           </div>
         </div>
-      </aside>
+      </header>
 
-      <!-- MAIN CONTENT -->
-      <div class="main">
-        <!-- HEADER -->
-        <header class="topbar">
-          <div class="topbar-left"></div>
-
-          <div class="topbar-right">
-            <button class="icon-button" aria-label="Notifications">
-              <img src="../../assets/icons/alert.svg" alt="Notifications" />
-            </button>
-
-            <div class="user-chip">
-              <div class="avatar-circle">
-                <img
-                  src="../../assets/icons/person.svg"
-                  alt="User profile"
-                  class="avatar-icon"
-                />
-              </div>
-              <div class="user-meta">
-                <span class="user-name">Selena Doe</span>
-                <span class="user-role">Front Desk Staff</span>
-              </div>
-            </div>
-          </div>
+      <!-- PAGE -->
+      <!-- THIS IS THE ONLY PART THAT SHOULD BE CHANGING IN MOST CASES!!! -->
+      <main class="page">
+        <header class="page-header">
+          <h1 class="page-title">Schedule</h1>
         </header>
 
-        <!-- PAGE -->
-        <!-- THIS IS THE ONLY PART THAT SHOULD BE CHANGING IN MOST CASES!!! -->
-        <main class="page">
-          <header class="page-header">
-            <h1 class="page-title">Schedule</h1>
-          </header>
-
-          <section class="page-body">
-            <div class="schedule-wrapper">
-              <div class="schedule-header-row">
-                <button class="nav-btn">
-                  <img src="../../assets/icons/chevron-left.svg" alt="Previous" class="chevron-icon">
-                </button>
-                <h2 class="schedule-date">Monday - September 3rd, 2025</h2>
-                <button class="nav-btn">
-                  <img src="../../assets/icons/chevron-right.svg" alt="Previous" class="chevron-icon">
-                </button>
-              </div>
-
-              <div class="schedule-container">
-                <!-- TIME HEADERS ACROSS TOP -->
-                <div class="time-header-row">
-                  <div class="time-header">09:00</div>
-                  <div class="time-header">09:30</div>
-                  <div class="time-header">10:00</div>
-                  <div class="time-header">10:30</div>
-                  <div class="time-header">11:00</div>
-                  <div class="time-header">11:30</div>
-                  <div class="time-header">12:00</div>
-                  <div class="time-header">12:30</div>
-                  <div class="time-header">13:00</div>
-                  <div class="time-header">13:30</div>
-                  <div class="time-header">14:00</div>
-                  <div class="time-header">14:30</div>
-                  <div class="time-header">15:00</div>
-                  <div class="time-header">15:30</div>
-                  <div class="time-header">16:00</div>
-                  <div class="time-header">16:30</div>
-                  <div class="time-header">17:00</div>
-                  <div class="time-header">17:30</div>
-                  <div class="time-header">18:00</div>
-                  <div class="time-header">18:30</div>
-                  <div class="time-header">19:00</div>
-                  <div class="time-header">19:30</div>
-                  <div class="time-header">20:00</div>
-                  <div class="time-header">20:30</div>
-                </div>
-
-                <!-- APPOINTMENT GRID -->
-                <div class="schedule-grid"></div>
-              </div>
-              <div class="schedule-legend">
-                <span class="legend-pill legend-assessment">Assessment</span>
-                <span class="legend-pill legend-reports">Reports</span>
-                <span class="legend-pill legend-followup">Follow-up</span>
-                <span class="legend-pill legend-walkin">Walk-In</span>
-                <span class="legend-pill legend-other">Other</span>
-              </div>
+        <section class="page-body">
+          <div class="schedule-wrapper">
+            <div class="schedule-header-row">
+              <button class="nav-btn">
+                <img src="../../assets/icons/chevron-left.svg" alt="Previous" class="chevron-icon">
+              </button>
+              <h2 class="schedule-date">Monday - September 3rd, 2025</h2>
+              <button class="nav-btn">
+                <img src="../../assets/icons/chevron-right.svg" alt="Previous" class="chevron-icon">
+              </button>
             </div>
-          </section>
-        </main>
-        <!-- END OF PAGE -->
-      </div>
+
+            <div class="schedule-container">
+              <!-- TIME HEADERS ACROSS TOP -->
+              <div class="time-header-row">
+                <div class="time-header">09:00</div>
+                <div class="time-header">09:30</div>
+                <div class="time-header">10:00</div>
+                <div class="time-header">10:30</div>
+                <div class="time-header">11:00</div>
+                <div class="time-header">11:30</div>
+                <div class="time-header">12:00</div>
+                <div class="time-header">12:30</div>
+                <div class="time-header">13:00</div>
+                <div class="time-header">13:30</div>
+                <div class="time-header">14:00</div>
+                <div class="time-header">14:30</div>
+                <div class="time-header">15:00</div>
+                <div class="time-header">15:30</div>
+                <div class="time-header">16:00</div>
+                <div class="time-header">16:30</div>
+                <div class="time-header">17:00</div>
+                <div class="time-header">17:30</div>
+                <div class="time-header">18:00</div>
+                <div class="time-header">18:30</div>
+                <div class="time-header">19:00</div>
+                <div class="time-header">19:30</div>
+                <div class="time-header">20:00</div>
+                <div class="time-header">20:30</div>
+              </div>
+
+              <!-- APPOINTMENT GRID -->
+              <div class="schedule-grid"></div>
+            </div>
+            <div class="schedule-legend">
+              <span class="legend-pill legend-assessment">Assessment</span>
+              <span class="legend-pill legend-reports">Reports</span>
+              <span class="legend-pill legend-followup">Follow-up</span>
+              <span class="legend-pill legend-walkin">Walk-In</span>
+              <span class="legend-pill legend-other">Other</span>
+            </div>
+          </div>
+        </section>
+      </main>
+      <!-- END OF PAGE -->
     </div>
+  </div>
 
-    <script src="../../database/appointments-database.js"></script>
-    <script src="../../database/patients-database.js"></script>
-    <script src="../../database/doctors-database.js"></script>
-    <script src="../../database/staff-database.js"></script>
+  <!-- Help center in-development toast -->
+  <div id="helpcenter-toast" class="helpcenter-toast" role="status" aria-live="polite">
+    <div class="helpcenter-toast-content">
+      <div class="helpcenter-toast-text">
+        <strong class="helpcenter-toast-title">Feature in development</strong>
+        <span class="helpcenter-toast-body">
+          This feature is still under development. Please check back soon.
+        </span>
+      </div>
 
-    <script src="../layout.js"></script>
-    <script src="./scheduleDriver.js"></script>
-  </body>
+      <button type="button" class="helpcenter-toast-close" aria-label="Dismiss notification">
+        ×
+      </button>
+    </div>
+  </div>
+  <script src="../../database/appointments-database.js"></script>
+  <script src="../../database/patients-database.js"></script>
+  <script src="../../database/doctors-database.js"></script>
+  <script src="../../database/staff-database.js"></script>
+
+  <script src="../layout.js"></script>
+  <script src="./scheduleDriver.js"></script>
+</body>
+
 </html>

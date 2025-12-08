@@ -91,3 +91,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// 4) Help center "feature in development" toast
+document.addEventListener("DOMContentLoaded", () => {
+  const helpLink = Array.from(
+    document.querySelectorAll(".sidebar-bottom .nav-item")
+  ).find((link) => link.textContent.trim().includes("Help center"));
+
+  const toast = document.getElementById("helpcenter-toast");
+  const closeBtn = toast?.querySelector(".helpcenter-toast-close");
+  let hideTimeout;
+
+  if (helpLink && toast) {
+    helpLink.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // Show toast
+      toast.classList.add("helpcenter-toast--visible");
+
+      // Auto-hide after 3.5s
+      clearTimeout(hideTimeout);
+      hideTimeout = setTimeout(() => {
+        toast.classList.remove("helpcenter-toast--visible");
+      }, 3500);
+    });
+  }
+
+  if (closeBtn && toast) {
+    closeBtn.addEventListener("click", () => {
+      toast.classList.remove("helpcenter-toast--visible");
+      clearTimeout(hideTimeout);
+    });
+  }
+});

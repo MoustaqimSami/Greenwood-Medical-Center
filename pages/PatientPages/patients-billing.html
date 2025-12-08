@@ -1,160 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Patients | GMC</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="../../css/style.css" />
-    <link rel="stylesheet" href="../../css/template.css" />
-    <link rel="stylesheet" href="../../css/components.css" />
-    <link rel="stylesheet" href="../../css/billing.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <title>Patients | GMC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <body>
-    <div class="app-shell">
-      <!-- SIDEBAR -->
-      <aside class="sidebar">
-        <div class="sidebar-inner">
-          <div class="sidebar-top">
-            <button class="brand-button" aria-label="Clinic home">
-              <img
-                src="../../assets/icons/logo.svg"
-                alt="Clinic logo"
-                class="brand-logo"
-              />
-            </button>
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/template.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/billing.css" />
+</head>
 
-            <button class="sidebar-toggle" aria-label="Toggle sidebar">
-              <img
-                src="../../assets/icons/layout-sidebar.svg"
-                data-open-src="../../assets/icons/layout-sidebar.svg"
-                data-collapsed-src="../../assets/icons/layout-sidebar-closed.svg"
-                alt="Toggle sidebar"
-                class="sidebar-toggle-icon"
-              />
-            </button>
-          </div>
+<body>
+  <div class="app-shell">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-top">
+          <button class="brand-button" aria-label="Clinic home">
+            <img src="../../assets/icons/logo.svg" alt="Clinic logo" class="brand-logo" />
+          </button>
 
-          <!-- Navigation -->
-          <nav class="sidebar-nav">
-            <a class="nav-item" href="../HomePage/dashboard.html">
-              <img class="nav-icon" src="../../assets/icons/home.svg" alt="" />
-              <span class="nav-label">Home</span>
-            </a>
+          <button class="sidebar-toggle" aria-label="Toggle sidebar">
+            <img src="../../assets/icons/layout-sidebar.svg" data-open-src="../../assets/icons/layout-sidebar.svg"
+              data-collapsed-src="../../assets/icons/layout-sidebar-closed.svg" alt="Toggle sidebar"
+              class="sidebar-toggle-icon" />
+          </button>
+        </div>
 
-            <a class="nav-item" href="../SchedulePage/schedule.html">
-              <img class="nav-icon" src="../../assets/icons/calendar.svg" alt="" />
-              <span class="nav-label">Schedule</span>
-            </a>
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+          <a class="nav-item" href="../HomePage/dashboard.html">
+            <img class="nav-icon" src="../../assets/icons/home.svg" alt="" />
+            <span class="nav-label">Home</span>
+          </a>
 
-            <a class="nav-item" href="../PatientPages/patients.html">
-              <img class="nav-icon" src="../../assets/icons/people.svg" alt="" />
-              <span class="nav-label">Patients</span>
-            </a>
+          <a class="nav-item" href="../SchedulePage/schedule.html">
+            <img class="nav-icon" src="../../assets/icons/calendar.svg" alt="" />
+            <span class="nav-label">Schedule</span>
+          </a>
 
-            <a class="nav-item" href="../DoctorPages/doctors.html">
-              <img
-                class="nav-icon"
-                src="../../assets/icons/stethoscope.svg"
-                alt=""
-              />
-              <span class="nav-label">Doctors</span>
-            </a>
-          </nav>
+          <a class="nav-item" href="../PatientPages/patients.html">
+            <img class="nav-icon" src="../../assets/icons/people.svg" alt="" />
+            <span class="nav-label">Patients</span>
+          </a>
 
-          <!-- Bottom Links -->
-          <div class="sidebar-bottom">
-            <a class="nav-item" href="#">
-              <img
-                class="nav-icon"
-                src="../../assets/icons/question-circle.svg"
-                alt=""
-              />
-              <span class="nav-label">Help center</span>
-            </a>
+          <a class="nav-item" href="../DoctorPages/doctors.html">
+            <img class="nav-icon" src="../../assets/icons/stethoscope.svg" alt="" />
+            <span class="nav-label">Doctors</span>
+          </a>
+        </nav>
 
-            <a class="nav-item" href="#">
-              <img
-                class="nav-icon"
-                src="../../assets/icons/tabler_logout.svg"
-                alt=""
-              />
-              <span class="nav-label">Log out</span>
-            </a>
+        <!-- Bottom Links -->
+        <div class="sidebar-bottom">
+          <a class="nav-item" href="#">
+            <img class="nav-icon" src="../../assets/icons/question-circle.svg" alt="" />
+            <span class="nav-label">Help center</span>
+          </a>
+
+          <a class="nav-item" href="#">
+            <img class="nav-icon" src="../../assets/icons/tabler_logout.svg" alt="" />
+            <span class="nav-label">Log out</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+      <!-- HEADER -->
+      <header class="topbar">
+        <div class="topbar-left"></div>
+
+        <div class="topbar-right">
+          <button class="icon-button" aria-label="Notifications">
+            <img src="../../assets/icons/alert.svg" alt="Notifications" />
+          </button>
+
+          <div class="user-chip">
+            <div class="avatar-circle">
+              <img src="../../assets/icons/person.svg" alt="User profile" class="avatar-icon" />
+            </div>
+            <div class="user-meta">
+              <span class="user-name">Selena Doe</span>
+              <span class="user-role">Front Desk Staff</span>
+            </div>
           </div>
         </div>
-      </aside>
+      </header>
 
-      <!-- MAIN CONTENT -->
-      <div class="main">
-        <!-- HEADER -->
-        <header class="topbar">
-          <div class="topbar-left"></div>
-
-          <div class="topbar-right">
-            <button class="icon-button" aria-label="Notifications">
-              <img src="../../assets/icons/alert.svg" alt="Notifications" />
-            </button>
-
-            <div class="user-chip">
-              <div class="avatar-circle">
-                <img
-                  src="../../assets/icons/person.svg"
-                  alt="User profile"
-                  class="avatar-icon"
-                />
-              </div>
-              <div class="user-meta">
-                <span class="user-name">Selena Doe</span>
-                <span class="user-role">Front Desk Staff</span>
-              </div>
-            </div>
+      <!-- PAGE -->
+      <main class="page">
+        <header class="page-header page-header--column">
+          <div class="page-nav">
+            <a class="page-title page-title--outer" href="/pages/PatientPages/patients.html">Patients /</a>
+            <p class="page-title page-title--inner">Janet Dean</p>
           </div>
+          <h1 class="page-title">Janet Dean</h1>
         </header>
 
-        <!-- PAGE -->
-        <main class="page">
-          <header class="page-header page-header--column">
-            <div class="page-nav">
-              <a class="page-title page-title--outer" href="/pages/PatientPages/patients.html">Patients /</a>
-              <p class="page-title page-title--inner">Janet Dean</p>
-            </div>
-            <h1 class="page-title">Janet Dean</h1>
-          </header>
-        
-          <section class="page-body page-body--innerpage auto-height">
-            <aside class="inner-sidebar">
-              <!-- Navigation -->
-              <nav class="inner-sidebar-nav">
-                <a class="inner-nav-item" href="../PatientPages/patients-profile.html">
-                  <span>Profile</span>
-                </a>
-        
-                <a class="inner-nav-item" href="../PatientPages/patients-appointments.html">
-                  <span>Appointments</span>
-                </a>
-        
-                <a class="inner-nav-item inner-nav-item-active" href="../PatientPages/patients-billing.html">
-                  <span>Billing</span>
-                </a>
+        <section class="page-body page-body--innerpage auto-height">
+          <aside class="inner-sidebar">
+            <!-- Navigation -->
+            <nav class="inner-sidebar-nav">
+              <a class="inner-nav-item" href="../PatientPages/patients-profile.html">
+                <span>Profile</span>
+              </a>
 
-                <div class="inner-sidebar-bottom">
-                  <button class="btn btn--small btn--danger-txt-red">
-                    Delete Account
-                  </button>
-                </div>
-              </nav>
-            </aside>
+              <a class="inner-nav-item" href="../PatientPages/patients-appointments.html">
+                <span>Appointments</span>
+              </a>
 
-            <div class="main main--innerpage">
-              <!-- THIS IS THE ONLY PART THAT SHOULD BE CHANGING IN MOST CASES!!! -->
-              <div>
-                <h class="body-xl-semibold"> Billing Overview </h>
+              <a class="inner-nav-item inner-nav-item-active" href="../PatientPages/patients-billing.html">
+                <span>Billing</span>
+              </a>
+
+              <div class="inner-sidebar-bottom">
+                <button class="btn btn--small btn--danger-txt-red">
+                  Delete Account
+                </button>
+              </div>
+            </nav>
+          </aside>
+
+          <div class="main main--innerpage">
+            <!-- THIS IS THE ONLY PART THAT SHOULD BE CHANGING IN MOST CASES!!! -->
+            <div>
+              <h class="body-xl-semibold"> Billing Overview </h>
               <!-- Summary Cards -->
               <div class="bill-sum">
 
-                <div class="sum-crd"> 
+                <div class="sum-crd">
                   <p class="sum-l">Total Due</p> <!--Summary label-->
                   <p class="sum-v">$200.00</p><!--value -->
                   <p class="sum-s">4 Unpaid Dues</p><!--sub information-->
@@ -173,100 +150,116 @@
                 </div>
 
               </div>
-                </div>
+            </div>
 
-              <!-- Invoice Section -->
-              <div class="inv-hd"><!--invoice heading-->
-                <h3 class="inv-t">Invoices</h3><!---->
-                <a href="../PatientPages/patients-billing-process-payment.html"> <button class="process-btn">Process Payment</button> </a><!---->
-              </div>
-              <p class="inv-subt">2 invoices selected | Total: $470</p><!--invoice Subtitle-->
+            <!-- Invoice Section -->
+            <div class="inv-hd"><!--invoice heading-->
+              <h3 class="inv-t">Invoices</h3><!---->
+              <a href="../PatientPages/patients-billing-process-payment.html"> <button class="process-btn">Process
+                  Payment</button> </a><!---->
+            </div>
+            <p class="inv-subt">2 invoices selected | Total: $470</p><!--invoice Subtitle-->
 
-              <!-- Table -->
-              <div class="inv-tbl-contain"><!--invoice table container-->
-                <table class="inv-tbl"><!--invoice table-->
-                  
-                  <thead>
-                    <tr>
-                      <th></th><!--table column heading-->
-                      <th>Invoice Number</th>
-                      <th>Service</th>
-                      <th>Date</th>
-                      <th>Amount Due</th>
-                      <th>Amount Paid</th>
-                      <th>Insurance</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
+            <!-- Table -->
+            <div class="inv-tbl-contain"><!--invoice table container-->
+              <table class="inv-tbl"><!--invoice table-->
 
-                  <tbody>    
-                    <tr>
-                      <td><input type="checkbox" checked></td>
-                      <td>103258</td>
-                      <td>Consult</td>
-                      <td>Sep 14, 2025</td>
-                      <td>$450</td>
-                      <td>$350</td>
-                      <td>Billed</td>
-                      <td>Pending</td>
-                    </tr>
+                <thead>
+                  <tr>
+                    <th></th><!--table column heading-->
+                    <th>Invoice Number</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Amount Due</th>
+                    <th>Amount Paid</th>
+                    <th>Insurance</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
 
-                    <tr>
-                      <td><input type="checkbox" checked></td>
-                      <td>106358</td>
-                      <td>Consult</td>
-                      <td>july 11, 2025</td>
-                      <td>$350</td>
-                      <td>$250</td>
-                      <td>Billed</td>
-                      <td>Pending</td>
-                    </tr>
+                <tbody>
+                  <tr>
+                    <td><input type="checkbox" checked></td>
+                    <td>103258</td>
+                    <td>Consult</td>
+                    <td>Sep 14, 2025</td>
+                    <td>$450</td>
+                    <td>$350</td>
+                    <td>Billed</td>
+                    <td>Pending</td>
+                  </tr>
 
-                    <tr>
-                      <td><input type="checkbox"></td>
-                      <td>109862</td>
-                      <td>Consult</td>
-                      <td>june 5, 2025</td>
-                      <td>$180</td>
-                      <td>$100</td>
-                      <td>Billed</td>
-                      <td>Pending</td>
-                    </tr>
+                  <tr>
+                    <td><input type="checkbox" checked></td>
+                    <td>106358</td>
+                    <td>Consult</td>
+                    <td>july 11, 2025</td>
+                    <td>$350</td>
+                    <td>$250</td>
+                    <td>Billed</td>
+                    <td>Pending</td>
+                  </tr>
 
-                    <tr>
-                      <td><input type="checkbox"></td>
-                      <td>103258</td>
-                      <td>Consult</td>
-                      <td>April 11, 2025</td>
-                      <td>$80</td>
-                      <td>$50</td>
-                      <td>Billed</td>
-                      <td>Pending</td>
-                    </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>109862</td>
+                    <td>Consult</td>
+                    <td>june 5, 2025</td>
+                    <td>$180</td>
+                    <td>$100</td>
+                    <td>Billed</td>
+                    <td>Pending</td>
+                  </tr>
 
-                    <tr>
-                      <td><input type="checkbox"></td>
-                      <td>103258</td>
-                      <td>Consult</td>
-                      <td>Feb 21, 2025</td>
-                      <td>$450</td>
-                      <td>$300</td>
-                      <td>Billed</td>
-                      <td>Pending</td>
-                    </tr>
-                  </tbody>
-                </table>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>103258</td>
+                    <td>Consult</td>
+                    <td>April 11, 2025</td>
+                    <td>$80</td>
+                    <td>$50</td>
+                    <td>Billed</td>
+                    <td>Pending</td>
+                  </tr>
 
-              </div>
-            </div>          
-          </section>
-        
-        </main>
-        <!-- END OF PAGE -->
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>103258</td>
+                    <td>Consult</td>
+                    <td>Feb 21, 2025</td>
+                    <td>$450</td>
+                    <td>$300</td>
+                    <td>Billed</td>
+                    <td>Pending</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </section>
+
+      </main>
+      <!-- END OF PAGE -->
+    </div>
+  </div>
+
+  <!-- Help center in-development toast -->
+  <div id="helpcenter-toast" class="helpcenter-toast" role="status" aria-live="polite">
+    <div class="helpcenter-toast-content">
+      <div class="helpcenter-toast-text">
+        <strong class="helpcenter-toast-title">Feature in development</strong>
+        <span class="helpcenter-toast-body">
+          This feature is still under development. Please check back soon.
+        </span>
       </div>
+
+      <button type="button" class="helpcenter-toast-close" aria-label="Dismiss notification">
+        ×
+      </button>
     </div>
 
     <script src="../layout.js"></script>
-  </body>
-  
+</body>
+
 </html>

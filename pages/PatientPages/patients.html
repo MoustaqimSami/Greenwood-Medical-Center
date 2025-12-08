@@ -117,12 +117,12 @@
                 <input type="text" id="myInput" class="search-input"
                   placeholder="Search patients (name, phone, date of birth, etc.)..." />
               </div>
-          
+
               <button class="btn btn--sec" id="searchButton">Search</button> <!-- Search Button -->
-          
+
               <div class="patients-filters flexrow-gap16">
                 <label class="filter-label">
-          
+
                   <select id="genderFilter" class="filter-select">
                     <option value="">All genders</option>
                     <option value="Male">Male</option>
@@ -130,9 +130,9 @@
                     <option value="Other">Other</option>
                   </select>
                 </label>
-          
+
                 <label class="filter-label">
-          
+
                   <select id="sortBy" class="filter-select">
                     <option value="name-asc">Name (A–Z)</option>
                     <option value="name-desc">Name (Z–A)</option>
@@ -140,7 +140,7 @@
                 </label>
               </div>
             </div>
-          
+
             <table id="myTable">
               <thead>
                 <tr>
@@ -261,24 +261,39 @@
     </div>
   </div>
 
-  <script src="../../database/patients-database.js"></script>
+  <!-- Help center in-development toast -->
+  <div id="helpcenter-toast" class="helpcenter-toast" role="status" aria-live="polite">
+    <div class="helpcenter-toast-content">
+      <div class="helpcenter-toast-text">
+        <strong class="helpcenter-toast-title">Feature in development</strong>
+        <span class="helpcenter-toast-body">
+          This feature is still under development. Please check back soon.
+        </span>
+      </div>
 
-  <script src="./patientLogic/patient-book-appointment.js"></script>
-  <script src="./patientLogic/patient-page.js"></script>
+      <button type="button" class="helpcenter-toast-close" aria-label="Dismiss notification">
+        ×
+      </button>
+    </div>
 
-  <script src="../layout.js"></script>
+    <script src="../../database/patients-database.js"></script>
 
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("open") === "addPatient") {
-      const addBtn = document.querySelector(".new-pat-btn");
-      if (addBtn) {
-        addBtn.click();
-      }
-    }
-  });
-</script>
+    <script src="./patientLogic/patient-book-appointment.js"></script>
+    <script src="./patientLogic/patient-page.js"></script>
+
+    <script src="../layout.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("open") === "addPatient") {
+          const addBtn = document.querySelector(".new-pat-btn");
+          if (addBtn) {
+            addBtn.click();
+          }
+        }
+      });
+    </script>
 
 </body>
 
