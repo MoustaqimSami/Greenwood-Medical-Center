@@ -733,9 +733,13 @@ body.sidebar-collapsed .main {
 
 .helpcenter-toast {
   position: fixed;
+  z-index: 1200;
+
+  /* default position – bottom-left for Help center */
   left: 24px;
   bottom: 24px;
-  z-index: 1200;
+  top: auto;
+  right: auto;
 
   max-width: 360px;
   width: auto;
@@ -764,6 +768,14 @@ body.sidebar-collapsed .main {
   pointer-events: auto;
 }
 
+/* variant: show near notification icon (top-right) */
+.helpcenter-toast--top-right {
+  left: auto;
+  bottom: auto;
+  right: 24px;
+  top: 16px;
+}
+
 /* subtle colored accent bar on the left */
 .helpcenter-toast::before {
   content: "";
@@ -771,7 +783,10 @@ body.sidebar-collapsed .main {
   width: 4px;
   border-radius: 999px;
   margin-right: 10px;
-  background: var(--primary-500, var(--primary-600));
+  background: var(
+    --primary-500,
+    var(--primary-600)
+  ); /* falls back to primary-600 if 500 doesn't exist */
 }
 
 /* layout inside the toast */
@@ -817,4 +832,22 @@ body.sidebar-collapsed .main {
 .helpcenter-toast-close:hover {
   background: var(--primary-50);
   color: var(--primary-700);
+}
+
+/* small screens */
+@media (max-width: 768px) {
+  .helpcenter-toast {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    top: auto;
+    max-width: none;
+  }
+
+  .helpcenter-toast--top-right {
+    right: 16px;
+    top: 12px;
+    left: auto;
+    bottom: auto;
+  }
 }

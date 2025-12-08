@@ -92,28 +92,52 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// 4) Help center "feature in development" toast
+// Help center & Notification "feature in development" toast
 document.addEventListener("DOMContentLoaded", () => {
+  // Sidebar Help center link
   const helpLink = Array.from(
     document.querySelectorAll(".sidebar-bottom .nav-item")
   ).find((link) => link.textContent.trim().includes("Help center"));
 
+  // Notification icons (header bell etc.)
+  const notifButtons = document.querySelectorAll(".icon-button");
+
   const toast = document.getElementById("helpcenter-toast");
   const closeBtn = toast?.querySelector(".helpcenter-toast-close");
+
   let hideTimeout;
+
+  function showToast({ nearNotification = false } = {}) {
+    if (!toast) return;
+
+    // Choose position
+    if (nearNotification) {
+      toast.classList.add("helpcenter-toast--top-right");
+    } else {
+      toast.classList.remove("helpcenter-toast--top-right");
+    }
+
+    toast.classList.add("helpcenter-toast--visible");
+
+    clearTimeout(hideTimeout);
+    hideTimeout = setTimeout(() => {
+      toast.classList.remove("helpcenter-toast--visible");
+    }, 3500);
+  }
 
   if (helpLink && toast) {
     helpLink.addEventListener("click", (e) => {
       e.preventDefault();
+      showToast({ nearNotification: false }); // bottom-left
+    });
+  }
 
-      // Show toast
-      toast.classList.add("helpcenter-toast--visible");
-
-      // Auto-hide after 3.5s
-      clearTimeout(hideTimeout);
-      hideTimeout = setTimeout(() => {
-        toast.classList.remove("helpcenter-toast--visible");
-      }, 3500);
+  if (notifButtons.length && toast) {
+    notifButtons.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        showToast({ nearNotification: true }); // top-right near bell
+      });
     });
   }
 
@@ -124,3 +148,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+
